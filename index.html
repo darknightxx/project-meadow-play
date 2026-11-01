@@ -109,26 +109,28 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
-		<script>
-// Artifact host limit: index.wasm is shipped gzipped; inflate it on the fly.
+		<!-- meadow-wasm-gz-shim -->
+<script>
+window.MEADOW_PCK_WASM = true;
+// tools/deploy/webbuild.py: index.wasm ships gzipped as index.gz.wasm and is inflated here (DecompressionStream).
 (function () {
   const realFetch = window.fetch.bind(window);
   window.fetch = async function (input, init) {
     const url = typeof input === 'string' ? input : (input && input.url) || String(input);
-    if (/index\.wasm(\?|#|$)/.test(url)) {
+    if (/(^|\/)index\.wasm(\?|#|$)/.test(url)) {
       const r = await realFetch(url.replace('index.wasm', 'index.gz.wasm'), init);
       if (!r.ok) return r;
       let buf = new Uint8Array(await r.arrayBuffer());
-      if (buf[0] === 0x1f && buf[1] === 0x8b) {   // still gzipped (host did not decode it)
+      if (buf[0] === 0x1f && buf[1] === 0x8b) {   // still gzipped (the server did not add Content-Encoding)
         const ds = new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'));
         buf = new Uint8Array(await new Response(ds).arrayBuffer());
       }
       return new Response(buf, { status: 200, headers: { 'Content-Type': 'application/wasm',
                                                          'Content-Length': String(buf.byteLength) } });
     }
-    const pm = url.match(/^(.*\.pck)(\?.*|#.*)?$/);   // index.pck, index.nature.pck, ...
-    if (pm) {
-      return realFetch(pm[1] + '.wasm' + (pm[2] || ''), init);
+    if (window.MEADOW_PCK_WASM) {                // --artifact-layout: packs are served as *.pck.wasm
+      const pm = url.match(/^(.*\.pck)(\?.*|#.*)?$/);
+      if (pm) return realFetch(pm[1] + '.wasm' + (pm[2] || ''), init);
     }
     return realFetch(input, init);
   };
@@ -136,7 +138,7 @@ body {
 </script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":17191520,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":17239344,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

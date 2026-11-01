@@ -92,6 +92,111 @@ body {
 		</style>
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+<!-- meadow-orient (tools/web/orient_shell.html, synced into export_presets.cfg by tools/web/orient_sync.py) -->
+<meta name='screen-orientation' content='landscape'><meta name='x5-orientation' content='landscape'>
+<meta name='mobile-web-app-capable' content='yes'><meta name='apple-mobile-web-app-capable' content='yes'>
+<style id='meadow-orient-css'>
+#meadow-rotate{display:none;position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483600;box-sizing:border-box;padding:24px;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;background:radial-gradient(circle at 50% 38%,#29435a 0,#111c27 72%);color:#f6edd6;font:600 21px/1.5 Loma,'Noto Sans Thai','Noto Sans Thai UI',Thonburi,'Sukhumvit Set','Leelawadee UI',Tahoma,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+@media (orientation: portrait) and (pointer: coarse) { #meadow-rotate{display:flex} }
+#meadow-rotate svg{width:120px;height:120px;overflow:visible}
+#meadow-rotate .mr-phone{transform-origin:60px 60px;animation:mr-turn 2.6s ease-in-out infinite}
+#meadow-rotate .mr-arrow{animation:mr-fade 2.6s ease-in-out infinite}
+#meadow-rotate .mr-sub{font-weight:400;font-size:15px;opacity:.78}
+#meadow-rotate .mr-tap{display:none;margin-top:6px;padding:8px 18px;border:1px solid rgba(246,237,214,.45);border-radius:999px;font-weight:400;font-size:15px}
+html.mr-can-fs #meadow-rotate .mr-tap{display:block}
+@keyframes mr-turn{0%,18%{transform:rotate(0deg)}52%,82%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
+@keyframes mr-fade{0%,18%{opacity:1}40%,90%{opacity:.15}100%{opacity:1}}
+@media (prefers-reduced-motion: reduce) { #meadow-rotate .mr-phone{animation:none;transform:rotate(-90deg)} #meadow-rotate .mr-arrow{animation:none} }
+</style>
+<template id='meadow-rotate-tpl'><div id='meadow-rotate' role='alert' aria-live='assertive'>
+<svg viewBox='0 0 120 120' aria-hidden='true' fill='none' stroke='#f6edd6' stroke-linecap='round' stroke-linejoin='round'>
+<path class='mr-arrow' stroke-width='3.5' d='M24 34 A44 44 0 0 1 90 22 M90 22 L78 19 M90 22 L87 34'/>
+<g class='mr-phone'><rect x='41' y='26' width='38' height='68' rx='7' stroke-width='4' fill='rgba(246,237,214,0.10)'/><rect x='46' y='34' width='28' height='48' rx='2' stroke-width='2' fill='rgba(120,190,255,0.28)'/><circle cx='60' cy='88' r='2.2' fill='#f6edd6' stroke='none'/></g>
+</svg>
+<div class='mr-title'>กรุณาหมุนโทรศัพท์เป็นแนวนอน</div>
+<div class='mr-sub'>เกมนี้ออกแบบให้เล่นในแนวนอน</div>
+<div class='mr-tap'>หรือแตะหน้าจอเพื่อเล่นแบบเต็มจอ</div>
+</div></template>
+<script id='meadow-orient-js'>
+(function () {
+var W = window, D = document, R = D.documentElement;
+if (W.meadowOrient) return;
+// overlay: last child of <html> at once (before the engine loads); events on it never reach the canvas
+var tpl = D.getElementById('meadow-rotate-tpl');
+if (tpl && tpl.content && tpl.content.firstElementChild) R.appendChild(tpl.content.firstElementChild.cloneNode(true));
+function mm(q) { try { return W.matchMedia ? W.matchMedia(q) : null; } catch (e) { return null; } }
+var mqBlock = mm('(orientation: portrait) and (pointer: coarse)'), mqCoarse = mm('(pointer: coarse)');
+var st = { fsRequests: 0, lockCalls: 0, lastLock: '', lastFs: '', autoTries: 0 };
+function touch() { return !!(mqCoarse && mqCoarse.matches); }
+function blocked() { return !!(mqBlock && mqBlock.matches); }
+function fsEl() { return D.fullscreenElement || D.webkitFullscreenElement || null; }
+function canFs() { try { return !!((D.fullscreenEnabled || D.webkitFullscreenEnabled) && (R.requestFullscreen || R.webkitRequestFullscreen)); } catch (e) { return false; } }
+function nm(e) { return (e && e.name) ? String(e.name) : 'error'; }
+function marks() { R.classList.toggle('mr-can-fs', touch() && canFs() && !fsEl()); }
+// all failures are silent (iPhone: no fullscreen API; claude.ai iframe: fullscreen not allowed; Android: no lock
+// outside fullscreen; desktop): the overlay is the fallback
+function lock() {
+	var so = W.screen && W.screen.orientation;
+	st.lockCalls++;
+	if (!so || typeof so.lock !== 'function') { st.lastLock = 'unsupported'; return Promise.resolve(false); }
+	try {
+		return Promise.resolve(so.lock('landscape')).then(function () { st.lastLock = 'ok'; return true; },
+			function (e) { st.lastLock = 'rejected:' + nm(e); return false; });
+	} catch (e) { st.lastLock = 'threw:' + nm(e); return Promise.resolve(false); }
+}
+// needs a user gesture: the first tap of the page, the เต็มจอ button (scripts/client/web_orient.gd)
+function enter() {
+	var p;
+	if (fsEl()) p = Promise.resolve();
+	else if (canFs()) {
+		st.fsRequests++;
+		try { var r = (R.requestFullscreen || R.webkitRequestFullscreen).call(R, { navigationUI: 'hide' });
+			p = (r && typeof r.then === 'function') ? r : Promise.resolve(); } catch (e) { p = Promise.reject(e); }
+	} else p = Promise.reject(new Error('fullscreen unavailable'));
+	return p.then(function () { st.lastFs = 'ok'; }, function (e) { st.lastFs = 'failed:' + nm(e); })
+		.then(lock).then(function (ok) { marks(); return ok; }, function () { return false; });
+}
+function exit() {
+	try { var x = D.exitFullscreen || D.webkitExitFullscreen;
+		if (fsEl() && x) { var r = x.call(D); if (r && r.then) r.then(null, function () {}); } } catch (e) {}
+}
+var armed = true;
+function onGesture() {
+	if (!armed || !touch()) return;
+	armed = false;
+	st.autoTries++;
+	enter().then(function () { if (!fsEl() && canFs() && st.autoTries < 3) armed = true; });   // not counted as a gesture: next tap
+}
+var GESTURES = ['pointerup', 'touchend', 'click', 'keydown'];
+GESTURES.forEach(function (t) { W.addEventListener(t, onGesture, true); });
+// input pause while the overlay shows: start / move events stop at the window (capture, before the engine's
+// listeners); releases (touchend, pointerup, mouseup, keyup) pass so nothing held stays stuck
+var STARTS = ['touchstart', 'touchmove', 'pointerdown', 'pointermove', 'mousedown', 'mousemove', 'click', 'dblclick',
+	'contextmenu', 'wheel', 'keydown', 'keypress'];
+STARTS.forEach(function (t) {
+	W.addEventListener(t, function (e) { if (blocked()) e.stopImmediatePropagation(); }, { capture: true, passive: true });
+});
+function onBlock() { if (blocked()) { try { if (D.activeElement && D.activeElement.blur) D.activeElement.blur(); } catch (e) {} } }
+if (mqBlock) { if (mqBlock.addEventListener) mqBlock.addEventListener('change', onBlock); else if (mqBlock.addListener) mqBlock.addListener(onBlock); }
+// back from the background: re-lock; a fullscreen lost meanwhile comes back on the next tap (one the player left on
+// purpose, by the back gesture / Esc, is not forced again)
+var wasFs = false, lastExit = 0;
+function onFs() { if (fsEl()) lock(); else lastExit = Date.now(); marks(); }
+D.addEventListener('fullscreenchange', onFs);
+D.addEventListener('webkitfullscreenchange', onFs);
+function onShow() { if (fsEl()) lock(); else if (wasFs && touch()) { armed = true; st.autoTries = 0; } wasFs = false; }
+D.addEventListener('visibilitychange', function () { if (D.hidden) wasFs = !!fsEl() || Date.now() - lastExit < 1500; else onShow(); });
+W.addEventListener('pageshow', function (e) { if (e.persisted) onShow(); });
+// iOS may leave the page scrolled after a rotation: keep the canvas at the top-left
+function unscroll() { if (W.scrollX || W.scrollY) W.scrollTo(0, 0); }
+W.addEventListener('orientationchange', function () { setTimeout(unscroll, 250); });
+W.addEventListener('resize', unscroll);
+marks();
+W.meadowOrient = { fullscreen: function () { armed = false; return enter(); }, exit: exit, lock: lock, canFullscreen: canFs,
+	isFullscreen: function () { return !!fsEl(); }, isTouch: touch, blocked: blocked, state: st };
+}());
+</script>
+<!-- /meadow-orient -->
 
 	</head>
 	<body>
@@ -114,7 +219,7 @@ body {
 // Boot diagnostics for the web shell (injected by tools/deploy/webbuild.py before the wasm shim and index.js).
 // Shows WHERE start-up stops on devices without a console (iOS Safari): the current stage, download progress, the
 // wasm heap size, JS errors / Godot console errors and WebGL context loss. The panel appears when ?debug=1 is in
-// the URL, when loading takes longer than 15 s, when an error happens during start-up, or when the previous attempt
+// the URL, when start-up looks stuck (no download progress for 25 s, or not running after 90 s), when an error happens during start-up, or when the previous attempt
 // died (iOS kills tabs that use too much memory and reloads them - the last stage + heap size are kept in
 // localStorage "meadow.boot", so the reload can say what happened).
 (function () {
@@ -128,6 +233,7 @@ body {
   var prev = null;
   var mems = [];          // WebAssembly.Memory objects seen
   var shown = false, panel = null, body = null, started = false, bootErr = false;
+  var lastProg = -1, lastProgT = Date.now();
 
   try { prev = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { prev = null; }
 
@@ -340,7 +446,14 @@ body {
     var h = heap();
     if (h > state.peak) { state.peak = h; }
     if (started) { save({ stage: 'running' }); } else { save(); }
-    if (!shown && !started && Date.now() - t0 > 15000) { show(); log('โหลดนานเกิน 15 วินาที'); }
+    // auto-show only when start-up looks stuck: no download progress for 25 s, or still not running after 90 s
+    // (a 40 MB first download on a slow phone network can legitimately take longer than 15 s)
+    var pe = document.getElementById('status-progress');
+    var pv = pe ? Number(pe.value) || 0 : 0;
+    if (pv !== lastProg) { lastProg = pv; lastProgT = Date.now(); }
+    if (!shown && !started && (Date.now() - lastProgT > 25000 || Date.now() - t0 > 90000)) {
+      show(); log(Date.now() - t0 > 90000 ? 'โหลดนานเกิน 90 วินาที' : 'ดาวน์โหลดไม่ขยับ 25 วินาที');
+    }
     render();
   }, 1000);
 }());
@@ -374,7 +487,7 @@ window.MEADOW_PCK_WASM = true;
 </script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":17239344,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":16079104,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -484,12 +597,13 @@ const engine = new Engine(GODOT_CONFIG);
 // is already downloading the wasm + main pack; the extra packs download in parallel and are copied into the
 // in-memory file system before the engine starts (engine.start is wrapped on the instance - Godot builds a
 // fresh prototype per Engine instance, so Engine.prototype cannot be patched). scripts/client/pack_loader.gd mounts
-// them on first use (NatureKit.ensure_pack / CharModel.config).
+// them on first use (NatureKit.ensure_pack / CharModel.config / Audio.play_voice).
 (function () {
 	if (typeof engine === 'undefined' || typeof engine.start !== 'function') {
 		return;
 	}
-	const EXTRA = [['index.nature.pck', '/tmp/index.nature.pck'], ['index.characters.pck', '/tmp/index.characters.pck']];
+	const EXTRA = [['index.nature.pck', '/tmp/index.nature.pck'], ['index.characters.pck', '/tmp/index.characters.pck'],
+		['index.voice.pck', '/tmp/index.voice.pck']];
 	const extra = Promise.all(EXTRA.map(function (e) {
 		return engine.preloadFile(e[0], e[1]).catch(function (err) {
 			console.warn('extra pack not loaded: ' + e[0], err);

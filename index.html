@@ -109,6 +109,242 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
+		<!-- meadow-boot-diag -->
+<script>
+// Boot diagnostics for the web shell (injected by tools/deploy/webbuild.py before the wasm shim and index.js).
+// Shows WHERE start-up stops on devices without a console (iOS Safari): the current stage, download progress, the
+// wasm heap size, JS errors / Godot console errors and WebGL context loss. The panel appears when ?debug=1 is in
+// the URL, when loading takes longer than 15 s, when an error happens during start-up, or when the previous attempt
+// died (iOS kills tabs that use too much memory and reloads them - the last stage + heap size are kept in
+// localStorage "meadow.boot", so the reload can say what happened).
+(function () {
+  'use strict';
+  var KEY = 'meadow.boot';
+  var t0 = Date.now();
+  var q = String(location.search || '');
+  var forced = /[?&]debug=1(&|$)/.test(q);
+  var state = { stage: 'html', t: t0, mem: 0, peak: 0, err: '', ua: navigator.userAgent, url: location.pathname };
+  var lines = [];
+  var prev = null;
+  var mems = [];          // WebAssembly.Memory objects seen
+  var shown = false, panel = null, body = null, started = false, bootErr = false;
+
+  try { prev = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { prev = null; }
+
+  function mb(n) { return Math.round(n / 1048576); }
+  function heap() {
+    var m = 0;
+    for (var i = 0; i < mems.length; i++) { try { m = Math.max(m, mems[i].buffer.byteLength); } catch (e) {} }
+    return m;
+  }
+  function save(extra) {
+    state.t = Date.now();
+    state.mem = heap();
+    state.peak = Math.max(state.peak, state.mem);
+    if (extra) { for (var k in extra) { state[k] = extra[k]; } }
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function log(msg) {
+    var s = ((Date.now() - t0) / 1000).toFixed(1) + 's ' + String(msg).slice(0, 220);
+    lines.push(s);
+    if (lines.length > 40) { lines.shift(); }
+    render();
+  }
+  function stage(name, note) {
+    state.stage = name;
+    save();
+    log('▶ ' + name + (note ? ' — ' + note : ''));
+  }
+  function error(msg) {
+    msg = String(msg).slice(0, 300);
+    state.err = msg;
+    save();
+    log('✖ ' + msg);
+    if (!started) { bootErr = true; show(); }
+  }
+
+  // ---- panel ----
+  function show() {
+    if (shown) { return; }
+    shown = true;
+    var make = function () {
+      if (panel || !document.body) { return; }
+      panel = document.createElement('div');
+      panel.id = 'meadow-boot-diag';
+      panel.setAttribute('style', 'position:fixed;left:6px;top:6px;right:6px;max-height:55%;overflow:auto;z-index:2147483647;' +
+        'background:rgba(0,0,0,.82);color:#e8f5d0;font:11px/1.35 ui-monospace,Menlo,Consolas,monospace;padding:6px 8px;' +
+        'border:1px solid #7a9a4a;border-radius:6px;white-space:pre-wrap;word-break:break-all;-webkit-user-select:text;user-select:text');
+      var bar = document.createElement('div');
+      bar.setAttribute('style', 'display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;color:#ffd77a');
+      bar.textContent = 'ตรวจการโหลดเกม (แคปหน้าจอนี้ส่งให้ทีมงาน)';
+      var x = document.createElement('button');
+      x.textContent = '✕';
+      x.setAttribute('style', 'background:#5b3943;color:#fff;border:0;border-radius:4px;padding:2px 8px;font-size:13px');
+      x.onclick = function () { panel.style.display = 'none'; };
+      bar.appendChild(x);
+      body = document.createElement('div');
+      panel.appendChild(bar);
+      panel.appendChild(body);
+      document.body.appendChild(panel);
+      render();
+    };
+    if (document.body) { make(); } else { document.addEventListener('DOMContentLoaded', make); }
+  }
+  function render() {
+    if (!body) { return; }
+    var p = document.getElementById('status-progress');
+    var prog = '';
+    if (p && p.max > 0 && p.value >= 0) { prog = ' · ดาวน์โหลด ' + Math.round(100 * p.value / p.max) + '% (' + mb(p.value) + '/' + mb(p.max) + ' MB)'; }
+    var head = 'ขั้น: ' + state.stage + ' · ' + ((Date.now() - t0) / 1000).toFixed(0) + ' วิ' + prog +
+      '\nหน่วยความจำเกม (wasm): ' + mb(heap()) + ' MB (สูงสุด ' + mb(state.peak) + ' MB)' +
+      (performance && performance.memory ? ' · JS ' + mb(performance.memory.usedJSHeapSize) + ' MB' : '') +
+      '\n' + navigator.userAgent.replace(/^Mozilla\/5\.0 /, '') + ' · จอ ' + innerWidth + 'x' + innerHeight + ' @' + (window.devicePixelRatio || 1) +
+      '\nDecompressionStream: ' + (typeof DecompressionStream) + ' · WebGL2: ' + gl2();
+    var prevNote = '';
+    if (prevBad) {
+      prevNote = '\n⚠ ครั้งก่อนหยุดที่ขั้น "' + prev.stage + '" หลังเริ่ม ' + Math.round((prev.t - (prev.t0 || prev.t)) / 1000) +
+        ' วิ · wasm ' + mb(prev.mem || 0) + ' MB (สูงสุด ' + mb(prev.peak || 0) + ' MB)' + (prev.err ? ' · ' + prev.err : '') +
+        '\n  (iOS ปิดแท็บที่ใช้หน่วยความจำมากแล้วโหลดใหม่ให้เอง)';
+    }
+    body.textContent = head + prevNote + '\n—\n' + lines.join('\n');
+  }
+  var gl2cache = null;
+  function gl2() {
+    if (gl2cache !== null) { return gl2cache; }
+    try {
+      var c = document.createElement('canvas');
+      var g = c.getContext('webgl2');
+      if (!g) { gl2cache = 'ไม่มี'; return gl2cache; }
+      var mt = g.getParameter(g.MAX_TEXTURE_SIZE);
+      var ext = g.getExtension('WEBGL_lose_context');
+      gl2cache = 'มี (max tex ' + mt + ')';
+      if (ext) { ext.loseContext(); }
+    } catch (e) { gl2cache = 'error ' + e; }
+    return gl2cache;
+  }
+
+  // ---- previous attempt ----
+  var prevBad = !!(prev && prev.stage && prev.stage !== 'closed' && (Date.now() - (prev.t || 0)) < 10 * 60 * 1000 &&
+                   prev.stage !== 'running-ok');
+  state.t0 = t0;
+  save();
+  if (prevBad || forced) { show(); }
+  if (prevBad) { log('ครั้งก่อนไม่ได้ปิดตามปกติ: ขั้น ' + prev.stage); }
+
+  // ---- hooks ----
+  window.addEventListener('error', function (e) {
+    error('JS error: ' + (e.message || e) + (e.filename ? ' @' + String(e.filename).split('/').pop() + ':' + e.lineno : ''));
+  });
+  window.addEventListener('unhandledrejection', function (e) {
+    var r = e.reason;
+    error('Promise: ' + (r && (r.stack || r.message) ? (r.message || r.stack) : r));
+  });
+  ['error', 'warn'].forEach(function (k) {
+    var orig = console[k];
+    console[k] = function () {
+      try {
+        var a = [];
+        for (var i = 0; i < arguments.length; i++) { a.push(String(arguments[i])); }
+        var s = a.join(' ');
+        if (k === 'error') { log('console.error: ' + s); if (!started) { bootErr = true; show(); } } else { log('warn: ' + s); }
+      } catch (e) {}
+      return orig.apply(console, arguments);
+    };
+  });
+
+  var realFetch = window.fetch.bind(window);
+  window.fetch = function (input, init) {
+    var url = typeof input === 'string' ? input : (input && input.url) || String(input);
+    var name = String(url).split('?')[0].split('/').pop();
+    log('fetch ' + name);
+    return realFetch(input, init).then(function (r) {
+      log('  ' + name + ' → HTTP ' + r.status + (r.headers.get('content-length') ? ' ' + mb(+r.headers.get('content-length')) + ' MB' : '') +
+          (r.headers.get('content-encoding') ? ' (' + r.headers.get('content-encoding') + ')' : ''));
+      return r;
+    }, function (e) { error('fetch ' + name + ' ล้มเหลว: ' + e); throw e; });
+  };
+
+  if (typeof DecompressionStream === 'function') {
+    var RealDS = DecompressionStream;
+    window.DecompressionStream = function (fmt) { stage('wasm-gunzip'); return new RealDS(fmt); };
+    window.DecompressionStream.prototype = RealDS.prototype;
+  }
+
+  function grabMemory(obj) {
+    try {
+      if (!obj) { return; }
+      var exp = obj.instance ? obj.instance.exports : (obj.exports || null);
+      if (exp) { for (var k in exp) { if (exp[k] instanceof WebAssembly.Memory && mems.indexOf(exp[k]) < 0) { mems.push(exp[k]); } } }
+    } catch (e) {}
+  }
+  function grabImports(imp) {
+    try {
+      for (var m in imp) { for (var k in imp[m]) { if (imp[m][k] instanceof WebAssembly.Memory && mems.indexOf(imp[m][k]) < 0) { mems.push(imp[m][k]); } } }
+    } catch (e) {}
+  }
+  if (window.WebAssembly) {
+    var W = WebAssembly;
+    if (W.instantiateStreaming) {
+      var ris = W.instantiateStreaming.bind(W);
+      W.instantiateStreaming = function (src, imp) {
+        grabImports(imp);
+        stage('wasm-compile', 'streaming');
+        return ris(src, imp).then(function (res) { grabMemory(res); stage('wasm-ready', 'heap ' + mb(heap()) + ' MB'); return res; },
+          function (e) { error('wasm compile (stream): ' + e); throw e; });
+      };
+    }
+    var ri = W.instantiate.bind(W);
+    W.instantiate = function (src, imp) {
+      grabImports(imp);
+      stage('wasm-compile');
+      return ri(src, imp).then(function (res) { grabMemory(res); stage('wasm-ready', 'heap ' + mb(heap()) + ' MB'); return res; },
+        function (e) { error('wasm compile: ' + e); throw e; });
+    };
+  }
+
+  // engine.start (the const `engine` from Godot's start-up script; wrapped once it exists)
+  var tries = 0;
+  var poll = setInterval(function () {
+    tries++;
+    var eng = null;
+    try { eng = (typeof engine !== 'undefined') ? engine : null; } catch (e) { eng = null; }
+    if (eng && typeof eng.start === 'function' && !eng.__diag) {
+      eng.__diag = true;
+      var os = eng.start;
+      eng.start = function () {
+        stage('engine-start', 'แพ็กเสริมโหลดครบ, เริ่มเอนจิน');
+        var p = os.apply(eng, arguments);
+        if (p && p.then) {
+          p.then(function () { started = true; stage('running', 'เข้าเกมแล้ว heap ' + mb(heap()) + ' MB'); if (!forced && !bootErr && !prevBad) { hideSoon(); } },
+                 function (e) { error('engine.start: ' + (e && e.message || e)); });
+        }
+        return p;
+      };
+      stage('download', 'กำลังดาวน์โหลดไฟล์เกม');
+    }
+    if (tries > 600 || (eng && eng.__diag)) { clearInterval(poll); }
+  }, 20);
+
+  function hideSoon() { setTimeout(function () { if (panel && !forced) { panel.style.display = 'none'; } }, 4000); }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var c = document.getElementById('canvas');
+    if (c) {
+      c.addEventListener('webglcontextlost', function () { error('WebGL context lost (หน่วยความจำการ์ดจอไม่พอ?)'); });
+      c.addEventListener('webglcontextrestored', function () { log('WebGL context restored'); });
+    }
+  });
+  window.addEventListener('pagehide', function () { if (started) { save({ stage: 'closed' }); } });
+
+  setInterval(function () {
+    var h = heap();
+    if (h > state.peak) { state.peak = h; }
+    if (started) { save({ stage: 'running' }); } else { save(); }
+    if (!shown && !started && Date.now() - t0 > 15000) { show(); log('โหลดนานเกิน 15 วินาที'); }
+    render();
+  }, 1000);
+}());
+</script>
 		<!-- meadow-wasm-gz-shim -->
 <script>
 window.MEADOW_PCK_WASM = true;

@@ -487,7 +487,7 @@ window.MEADOW_PCK_WASM = true;
 </script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":16101776,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":18133152,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -603,7 +603,8 @@ const engine = new Engine(GODOT_CONFIG);
 		return;
 	}
 	const EXTRA = [['index.nature.pck', '/tmp/index.nature.pck'], ['index.characters.pck', '/tmp/index.characters.pck'],
-		['index.voice.pck', '/tmp/index.voice.pck']];
+		['index.voice.pck', '/tmp/index.voice.pck'], ['index.monsters3d.pck', '/tmp/index.monsters3d.pck']];
+	EXTRA.push(['index.sfx.pck', '/tmp/index.sfx.pck']);   // SKILLSFX: skill / special / monster sounds (SkillSfx)
 	const extra = Promise.all(EXTRA.map(function (e) {
 		return engine.preloadFile(e[0], e[1]).catch(function (err) {
 			console.warn('extra pack not loaded: ' + e[0], err);

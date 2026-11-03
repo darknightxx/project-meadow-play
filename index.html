@@ -199,7 +199,7 @@ W.meadowOrient = { fullscreen: function () { armed = false; return enter(); }, e
 <!-- /meadow-orient -->
 
 	<!-- meadow-file-sizes -->
-<script>window.MEADOW_FILE_SIZES = {"index.cards.pck": 903520, "index.characters.pck": 4800896, "index.gz.wasm": 9402744, "index.monsters2d.pck": 6634560, "index.monsters3d.pck": 3174592, "index.nature.pck": 3129536, "index.pck": 12905456, "index.sfx.pck": 3151744, "index.voice.pck": 5993408, "index.world.pck": 6699936};</script>
+<script>window.MEADOW_FILE_SIZES = {"index.cards.pck": 903520, "index.characters.pck": 4800896, "index.gz.wasm": 9402744, "index.monsters2d.pck": 6634560, "index.monsters3d.pck": 3174592, "index.nature.pck": 3129536, "index.pck": 12995472, "index.sfx.pck": 3151744, "index.voice.pck": 5993408, "index.world.pck": 6699936};</script>
 <!-- meadow-cover (tools/web/cover_shell.html, added to index.html by tools/web/cover_sync.py) -->
 <link rel="preload" as="image" href="cover.webp" fetchpriority="high">
 <style id="meadow-cover-css">
@@ -222,14 +222,33 @@ paint-order:stroke fill;-webkit-text-stroke:0;text-shadow:0 0 3px #0a120e,0 0 3p
 @keyframes mc-slide{0%{transform:translateX(-100%)}100%{transform:translateX(455%)}}
 #meadow-cover .mc-retry{position:absolute;display:none;border:2px solid #fff2bf;border-radius:999px;background:#fad473;color:#4a2b0f;
 font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35)}
-#meadow-cover.mc-error .mc-retry,#meadow-cover.mc-slow .mc-retry{display:block}
-#meadow-cover.mc-error .mc-bar{display:none}
+#meadow-cover.mc-slow .mc-retry{display:block}
+#meadow-cover.mc-error .mc-bar,#meadow-cover.mc-error .mc-status,#meadow-cover.mc-error .mc-detail,#meadow-cover.mc-error .mc-retry{display:none!important}
+#meadow-cover.mc-error{touch-action:pan-y;user-select:text;-webkit-user-select:text}
+#meadow-cover.mc-error .mc-band{height:100%;background:rgba(13,28,23,.38)}
+#meadow-cover .mc-box{position:absolute;display:none;left:50%;bottom:max(10px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+width:min(94vw,640px);max-height:calc(100% - 20px);overflow:auto;box-sizing:border-box;padding:12px 16px 14px;text-align:center;
+background:rgba(13,28,23,.92);border:1px solid rgba(250,209,107,.65);border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.5)}
+#meadow-cover.mc-error .mc-box{display:block}
+#meadow-cover .mc-title{font-weight:700;color:#ffe08a;font-size:clamp(16px,calc(8px + 2vmin),22px);line-height:1.3}
+#meadow-cover .mc-msg{margin-top:6px;font-size:clamp(14px,calc(6px + 1.7vmin),18px);line-height:1.4}
+#meadow-cover .mc-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
+#meadow-cover .mc-btns button{font:inherit;font-size:clamp(14px,calc(6px + 1.6vmin),17px);font-weight:700;cursor:pointer;border-radius:999px;padding:7px 16px;min-height:38px;
+border:2px solid #fff2bf;background:#fad473;color:#4a2b0f}
+#meadow-cover .mc-btns button.mc-sec{background:rgba(255,255,255,.1);color:#fff8e0;border-color:rgba(255,242,191,.5)}
+#meadow-cover .mc-btns button:disabled{opacity:.55;cursor:default}
+#meadow-cover .mc-log{display:none;margin:10px 0 0;padding:8px;max-height:36vh;overflow:auto;text-align:left;white-space:pre-wrap;word-break:break-all;
+font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;background:rgba(0,0,0,.5);border-radius:8px;color:#e8f5d0;user-select:text;-webkit-user-select:text}
+#meadow-cover.mc-more .mc-log{display:block}
 @media (prefers-reduced-motion: reduce){#meadow-cover{transition:none}#meadow-cover.mc-busy .mc-fill{animation:none;width:100%;opacity:.5}}
 </style>
 <template id='meadow-cover-tpl'><div id='meadow-cover' role='progressbar' aria-live='polite' aria-label='Project Meadow'>
 <img class='mc-dim' alt='' src='cover.webp' decoding='async'><div class='mc-lqip'></div><img class='mc-img' alt='' src='cover.webp' decoding='async' fetchpriority='high'>
 <div class='mc-band'></div><div class='mc-status'></div><div class='mc-bar'><div class='mc-fill'></div></div>
-<div class='mc-detail'></div><button type='button' class='mc-retry'>ลองใหม่</button></div></template>
+<div class='mc-detail'></div><button type='button' class='mc-retry'>ลองใหม่</button>
+<div class='mc-box'><div class='mc-title'></div><div class='mc-msg'></div><div class='mc-btns'>
+<button type='button' class='mc-retry2'>ลองใหม่</button><button type='button' class='mc-copy mc-sec'>คัดลอกข้อมูลวินิจฉัย</button><button type='button' class='mc-moreb mc-sec'>รายละเอียด</button></div>
+<pre class='mc-log'></pre></div></div></template>
 <script id='meadow-cover-js'>
 // TITLECOVER: the web loading page shows the owner's cover image (cover.webp = assets/ui/cover/key_cover.webp, the
 // same file the game draws) from the first paint, a REAL download bar (bytes of every game file, sizes baked in by
@@ -239,9 +258,51 @@ font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35)
 (function () {
 var W = window, D = document, R = D.documentElement;
 if (W.meadowCover) return;
+// IOSAUDIO: WebKit (every iOS browser) keeps a Web Audio context 'suspended' until AudioContext.resume() runs synchronously
+// inside a touchend / click / keydown handler, and Godot creates its context at engine start (no gesture) and does not always
+// resume it from a handler WebKit accepts. So: track every AudioContext the page makes, and on each user gesture resume them +
+// play a 1-sample silent buffer. Silent switch: audioSession.type='playback' (Safari 16.4+), else a silent looping <audio>
+// (iOS < 16.4). Re-resume after backgrounding / calls ('interrupted'). The game's mute is an AudioServer bus mute, so none of
+// this can unmute a muted game.
+var AU = { ctxs: [], unlocked: false, gestures: 0, lastErr: '', sess: '', el: null, hooked: false };
+function auState() { var o = []; for (var i = 0; i < AU.ctxs.length; i++) { try { o.push(AU.ctxs[i].state + '@' + AU.ctxs[i].sampleRate); } catch (e) { o.push('?'); } }
+	var t = ''; try { t = navigator.audioSession ? String(navigator.audioSession.type) : 'n/a'; } catch (e) { t = 'err'; }
+	return 'audio: AudioContext=' + (AU.hooked ? (o.length ? o.join(',') : 'none yet') : 'no API') + ' audioSession=' + t + (AU.el ? ' silentAudioEl=' + (AU.el.paused ? 'paused' : 'playing') : '') +
+		' gestures=' + AU.gestures + (AU.lastErr ? ' err=' + AU.lastErr : ''); }
+function auTrack(c) { if (AU.ctxs.indexOf(c) < 0) { AU.ctxs.push(c);
+	try { c.addEventListener('statechange', function () { if (c.state !== 'running' && AU.unlocked) auResume(false); }); } catch (e) {} } }
+function auResume(inGesture) {
+	for (var i = 0; i < AU.ctxs.length; i++) { var c = AU.ctxs[i];
+		try { if (c.state !== 'running' && c.resume) { var p = c.resume(); if (p && p.catch) p.catch(function (e) { AU.lastErr = String(e && e.message || e).slice(0, 80); }); }
+			if (inGesture) { var b = c.createBuffer(1, 1, c.sampleRate), n = c.createBufferSource(); n.buffer = b; n.connect(c.destination); n.start(0); } } catch (e) { AU.lastErr = String(e && e.message || e).slice(0, 80); } }
+}
+function auSession() {
+	try { var as = navigator.audioSession; if (as) { if (as.type !== 'playback') as.type = 'playback'; return; } } catch (e) {}
+	try { if (AU.el || !/iP(hone|ad|od)|Macintosh/.test(navigator.userAgent) || !(('ontouchend' in W) || navigator.maxTouchPoints > 1)) return;
+		var a = D.createElement('audio'), n = 4800, u = new Uint8Array(44 + n * 2), v = new DataView(u.buffer), w = function (o, t) { for (var i = 0; i < t.length; i++) u[o + i] = t.charCodeAt(i); };
+		w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+		v.setUint32(24, 48000, true); v.setUint32(28, 96000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+		var s = ''; for (var j = 0; j < u.length; j++) s += String.fromCharCode(u[j]);
+		a.src = 'data:audio/wav;base64,' + btoa(s); a.loop = true; a.setAttribute('playsinline', ''); a.setAttribute('x-webkit-airplay', 'deny'); a.preload = 'auto'; a.volume = 0.01; a.style.display = 'none';
+		(D.body || R).appendChild(a); AU.el = a; var pp = a.play(); if (pp && pp.catch) pp.catch(function (e) { AU.lastErr = 'audioEl ' + String(e && e.name || e); });
+	} catch (e) { AU.lastErr = 'audioEl ' + String(e && e.message || e).slice(0, 60); }
+}
+function auGesture() { AU.gestures++; AU.unlocked = true; auSession(); auResume(true); }
+function auWake() { if (D.visibilityState === 'hidden') return; if (AU.unlocked) auResume(false); try { if (AU.el && AU.el.paused) AU.el.play().catch(function () {}); } catch (e) {} }
+try { ['AudioContext', 'webkitAudioContext'].forEach(function (nm) { var C = W[nm]; if (!C || C.__meadowAu || !W.Proxy) return;
+	var P = new Proxy(C, { construct: function (T, a, nt) { var c = Reflect.construct(T, a, nt === P ? T : nt); auTrack(c); return c; } }); P.__meadowAu = 1; W[nm] = P; AU.hooked = true; }); } catch (e) {}
+['pointerup', 'touchend', 'click', 'keydown'].forEach(function (ev) { W.addEventListener(ev, auGesture, { capture: true, passive: true }); });
+D.addEventListener('visibilitychange', auWake); W.addEventListener('pageshow', auWake); W.addEventListener('focus', auWake);
+W.meadowAudio = { state: auState, gesture: auGesture, ctxs: AU.ctxs };
 var IW = 1672, IH = 941, SAFE = [0.11, 0.015, 0.82, 0.605], BAND = 0.15, UI_PX = 100.0, NEAR = 0.92;
 var LQIP = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAAbADADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBdNtora2N3JEsEPnAfaHbIjQ5xx3NbbxWkyJeaGh8uJSqSxgqSR1yMeneq8TWOtPDpsIgSzEYllmbIDuCcbR0IAB/M1Mhm+3wraQG2SbmQqvyEgY2EduQOazoyVKfNa5U6ftYcqevQ5y7up5LjzHkJkZxuMqEkcDJz35/TFFtEzyuqokpkIPypx16Zz/TvXYvO7JmZF3hDvLKo2gdQTjjpn6VC6TrGxj6Z3j5duV78jrXXz8zTuzgdGy2RDZ6X5drEkjFt3AXGVA7Z4zxn2xWlbaTFbzq63Sxjdgs7HOQACVB+96elVBrV1azQQPbspeQRrhgN3fOM8fjyaw5NWmtdat5ba9kmOSNkjAq7nIOM/dOemKzlUje9rnRSwjk7N2Zm6p5MFzC8N1bJuVS91A+1UH93b6j8+a3Irq2nubd01W1KwL8sqrjeCOeB37Y9R715R5jgAbjjpThPMvKyMD7Gud02zeNflVrHq+tXkUkbW1vNB5Zbe5jkClxngDJ7/wBDVfQtZW0Pl3h8q2jjyJTLhmYnkY9PbtivLWkkY5Z2J9zThLIOjn86pRfcydRO+h6Rc6vax3y3yuRIWJjkRwcrwNp465Gc+tZ99++SK4zkyZXyxIMR/wC0Pf36H2riPPlK48xsZzjPeg3EzD5pWPGOTnim430NY1+V3SP/2Q==';
 var SIZES = W.MEADOW_FILE_SIZES || {};
+var CAT = {
+	cap: { t: 'เบราว์เซอร์นี้ยังใช้งานกราฟิก WebGL2 ไม่ได้', m: 'กรุณาลองเบราว์เซอร์ที่รองรับ และตรวจการเร่งกราฟิกด้วยฮาร์ดแวร์ (Hardware acceleration) ในการตั้งค่าเบราว์เซอร์' },
+	capOther: { t: 'เบราว์เซอร์นี้ยังไม่รองรับฟีเจอร์ที่เกมต้องใช้', m: 'กรุณาอัปเดตเบราว์เซอร์ หรือลองเบราว์เซอร์รุ่นใหม่ที่รองรับ' },
+	file: { t: 'ดาวน์โหลดไฟล์เกมไม่สำเร็จ', m: 'ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วกด “ลองใหม่” (ปัญหาอยู่ที่การโหลดไฟล์ ไม่ได้แปลว่าเซิร์ฟเวอร์เกมล่ม)' },
+	engine: { t: 'เริ่มเอนจินเกมไม่สำเร็จ', m: 'ไฟล์เกมโหลดแล้ว แต่เอนจินเริ่มทำงานไม่ได้ ลองปิดแท็บอื่นเพื่อคืนหน่วยความจำ แล้วกด “ลองใหม่”' },
+	server: { t: 'เชื่อมต่อเซิร์ฟเวอร์เกมไม่สำเร็จ', m: 'ไฟล์เกมโหลดครบและเอนจินทำงาน แต่ติดต่อเซิร์ฟเวอร์เกมไม่ได้ ลองใหม่อีกครั้งในอีกสักครู่' } };
 var CRITICAL = { 'index.gz.wasm': 1, 'index.wasm': 1, 'index.pck': 1 };
 var TXT = { files: 'กำลังโหลดไฟล์เกม', engine: 'กำลังเตรียมเอนจินเกม…', start: 'กำลังเริ่มเกม…',
 	slow: 'การดาวน์โหลดช้าหรือหยุดอยู่ — ตรวจอินเทอร์เน็ต หรือกด “ลองใหม่”',
@@ -257,7 +318,7 @@ if (!tpl || !tpl.content || !tpl.content.firstElementChild) return;
 var el = tpl.content.firstElementChild.cloneNode(true);
 R.appendChild(el);
 function q(c) { return el.querySelector(c); }
-var img = q('.mc-img'), lq = q('.mc-lqip'), dim = q('.mc-dim'), st = q('.mc-status'), bar = q('.mc-bar'), fill = q('.mc-fill'), det = q('.mc-detail'), btn = q('.mc-retry');
+var img = q('.mc-img'), lq = q('.mc-lqip'), dim = q('.mc-dim'), st = q('.mc-status'), bar = q('.mc-bar'), fill = q('.mc-fill'), det = q('.mc-detail'), btn = q('.mc-retry'), btn2 = q('.mc-retry2'), bCopy = q('.mc-copy'), bMore = q('.mc-moreb'), eTitle = q('.mc-title'), eMsg = q('.mc-msg'), eLog = q('.mc-log');
 if (LQIP.indexOf('data:') === 0) { lq.style.backgroundImage = 'url(' + LQIP + ')'; }
 // the blurred tiny copy only until the real image is decoded (then it would only cost compositing)
 function lqOff() { setTimeout(function () { lq.style.display = 'none'; }, 50); }
@@ -266,8 +327,19 @@ if (img.complete && img.naturalWidth) lqOff(); else img.addEventListener('load',
 // is really downloaded again (GitHub Pages caches a 404 for minutes)
 var RKEY = 'meadow.cover.retry', retrying = false;
 try { var rv = +(sessionStorage.getItem(RKEY) || 0); retrying = rv > 0 && Date.now() - rv < 120000; sessionStorage.removeItem(RKEY); } catch (e) {}
-btn.addEventListener('click', function (e) { e.stopPropagation(); try { sessionStorage.setItem(RKEY, String(Date.now())); } catch (x) {}
-	try { location.reload(); } catch (x) {} });
+// one retry only: a second tap while the reload is starting must not start anything again; in-flight downloads are
+// cancelled first (closing = every later fetch / stream read of a game file fails at once)
+var closing = false, rds = [];
+function cancelAll() { for (var i = 0; i < rds.length; i++) { try { rds[i].cancel('meadow-cover'); } catch (x) {} } rds = []; }
+function doRetry(e) { if (e) { e.stopPropagation(); } if (closing) return; closing = true; btn.disabled = btn2.disabled = true; cancelAll();
+	try { sessionStorage.setItem(RKEY, String(Date.now())); } catch (x) {}
+	try { location.reload(); } catch (x) {} }
+btn.addEventListener('click', doRetry); btn2.addEventListener('click', doRetry);
+bMore.addEventListener('click', function (e) { e.stopPropagation(); el.classList.toggle('mc-more'); eLog.textContent = diagText(); });
+bCopy.addEventListener('click', function (e) { e.stopPropagation(); var t = diagText(), ok = function () { bCopy.textContent = 'คัดลอกแล้ว'; setTimeout(function () { bCopy.textContent = 'คัดลอกข้อมูลวินิจฉัย'; }, 2000); };
+	function fb() { try { var ta = D.createElement('textarea'); ta.value = t; ta.style.cssText = 'position:fixed;left:0;top:0;opacity:0'; D.body.appendChild(ta); ta.focus(); ta.select();
+		var r = D.execCommand('copy'); D.body.removeChild(ta); if (r) ok(); else { el.classList.add('mc-more'); eLog.textContent = t; } } catch (x) { el.classList.add('mc-more'); eLog.textContent = t; } }
+	try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb(); } catch (x) { fb(); } });
 var probe = D.createElement('div');
 probe.style.cssText = 'position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;' +
 	'padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)';
@@ -308,12 +380,10 @@ function layout() {
 	dim.style.display = r.fill ? 'block' : 'none';
 	if (r.fill) { var s = Math.max(w / IW, h / IH); put(dim, (w - IW * s) / 2, (h - IH * s) / 2, IW * s, IH * s); }
 	var err = el.classList.contains('mc-error'), slow = el.classList.contains('mc-slow');
-	if (err) put(st, (vx / 2 - 340) * k, (bottom - 86) * k, 680 * k, 46 * k);     // = title_cover.gd bottom_layout "error"
-	else put(st, (vx / 2 - 340) * k, (bottom - 70) * k, 680 * k, 30 * k);         // "status"
+	put(st, (vx / 2 - 340) * k, (bottom - 70) * k, 680 * k, 30 * k);              // "status"
 	put(bar, (vx / 2 - bw / 2) * k, (bottom - 36) * k, bw * k, 8 * k);             // "bar"
 	put(det, (vx / 2 - 300) * k, (bottom - 22) * k, 600 * k, 22 * k);              // "server" line: sizes / notes
-	if (err) put(btn, (vx / 2 - 80) * k, (bottom - 38) * k, 160 * k, 38 * k);      // "retry"
-	else if (slow) put(btn, (vx / 2 + bw / 2 + 12) * k, (bottom - 47) * k, 110 * k, 30 * k);   // next to the bar
+	if (slow && !err) put(btn, (vx / 2 + bw / 2 + 12) * k, (bottom - 47) * k, 110 * k, 30 * k);   // next to the bar
 	st.style.fontSize = px(18 * k); det.style.fontSize = px(14 * k); btn.style.fontSize = px(17 * k);
 }
 W.addEventListener('resize', layout);
@@ -326,7 +396,7 @@ function key(u) { var n = String(u).split('?')[0].split('#')[0].split('/').pop()
 function totals() {
 	var tot = 0, got = 0, n = 0, done = 0;
 	for (var k in SIZES) { var s = +SIZES[k] || 0, f = files[k]; tot += s; n++;
-		if (f) { if (f.failed || f.done) { got += s; done++; } else got += Math.min(f.got, s); } }
+		if (f) { if (f.done || (f.failed && phase !== 'error')) { got += s; done++; } else got += Math.min(f.got, s); } }   // a failed file counts as complete only for the bar of an optional pack; never in the error numbers
 	return { tot: tot, got: got, n: n, done: done };
 }
 function mb(b) { return (b / 1048576).toFixed(1); }
@@ -350,33 +420,77 @@ function render() {
 		if (!engT) engT = Date.now();
 	}
 }
-function showError(msg, detail) {
-	if (phase === 'gone') return;
+// ---- failure state: ONE category per failure (cap = browser capability, file = game file download, engine = engine start,
+// server = game server connection); the first failure wins, later callbacks never overwrite it ----
+var info = { cat: '', stage: '', msg: '', file: '', http: '', missing: [] }, cap = { webgl2: null, wasm: null };
+function host() { try { return location.host; } catch (e) { return ''; } }
+function diagText() {
+	var t = totals(), L = [], now = new Date();
+	L.push('Project Meadow web diagnostics', 'time: ' + now.toISOString(), 'host: ' + host(), 'UA: ' + navigator.userAgent,
+		'screen: ' + W.innerWidth + 'x' + W.innerHeight + ' @' + (W.devicePixelRatio || 1),
+		'error category: ' + (info.cat || '-'), 'stage: ' + (info.stage || phase), 'message: ' + (info.msg || '-'),
+		'file: ' + (info.file || '-') + '  HTTP: ' + (info.http || '-'),
+		'features: WebGL2=' + (cap.webgl2 === null ? '?' : cap.webgl2 ? 'yes' : 'NO') + ' WebAssembly=' + (cap.wasm === null ? '?' : cap.wasm ? 'yes' : 'NO') +
+		' missing=[' + info.missing.join(', ') + ']',
+		auState(),
+		'progress: ' + t.got + ' / ' + t.tot + ' bytes (' + (t.tot > 0 ? (100 * t.got / t.tot).toFixed(1) : '0') + '%), files done ' + t.done + '/' + t.n);
+	for (var k in SIZES) { var f = files[k]; L.push('  ' + k + ': ' + (f ? f.got : 0) + '/' + SIZES[k] + (f ? (f.done ? ' done' : '') + (f.failed ? ' FAILED' : '') + (f.http ? ' HTTP ' + f.http : '') : ' not started')); }
+	return L.join('\n');
+}
+function showError(cat, msg, extra) {
+	if (!CAT[cat]) { extra = msg; msg = cat; cat = 'engine'; }        // legacy (msg, detail) call
+	if (phase === 'gone' || phase === 'error') return;
+	extra = extra || {};
+	info.stage = phase; info.cat = cat; info.msg = String(msg == null ? '' : msg).slice(0, 300);
+	info.file = extra.file || ''; info.http = extra.http || '';
+	if (extra.missing) info.missing = extra.missing;
 	phase = 'error';
+	cancelAll();
+	var c = CAT[cat === 'cap' && info.missing.length && info.missing.indexOf('WebGL2') < 0 ? 'capOther' : cat];
 	el.classList.remove('mc-busy', 'mc-slow');
 	el.classList.add('mc-error');
-	st.textContent = msg;
-	if (detail) { var sm = D.createElement('small'); sm.style.cssText = 'display:block;font-size:.72em;opacity:.8';
-		sm.textContent = String(detail).slice(0, 160); st.appendChild(sm); }
-	det.textContent = '';
+	el.setAttribute('aria-label', c.t);
+	el.removeAttribute('aria-valuenow');
+	eTitle.textContent = c.t; eMsg.textContent = c.m + (cat === 'cap' && info.missing.length ? ' (ขาด: ' + info.missing.join(', ') + ')' : '');
+	eLog.textContent = diagText();
 	layout();
 }
+// features the game needs, checked BEFORE any game file is requested (Engine.getMissingFeatures is merged in when index.js is there)
+function capCheck() {
+	var miss = [];
+	try { var c = D.createElement('canvas'), g = c.getContext('webgl2'); cap.webgl2 = !!g;
+		if (g) { var x = g.getExtension('WEBGL_lose_context'); if (x) x.loseContext(); } } catch (e) { cap.webgl2 = false; }
+	if (!cap.webgl2) miss.push('WebGL2');
+	cap.wasm = typeof W.WebAssembly === 'object' && !!W.WebAssembly && typeof W.WebAssembly.instantiate === 'function';
+	if (!cap.wasm) miss.push('WebAssembly');
+	return miss;
+}
+function godotMissing() {
+	try { if (typeof Engine !== 'undefined' && Engine.getMissingFeatures) return Engine.getMissingFeatures({ threads: false }) || []; } catch (e) {}
+	return [];
+}
+function mergeMissing(a) { for (var i = 0; i < a.length; i++) { if (info.missing.indexOf(a[i]) < 0) info.missing.push(a[i]); } }
 var realFetch = W.fetch ? W.fetch.bind(W) : null;
 if (realFetch) {
 	W.fetch = function (input, init) {
 		var url = typeof input === 'string' ? input : (input && input.url) || String(input), k = key(url);
 		if (!(k in SIZES)) return realFetch(input, init);
+		if (phase === 'error' || closing) { return Promise.reject(new Error('meadow: ' + k + ' not requested (page is in the error state)')); }
 		var f = files[k] = { got: 0, done: false, failed: false };
 		if (retrying) init = Object.assign({}, init || {}, { cache: 'reload' });
 		render();
-		function bad(why) { f.failed = true; if (CRITICAL[k]) showError(TXT.netFail, k + ': ' + why); else { failedPart = true; render(); } }
+		function bad(why, http) { f.failed = true; if (http) f.http = http;
+			if (CRITICAL[k]) showError('file', k + ': ' + why, { file: k, http: http ? String(http) : '' }); else { failedPart = true; render(); } }
 		return realFetch(input, init).then(function (r) {
-			if (!r.ok) { bad('HTTP ' + r.status); return r; }
+			if (!r.ok) { bad('HTTP ' + r.status, r.status); return r; }
 			if (!r.body || typeof ReadableStream !== 'function' || !r.body.getReader) { f.done = true; render(); return r; }
 			var rd = r.body.getReader();
+			rds.push(rd);
 			var rs = new ReadableStream({
 				pull: function (ctl) {
+					if (phase === 'error' || closing) { try { rd.cancel('meadow-cover'); } catch (e) {} ctl.error(new Error('meadow: stopped')); return; }
 					return rd.read().then(function (x) {
+						if (phase === 'error' || closing) { ctl.error(new Error('meadow: stopped')); return; }   // a late chunk never counts
 						if (x.done) { f.done = true; render(); ctl.close(); return; }
 						f.got += x.value.byteLength; render(); ctl.enqueue(x.value);
 					}, function (e) { bad(e && e.message ? e.message : e); ctl.error(e); });   // connection lost mid-file
@@ -390,7 +504,12 @@ if (realFetch) {
 function watchNotice() {
 	var n = D.getElementById('status-notice');
 	if (!n || !W.MutationObserver) return;
-	new MutationObserver(function () { var s = (n.textContent || '').trim(); if (s) showError(TXT.fail, s); })
+	new MutationObserver(function () { var s = (n.textContent || '').trim(); if (!s) return;
+		if (/missing/i.test(s) && /feature/i.test(s)) {      // Godot: "The following features required to run Godot projects on the Web are missing: WebGL2"
+			var ms = s.split(/missing:?/i).pop().split(/\n|\r|(?=WebGL|WebAssembly|Cross|Secure|Threads)/).map(function (x) { return x.trim(); }).filter(Boolean);
+			mergeMissing(ms); if (phase === 'error') { eLog.textContent = diagText(); return; }
+			showError('cap', s, { missing: info.missing.length ? info.missing : ms });
+		} else showError('engine', s); })
 		.observe(n, { childList: true, subtree: true, characterData: true });
 }
 if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', watchNotice); else watchNotice();
@@ -407,7 +526,7 @@ var tries = 0, poll = setInterval(function () {
 			if (phase === 'engine') { phase = 'started'; render(); }
 			var p = os.apply(eng, arguments);
 			if (p && p.then) p.then(function () { setTimeout(function () { handoff('timeout'); }, 8000); },
-				function (e) { showError(TXT.fail, e && e.message ? e.message : e); });
+				function (e) { showError('engine', e && e.message ? e.message : e); });
 			return p;
 		};
 	}
@@ -432,8 +551,23 @@ function handoff(why) {
 	el.classList.add('mc-out');
 	setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 400);
 }
+function progress() { var t = totals(); return { got: t.got, tot: t.tot, pct: t.tot > 0 ? Math.floor(100 * t.got / t.tot) : 0, done: t.done, n: t.n }; }
 W.meadowCover = { handoff: function () { handoff('game'); }, layout: layout, rect: coverRect, error: showError, retrying: retrying,
+	progress: progress, diag: diagText, info: info, 
 	state: function () { var t = totals(); return { phase: phase, got: t.got, tot: t.tot, files: files }; } };
+// the engine's own start-up promise (wasm compile / memory) rejected without anyone handling it = engine start failure
+function startupReject(m) { m = String(m || ''); if (phase !== 'gone' && phase !== 'error' && /wasm|webassembly|instantiate|compile|out of memory|memory/i.test(m)) showError('engine', m); }
+W.addEventListener('unhandledrejection', function (e) { var r = e && e.reason; startupReject(r && r.message ? r.message : r); });
+W.addEventListener('error', function (e) { startupReject(e && e.message); });
+// WebSocket (game server) failing BEFORE the cover is gone = a server connection problem, not a file problem
+try { if (W.WebSocket && W.Proxy) W.WebSocket = new Proxy(W.WebSocket, { construct: function (T, a, nt) { var ws = Reflect.construct(T, a, nt), opened = false;
+	ws.addEventListener('open', function () { opened = true; });
+	ws.addEventListener('error', function () { if (!opened) showError('server', 'WebSocket ' + String(a[0] || '').replace(/^(wss?:\/\/[^\/?#]*).*$/, '$1')); });
+	return ws; } }); } catch (e) {}
+// capability check: BEFORE any download (phase becomes 'error' so the fetch hook refuses every game file)
+(function () { var m = capCheck(); if (m.length) { mergeMissing(m); showError('cap', 'missing: ' + m.join(', '), { missing: m }); return; }
+	var tries2 = 0, t2 = setInterval(function () { tries2++; var g = godotMissing(); if (g.length) { mergeMissing(g); showError('cap', 'Engine.getMissingFeatures: ' + g.join(', '), { missing: g }); }
+		if (g.length || tries2 > 200 || typeof Engine !== 'undefined') clearInterval(t2); }, 25); }());
 render();
 }());
 </script>
@@ -512,6 +646,8 @@ render();
   // ---- panel ----
   function show() {
     if (shown) { return; }
+    // the cover page shows its own error box (with a details toggle): do not cover it with this panel
+    if (!forced && window.meadowCover && window.meadowCover.state && window.meadowCover.state().phase === 'error') { return; }
     shown = true;
     var make = function () {
       if (panel || !document.body) { return; }
@@ -538,9 +674,13 @@ render();
   }
   function render() {
     if (!body) { return; }
-    var p = document.getElementById('status-progress');
+    // the SAME numbers as the loading bar (tools/web/cover_shell.html: window.meadowCover.progress()); Godot's own
+    // #status-progress is only a fallback when the cover page is not there (it stays at 0 while the bar moves)
     var prog = '';
-    if (p && p.max > 0 && p.value >= 0) { prog = ' · ดาวน์โหลด ' + Math.round(100 * p.value / p.max) + '% (' + mb(p.value) + '/' + mb(p.max) + ' MB)'; }
+    var mc = window.meadowCover && window.meadowCover.progress ? window.meadowCover.progress() : null;
+    if (mc && mc.tot > 0) { prog = ' · ดาวน์โหลด ' + mc.pct + '% (' + (mc.got / 1048576).toFixed(1) + '/' + (mc.tot / 1048576).toFixed(1) + ' MB)'; }
+    else { var p = document.getElementById('status-progress');
+      if (p && p.max > 0 && p.value >= 0) { prog = ' · ดาวน์โหลด ' + Math.round(100 * p.value / p.max) + '% (' + mb(p.value) + '/' + mb(p.max) + ' MB)'; } }
     var head = 'ขั้น: ' + state.stage + ' · ' + ((Date.now() - t0) / 1000).toFixed(0) + ' วิ' + prog +
       '\nหน่วยความจำเกม (wasm): ' + mb(heap()) + ' MB (สูงสุด ' + mb(state.peak) + ' MB)' +
       (performance && performance.memory ? ' · JS ' + mb(performance.memory.usedJSHeapSize) + ' MB' : '') +
@@ -682,6 +822,7 @@ render();
   });
   window.addEventListener('pagehide', function () { if (started) { save({ stage: 'closed' }); } });
 
+  setInterval(render, 250);   // same numbers as the loading bar, no 1 s lag
   setInterval(function () {
     var h = heap();
     if (h > state.peak) { state.peak = h; }
@@ -689,7 +830,7 @@ render();
     // auto-show only when start-up looks stuck: no download progress for 25 s, or still not running after 90 s
     // (a 40 MB first download on a slow phone network can legitimately take longer than 15 s)
     var pe = document.getElementById('status-progress');
-    var pv = pe ? Number(pe.value) || 0 : 0;
+    var pv = window.meadowCover && window.meadowCover.progress ? window.meadowCover.progress().got : (pe ? Number(pe.value) || 0 : 0);
     if (pv !== lastProg) { lastProg = pv; lastProgT = Date.now(); }
     if (!shown && !started && (Date.now() - lastProgT > 25000 || Date.now() - t0 > 90000)) {
       show(); log(Date.now() - t0 > 90000 ? 'โหลดนานเกิน 90 วินาที' : 'ดาวน์โหลดไม่ขยับ 25 วินาที');
@@ -727,7 +868,7 @@ window.MEADOW_PCK_WASM = true;
 </script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":12905456,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":12995472,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

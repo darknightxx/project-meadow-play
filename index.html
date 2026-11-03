@@ -38,7 +38,7 @@ body {
 }
 
 #status {
-	background-color: #242424;
+	background-color: #172b26;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -198,6 +198,246 @@ W.meadowOrient = { fullscreen: function () { armed = false; return enter(); }, e
 </script>
 <!-- /meadow-orient -->
 
+	<!-- meadow-file-sizes -->
+<script>window.MEADOW_FILE_SIZES = {"index.cards.pck": 903520, "index.characters.pck": 4800896, "index.gz.wasm": 9402744, "index.monsters2d.pck": 6634560, "index.monsters3d.pck": 3174592, "index.nature.pck": 3129536, "index.pck": 12905456, "index.sfx.pck": 3151744, "index.voice.pck": 5993408, "index.world.pck": 6699936};</script>
+<!-- meadow-cover (tools/web/cover_shell.html, added to index.html by tools/web/cover_sync.py) -->
+<link rel="preload" as="image" href="cover.webp" fetchpriority="high">
+<style id="meadow-cover-css">
+#status{display:none!important}
+#meadow-cover{position:fixed;left:0;top:0;width:100%;height:100%;z-index:2147483000;overflow:hidden;background:#172b26;
+color:#fff8e0;font-family:Loma,'Noto Sans Thai','Noto Sans Thai UI',Thonburi,'Sukhumvit Set','Leelawadee UI',Tahoma,sans-serif;
+opacity:1;transition:opacity .25s ease-out;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+#meadow-cover.mc-out{opacity:0;pointer-events:none}
+#meadow-cover img,#meadow-cover .mc-lqip{position:absolute;max-width:none;display:block}
+#meadow-cover .mc-lqip{background-size:100% 100%;filter:blur(14px);transform:scale(1.02)}
+#meadow-cover .mc-dim{filter:brightness(.42);display:none}
+#meadow-cover .mc-band{position:absolute;left:0;right:0;bottom:0;height:32%;pointer-events:none;
+background:linear-gradient(to bottom,rgba(13,28,23,0) 0%,rgba(13,28,23,.05) 25%,rgba(13,28,23,.2) 50%,rgba(13,28,23,.46) 75%,rgba(13,28,23,.82) 100%)}
+#meadow-cover .mc-status,#meadow-cover .mc-detail{position:absolute;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;
+paint-order:stroke fill;-webkit-text-stroke:0;text-shadow:0 0 3px #0a120e,0 0 3px #0a120e,0 1px 4px #0a120e;line-height:1.25}
+#meadow-cover .mc-detail{opacity:.85}
+#meadow-cover .mc-bar{position:absolute;background:rgba(255,255,255,.16);box-shadow:0 0 0 1px rgba(0,0,0,.45);overflow:hidden}
+#meadow-cover .mc-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:#fad16b}
+#meadow-cover.mc-busy .mc-fill{width:22%;animation:mc-slide 1.43s linear infinite}
+@keyframes mc-slide{0%{transform:translateX(-100%)}100%{transform:translateX(455%)}}
+#meadow-cover .mc-retry{position:absolute;display:none;border:2px solid #fff2bf;border-radius:999px;background:#fad473;color:#4a2b0f;
+font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35)}
+#meadow-cover.mc-error .mc-retry,#meadow-cover.mc-slow .mc-retry{display:block}
+#meadow-cover.mc-error .mc-bar{display:none}
+@media (prefers-reduced-motion: reduce){#meadow-cover{transition:none}#meadow-cover.mc-busy .mc-fill{animation:none;width:100%;opacity:.5}}
+</style>
+<template id='meadow-cover-tpl'><div id='meadow-cover' role='progressbar' aria-live='polite' aria-label='Project Meadow'>
+<img class='mc-dim' alt='' src='cover.webp' decoding='async'><div class='mc-lqip'></div><img class='mc-img' alt='' src='cover.webp' decoding='async' fetchpriority='high'>
+<div class='mc-band'></div><div class='mc-status'></div><div class='mc-bar'><div class='mc-fill'></div></div>
+<div class='mc-detail'></div><button type='button' class='mc-retry'>ลองใหม่</button></div></template>
+<script id='meadow-cover-js'>
+// TITLECOVER: the web loading page shows the owner's cover image (cover.webp = assets/ui/cover/key_cover.webp, the
+// same file the game draws) from the first paint, a REAL download bar (bytes of every game file, sizes baked in by
+// cover_sync.py: window.MEADOW_FILE_SIZES) and Thai status / errors with a ลองใหม่ button. The in-game cover
+// (scripts/client/ui/title_cover.gd) draws the image at the same place (coverRect = cover_fit.gd layout()) and calls
+// window.meadowCover.handoff() once its first frame is on screen; this page then fades out (0.25 s).
+(function () {
+var W = window, D = document, R = D.documentElement;
+if (W.meadowCover) return;
+var IW = 1672, IH = 941, SAFE = [0.11, 0.015, 0.82, 0.605], BAND = 0.15, UI_PX = 100.0, NEAR = 0.92;
+var LQIP = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAAbADADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBdNtora2N3JEsEPnAfaHbIjQ5xx3NbbxWkyJeaGh8uJSqSxgqSR1yMeneq8TWOtPDpsIgSzEYllmbIDuCcbR0IAB/M1Mhm+3wraQG2SbmQqvyEgY2EduQOazoyVKfNa5U6ftYcqevQ5y7up5LjzHkJkZxuMqEkcDJz35/TFFtEzyuqokpkIPypx16Zz/TvXYvO7JmZF3hDvLKo2gdQTjjpn6VC6TrGxj6Z3j5duV78jrXXz8zTuzgdGy2RDZ6X5drEkjFt3AXGVA7Z4zxn2xWlbaTFbzq63Sxjdgs7HOQACVB+96elVBrV1azQQPbspeQRrhgN3fOM8fjyaw5NWmtdat5ba9kmOSNkjAq7nIOM/dOemKzlUje9rnRSwjk7N2Zm6p5MFzC8N1bJuVS91A+1UH93b6j8+a3Irq2nubd01W1KwL8sqrjeCOeB37Y9R715R5jgAbjjpThPMvKyMD7Gud02zeNflVrHq+tXkUkbW1vNB5Zbe5jkClxngDJ7/wBDVfQtZW0Pl3h8q2jjyJTLhmYnkY9PbtivLWkkY5Z2J9zThLIOjn86pRfcydRO+h6Rc6vax3y3yuRIWJjkRwcrwNp465Gc+tZ99++SK4zkyZXyxIMR/wC0Pf36H2riPPlK48xsZzjPeg3EzD5pWPGOTnim430NY1+V3SP/2Q==';
+var SIZES = W.MEADOW_FILE_SIZES || {};
+var CRITICAL = { 'index.gz.wasm': 1, 'index.wasm': 1, 'index.pck': 1 };
+var TXT = { files: 'กำลังโหลดไฟล์เกม', engine: 'กำลังเตรียมเอนจินเกม…', start: 'กำลังเริ่มเกม…',
+	slow: 'การดาวน์โหลดช้าหรือหยุดอยู่ — ตรวจอินเทอร์เน็ต หรือกด “ลองใหม่”',
+	slowEngine: 'เตรียมเกมนานผิดปกติ — กด “ลองใหม่” เพื่อเปิดหน้าเกมอีกครั้ง',
+	netFail: 'โหลดไฟล์เกมไม่สำเร็จ — ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วกด “ลองใหม่”',
+	fail: 'เปิดเกมไม่สำเร็จ', part: 'บางไฟล์โหลดไม่ครบ เกมจะลองโหลดอีกครั้งเมื่อต้องใช้' };
+// viewport-fit=cover from the start (the login does the same: scripts/client/ui/screen_insets.gd keeps the page's
+// original value in window.meadowViewportOrig, so the game can still turn it off)
+try { var vm = D.querySelector('meta[name=viewport]'); if (vm) { var o = vm.getAttribute('content') || '';
+	W.meadowViewportOrig = o; vm.setAttribute('content', o.replace(/\s*,?\s*viewport-fit\s*=\s*[a-z-]+/gi, '') + ', viewport-fit=cover'); } } catch (e) {}
+var tpl = D.getElementById('meadow-cover-tpl');
+if (!tpl || !tpl.content || !tpl.content.firstElementChild) return;
+var el = tpl.content.firstElementChild.cloneNode(true);
+R.appendChild(el);
+function q(c) { return el.querySelector(c); }
+var img = q('.mc-img'), lq = q('.mc-lqip'), dim = q('.mc-dim'), st = q('.mc-status'), bar = q('.mc-bar'), fill = q('.mc-fill'), det = q('.mc-detail'), btn = q('.mc-retry');
+if (LQIP.indexOf('data:') === 0) { lq.style.backgroundImage = 'url(' + LQIP + ')'; }
+// the blurred tiny copy only until the real image is decoded (then it would only cost compositing)
+function lqOff() { setTimeout(function () { lq.style.display = 'none'; }, 50); }
+if (img.complete && img.naturalWidth) lqOff(); else img.addEventListener('load', lqOff);
+// ลองใหม่ = load the page again; the game files are then fetched with cache 'reload' so a failed / cached-404 file
+// is really downloaded again (GitHub Pages caches a 404 for minutes)
+var RKEY = 'meadow.cover.retry', retrying = false;
+try { var rv = +(sessionStorage.getItem(RKEY) || 0); retrying = rv > 0 && Date.now() - rv < 120000; sessionStorage.removeItem(RKEY); } catch (e) {}
+btn.addEventListener('click', function (e) { e.stopPropagation(); try { sessionStorage.setItem(RKEY, String(Date.now())); } catch (x) {}
+	try { location.reload(); } catch (x) {} });
+var probe = D.createElement('div');
+probe.style.cssText = 'position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;pointer-events:none;' +
+	'padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)';
+R.appendChild(probe);
+
+// ---- layout: the same numbers as cover_fit.gd layout() / title_cover.gd bottom_layout() ----
+function clampAxis(p, len, view) { return len >= view ? Math.min(0, Math.max(view - len, p)) : Math.min(view - len, Math.max(0, p)); }
+function coverRect(vw, vh, ins, ui) {
+	var x0 = ins[0], x1 = vw - ins[2], y0 = ins[1], y1 = vh - Math.max(ins[3] + (ui || 0), vh * BAND);
+	var sc = Math.max(vw / IW, vh / IH);
+	var sf = Math.min((x1 - x0) / Math.max(SAFE[2] * IW, 1), (y1 - y0) / Math.max(SAFE[3] * IH, 1));
+	var s = sf >= sc * NEAR ? sc : Math.min(sc, Math.max(sf, 0.01)), w = IW * s, h = IH * s;
+	var cx = SAFE[0] + SAFE[2] / 2, cy = SAFE[1] + SAFE[3] / 2;
+	var yy = SAFE[3] * h > y1 - y0 ? y0 - SAFE[1] * h : (y0 + y1) / 2 - cy * h;
+	var x = clampAxis((x0 + x1) / 2 - cx * w, w, vw), y = clampAxis(yy, h, vh);
+	return { x: x, y: y, w: w, h: h, fill: w < vw - 0.5 || h < vh - 0.5 };
+}
+W.meadowCoverRect = coverRect;            // browser check (tools/web/cover_check.js)
+function touch() { try { return ('ontouchstart' in W) || (navigator.maxTouchPoints || 0) > 0; } catch (e) { return false; } }
+// CSS px per design px (scripts/client/ui/ui_scale.gd factor_for on top of canvas_items + expand at 1280x720)
+function designK(w, h) {
+	var d = W.devicePixelRatio || 1, pw = w * d, ph = h * d, base = Math.min(pw / 1280, ph / 720), u = Math.max(base, d);
+	if (touch()) u = Math.max(u, Math.min(pw, ph) / 600);
+	u = Math.min(u, Math.min(pw, ph) / 420);
+	u = base * Math.min(4, Math.max(1, u / base));
+	return u / d;
+}
+function px(n) { return n + 'px'; }
+function put(e, x, y, w, h) { e.style.left = px(x); e.style.top = px(y); e.style.width = px(w); e.style.height = px(h); }
+function layout() {
+	var w = W.innerWidth || R.clientWidth || 1, h = W.innerHeight || R.clientHeight || 1, cs = W.getComputedStyle(probe);
+	var ins = [parseFloat(cs.paddingLeft) || 0, parseFloat(cs.paddingTop) || 0, parseFloat(cs.paddingRight) || 0, parseFloat(cs.paddingBottom) || 0];
+	ins = [Math.min(ins[0], w / 4), Math.min(ins[1], h / 4), Math.min(ins[2], w / 4), Math.min(ins[3], h / 4)];
+	var k = designK(w, h), vx = w / k, bottom = (h - ins[3]) / k - 14, bw = Math.min(520, Math.max(220, vx * 0.42));
+	var r = coverRect(w, h, ins, UI_PX * k);
+	put(img, r.x, r.y, r.w, r.h);
+	put(lq, r.x, r.y, r.w, r.h);
+	dim.style.display = r.fill ? 'block' : 'none';
+	if (r.fill) { var s = Math.max(w / IW, h / IH); put(dim, (w - IW * s) / 2, (h - IH * s) / 2, IW * s, IH * s); }
+	var err = el.classList.contains('mc-error'), slow = el.classList.contains('mc-slow');
+	if (err) put(st, (vx / 2 - 340) * k, (bottom - 86) * k, 680 * k, 46 * k);     // = title_cover.gd bottom_layout "error"
+	else put(st, (vx / 2 - 340) * k, (bottom - 70) * k, 680 * k, 30 * k);         // "status"
+	put(bar, (vx / 2 - bw / 2) * k, (bottom - 36) * k, bw * k, 8 * k);             // "bar"
+	put(det, (vx / 2 - 300) * k, (bottom - 22) * k, 600 * k, 22 * k);              // "server" line: sizes / notes
+	if (err) put(btn, (vx / 2 - 80) * k, (bottom - 38) * k, 160 * k, 38 * k);      // "retry"
+	else if (slow) put(btn, (vx / 2 + bw / 2 + 12) * k, (bottom - 47) * k, 110 * k, 30 * k);   // next to the bar
+	st.style.fontSize = px(18 * k); det.style.fontSize = px(14 * k); btn.style.fontSize = px(17 * k);
+}
+W.addEventListener('resize', layout);
+W.addEventListener('orientationchange', function () { setTimeout(layout, 120); });
+layout();
+
+// ---- real download progress: every byte of the files listed in MEADOW_FILE_SIZES ----
+var files = {}, startCalled = false, phase = 'files', lastGot = -1, lastT = Date.now(), t0 = Date.now(), engT = 0, failedPart = false;
+function key(u) { var n = String(u).split('?')[0].split('#')[0].split('/').pop(); return n.replace(/\.pck\.wasm$/, '.pck'); }
+function totals() {
+	var tot = 0, got = 0, n = 0, done = 0;
+	for (var k in SIZES) { var s = +SIZES[k] || 0, f = files[k]; tot += s; n++;
+		if (f) { if (f.failed || f.done) { got += s; done++; } else got += Math.min(f.got, s); } }
+	return { tot: tot, got: got, n: n, done: done };
+}
+function mb(b) { return (b / 1048576).toFixed(1); }
+function render() {
+	if (phase === 'error' || phase === 'gone') return;
+	var t = totals();
+	if (phase === 'files' && t.n > 0 && t.done >= t.n) phase = startCalled ? 'started' : 'engine';
+	if (phase === 'files') {
+		el.classList.remove('mc-busy');
+		var p = t.tot > 0 ? t.got / t.tot : 0;
+		fill.style.width = (p * 100).toFixed(1) + '%';
+		st.textContent = TXT.files + (t.tot > 0 ? ' ' + Math.floor(p * 100) + '%' : '…');
+		det.textContent = t.tot > 0 ? mb(t.got) + ' / ' + mb(t.tot) + ' MB' : '';
+		el.setAttribute('aria-valuenow', String(Math.floor(p * 100)));
+	} else {
+		el.classList.add('mc-busy');
+		fill.style.width = '';
+		st.textContent = phase === 'started' ? TXT.start : TXT.engine;
+		det.textContent = failedPart ? TXT.part : '';
+		el.removeAttribute('aria-valuenow');
+		if (!engT) engT = Date.now();
+	}
+}
+function showError(msg, detail) {
+	if (phase === 'gone') return;
+	phase = 'error';
+	el.classList.remove('mc-busy', 'mc-slow');
+	el.classList.add('mc-error');
+	st.textContent = msg;
+	if (detail) { var sm = D.createElement('small'); sm.style.cssText = 'display:block;font-size:.72em;opacity:.8';
+		sm.textContent = String(detail).slice(0, 160); st.appendChild(sm); }
+	det.textContent = '';
+	layout();
+}
+var realFetch = W.fetch ? W.fetch.bind(W) : null;
+if (realFetch) {
+	W.fetch = function (input, init) {
+		var url = typeof input === 'string' ? input : (input && input.url) || String(input), k = key(url);
+		if (!(k in SIZES)) return realFetch(input, init);
+		var f = files[k] = { got: 0, done: false, failed: false };
+		if (retrying) init = Object.assign({}, init || {}, { cache: 'reload' });
+		render();
+		function bad(why) { f.failed = true; if (CRITICAL[k]) showError(TXT.netFail, k + ': ' + why); else { failedPart = true; render(); } }
+		return realFetch(input, init).then(function (r) {
+			if (!r.ok) { bad('HTTP ' + r.status); return r; }
+			if (!r.body || typeof ReadableStream !== 'function' || !r.body.getReader) { f.done = true; render(); return r; }
+			var rd = r.body.getReader();
+			var rs = new ReadableStream({
+				pull: function (ctl) {
+					return rd.read().then(function (x) {
+						if (x.done) { f.done = true; render(); ctl.close(); return; }
+						f.got += x.value.byteLength; render(); ctl.enqueue(x.value);
+					}, function (e) { bad(e && e.message ? e.message : e); ctl.error(e); });   // connection lost mid-file
+				},
+				cancel: function (why) { try { rd.cancel(why); } catch (e) {} } });
+			return new Response(rs, { status: r.status, statusText: r.statusText, headers: r.headers });
+		}, function (e) { bad(e && e.message ? e.message : e); throw e; });
+	};
+}
+// Godot's own error box (missing WebGL2 / failed download / ...): its text in our page, in Thai
+function watchNotice() {
+	var n = D.getElementById('status-notice');
+	if (!n || !W.MutationObserver) return;
+	new MutationObserver(function () { var s = (n.textContent || '').trim(); if (s) showError(TXT.fail, s); })
+		.observe(n, { childList: true, subtree: true, characterData: true });
+}
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', watchNotice); else watchNotice();
+// engine.start (Godot's start-up script defines `engine`): "กำลังเริ่มเกม" until the game's first frame
+var tries = 0, poll = setInterval(function () {
+	tries++;
+	var eng = null;
+	try { eng = (typeof engine !== 'undefined') ? engine : null; } catch (e) { eng = null; }
+	if (eng && typeof eng.start === 'function' && !eng.__cover) {
+		eng.__cover = true;
+		var os = eng.start;
+		eng.start = function () {
+			startCalled = true;                   // Godot asks once wasm + index.pck are in; extra packs may still load
+			if (phase === 'engine') { phase = 'started'; render(); }
+			var p = os.apply(eng, arguments);
+			if (p && p.then) p.then(function () { setTimeout(function () { handoff('timeout'); }, 8000); },
+				function (e) { showError(TXT.fail, e && e.message ? e.message : e); });
+			return p;
+		};
+	}
+	if (tries > 900 || (eng && eng.__cover)) clearInterval(poll);
+}, 20);
+setInterval(function () {
+	if (phase === 'error' || phase === 'gone') return;
+	var t = totals();
+	if (t.got !== lastGot) { lastGot = t.got; lastT = Date.now(); }
+	var slow = (phase === 'files' && Date.now() - lastT > 20000) || (phase !== 'files' && engT && Date.now() - engT > 60000);
+	if (slow !== el.classList.contains('mc-slow')) {
+		el.classList.toggle('mc-slow', slow);
+		layout();
+	}
+	if (slow) det.textContent = phase === 'files' ? TXT.slow : TXT.slowEngine;
+	else render();
+}, 1000);
+function handoff(why) {
+	if (phase === 'gone' || phase === 'error') return;
+	phase = 'gone';
+	W.meadowCover.by = why || 'game';
+	el.classList.add('mc-out');
+	setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 400);
+}
+W.meadowCover = { handoff: function () { handoff('game'); }, layout: layout, rect: coverRect, error: showError, retrying: retrying,
+	state: function () { var t = totals(); return { phase: phase, got: t.got, tot: t.tot, files: files }; } };
+render();
+}());
+</script>
+<!-- /meadow-cover -->
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -209,7 +449,7 @@ W.meadowOrient = { fullscreen: function () { armed = false; return enter(); }, e
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
+			<img id="status-splash" class="show-image--false fullsize--true use-filter--true" src="index.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
@@ -487,7 +727,7 @@ window.MEADOW_PCK_WASM = true;
 </script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":12499360,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":12905456,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

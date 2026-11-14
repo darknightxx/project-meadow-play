@@ -205,7 +205,9 @@ W.meadowOrient = { fullscreen: function () { armed = false; return enter(); }, e
 <!-- /meadow-orient -->
 
 	<!-- meadow-file-sizes -->
-<script>window.MEADOW_FILE_SIZES = {"index.cards.pck": 5690144, "index.characters.pck": 4800896, "index.gz.wasm": 9387782, "index.monsters2d.pck": 6634560, "index.monsters3d.pck": 3344832, "index.nature.pck": 3129536, "index.pck": 13128480, "index.sfx.pck": 12783424, "index.voice.pck": 13726912, "index.world.pck": 14983488};</script>
+<script>window.MEADOW_FILE_SIZES = {"index.cards.pck": 5828512, "index.characters.pck": 4800896, "index.gz.wasm": 9387782, "index.loading.pck": 5059104, "index.monsters2d.pck": 6634560, "index.monsters3d.pck": 3950688, "index.nature.pck": 3129536, "index.pck": 12820560, "index.sfx.pck": 14765056, "index.voice.pck": 12869024, "index.world.pck": 15083968};</script>
+<script>window.MEADOW_COVER_LAYOUT = {"band": 0.15, "bar": [0.42, 220.0, 520.0], "font": {"retry": 17.0, "server": 14.0, "start": 24.0, "status": 18.0}, "img": [1672, 941], "near": 0.92, "pad": 14.0, "rows": {"bar": [0.0, 8.0, 36.0], "button": [260.0, 54.0, 82.0], "error": [680.0, 46.0, 86.0], "retry": [160.0, 38.0, 38.0], "server": [600.0, 22.0, 22.0], "status": [680.0, 30.0, 70.0]}, "safe": [0.11, 0.015, 0.82, 0.605], "scale": {"base": [1280.0, 720.0], "floor": 420.0, "max": 4.0, "touch": 600.0}, "sound": 40.0, "ui": 100.0};</script>
+<script>window.MEADOW_COVER_TEXT = {"engine": "กำลังเตรียมเอนจินเกม…", "fail": "เปิดเกมไม่สำเร็จ", "files": "กำลังโหลดไฟล์เกม", "netFail": "โหลดไฟล์เกมไม่สำเร็จ — ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วกด “ลองใหม่”", "part": "บางไฟล์โหลดไม่ครบ เกมจะลองโหลดอีกครั้งเมื่อต้องใช้", "retry": "ลองใหม่", "slow": "การดาวน์โหลดช้าหรือหยุดอยู่ — ตรวจอินเทอร์เน็ต หรือกด “ลองใหม่”", "slowEngine": "เตรียมเกมนานผิดปกติ — กด “ลองใหม่” เพื่อเปิดหน้าเกมอีกครั้ง", "start": "กำลังเริ่มเกม…"};</script>
 <!-- meadow-cover (tools/web/cover_shell.html, added to index.html by tools/web/cover_sync.py) -->
 <link rel="preload" as="image" href="cover.webp" fetchpriority="high">
 <style id="meadow-cover-css">
@@ -222,11 +224,11 @@ background:linear-gradient(to bottom,rgba(13,28,23,0) 0%,rgba(13,28,23,.05) 25%,
 #meadow-cover .mc-status,#meadow-cover .mc-detail{position:absolute;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;
 paint-order:stroke fill;-webkit-text-stroke:0;text-shadow:0 0 3px #0a120e,0 0 3px #0a120e,0 1px 4px #0a120e;line-height:1.25}
 #meadow-cover .mc-detail{opacity:.85}
-#meadow-cover .mc-bar{position:absolute;background:rgba(255,255,255,.16);box-shadow:0 0 0 1px rgba(0,0,0,.45);overflow:hidden}
-#meadow-cover .mc-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:#fad16b}
+#meadow-cover .mc-bar{position:absolute;background:#234138;box-shadow:0 0 0 1px rgba(5,17,14,.8);overflow:hidden}
+#meadow-cover .mc-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#bb945c,#edcc8e 88%,#fff1c5)}
 #meadow-cover.mc-busy .mc-fill{width:22%;animation:mc-slide 1.43s linear infinite}
 @keyframes mc-slide{0%{transform:translateX(-100%)}100%{transform:translateX(455%)}}
-#meadow-cover .mc-retry{position:absolute;display:none;border:2px solid #fff2bf;border-radius:999px;background:#fad473;color:#4a2b0f;
+#meadow-cover .mc-retry{position:absolute;display:none;border:2px solid #fff2bf;border-radius:7px;background:#e8c481;color:#332413;
 font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35)}
 #meadow-cover.mc-slow .mc-retry{display:block}
 #meadow-cover.mc-error .mc-bar,#meadow-cover.mc-error .mc-status,#meadow-cover.mc-error .mc-detail,#meadow-cover.mc-error .mc-retry{display:none!important}
@@ -234,33 +236,46 @@ font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35)
 #meadow-cover.mc-error .mc-band{height:100%;background:rgba(13,28,23,.38)}
 #meadow-cover .mc-box{position:absolute;display:none;left:50%;bottom:max(10px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);
 width:min(94vw,640px);max-height:calc(100% - 20px);overflow:auto;box-sizing:border-box;padding:12px 16px 14px;text-align:center;
-background:rgba(13,28,23,.92);border:1px solid rgba(250,209,107,.65);border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.5)}
+background:linear-gradient(145deg,#193b31f8,#091d19fa);border:1px solid #b19a6880;border-top-color:#dcc18b;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.5)}
 #meadow-cover.mc-error .mc-box{display:block}
 #meadow-cover .mc-title{font-weight:700;color:#ffe08a;font-size:clamp(16px,calc(8px + 2vmin),22px);line-height:1.3}
 #meadow-cover .mc-msg{margin-top:6px;font-size:clamp(14px,calc(6px + 1.7vmin),18px);line-height:1.4}
 #meadow-cover .mc-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
-#meadow-cover .mc-btns button{font:inherit;font-size:clamp(14px,calc(6px + 1.6vmin),17px);font-weight:700;cursor:pointer;border-radius:999px;padding:7px 16px;min-height:38px;
-border:2px solid #fff2bf;background:#fad473;color:#4a2b0f}
-#meadow-cover .mc-btns button.mc-sec{background:rgba(255,255,255,.1);color:#fff8e0;border-color:rgba(255,242,191,.5)}
+#meadow-cover .mc-btns button{font:inherit;font-size:clamp(14px,calc(6px + 1.6vmin),17px);font-weight:700;cursor:pointer;border-radius:7px;padding:7px 16px;min-height:44px;
+border:1px solid #ffe6a8;border-bottom-width:3px;background:#e8c481;color:#332413}
+#meadow-cover .mc-btns button.mc-sec{background:#193d36;color:#fff1d1;border-color:#b39b68}
 #meadow-cover .mc-btns button:disabled{opacity:.55;cursor:default}
 #meadow-cover .mc-log{display:none;margin:10px 0 0;padding:8px;max-height:36vh;overflow:auto;text-align:left;white-space:pre-wrap;word-break:break-all;
 font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;background:rgba(0,0,0,.5);border-radius:8px;color:#e8f5d0;user-select:text;-webkit-user-select:text}
 #meadow-cover.mc-more .mc-log{display:block}
+#meadow-cover button:focus-visible{outline:2px solid #c4ffe3;outline-offset:3px}
+#meadow-cover .mc-frame{position:absolute;pointer-events:none;inset:max(1.8vmin,env(safe-area-inset-top)) max(1.8vmin,env(safe-area-inset-right)) max(1.8vmin,env(safe-area-inset-bottom)) max(1.8vmin,env(safe-area-inset-left));
+--brass:rgba(232,196,125,.67);
+background:linear-gradient(var(--brass),var(--brass)) left top / 37px 1px,
+linear-gradient(var(--brass),var(--brass)) left top / 1px 22px,
+linear-gradient(var(--brass),var(--brass)) right top / 37px 1px,
+linear-gradient(var(--brass),var(--brass)) right top / 1px 22px,
+linear-gradient(var(--brass),var(--brass)) left bottom / 37px 1px,
+linear-gradient(var(--brass),var(--brass)) left bottom / 1px 22px,
+linear-gradient(var(--brass),var(--brass)) right bottom / 37px 1px,
+linear-gradient(var(--brass),var(--brass)) right bottom / 1px 22px;background-repeat:no-repeat}
 @media (prefers-reduced-motion: reduce){#meadow-cover{transition:none}#meadow-cover.mc-busy .mc-fill{animation:none;width:100%;opacity:.5}}
 </style>
 <template id='meadow-cover-tpl'><div id='meadow-cover' role='progressbar' aria-live='polite' aria-label='Project Meadow'>
 <img class='mc-dim' alt='' src='cover.webp' decoding='async'><div class='mc-lqip'></div><img class='mc-img' alt='' src='cover.webp' decoding='async' fetchpriority='high'>
-<div class='mc-band'></div><div class='mc-status'></div><div class='mc-bar'><div class='mc-fill'></div></div>
+<div class='mc-band'></div><div class='mc-frame' aria-hidden='true'></div><div class='mc-status'></div><div class='mc-bar'><div class='mc-fill'></div></div>
 <div class='mc-detail'></div><button type='button' class='mc-retry'>ลองใหม่</button>
 <div class='mc-box'><div class='mc-title'></div><div class='mc-msg'></div><div class='mc-btns'>
 <button type='button' class='mc-retry2'>ลองใหม่</button><button type='button' class='mc-copy mc-sec'>คัดลอกข้อมูลวินิจฉัย</button><button type='button' class='mc-moreb mc-sec'>รายละเอียด</button></div>
 <pre class='mc-log'></pre></div></div></template>
 <script id='meadow-cover-js'>
 // TITLECOVER: the web loading page shows the owner's cover image (cover.webp = assets/ui/cover/key_cover.webp, the
-// same file the game draws) from the first paint, a REAL download bar (bytes of every game file, sizes baked in by
-// cover_sync.py: window.MEADOW_FILE_SIZES) and Thai status / errors with a ลองใหม่ button. The in-game cover
-// (scripts/client/ui/title_cover.gd) draws the image at the same place (coverRect = cover_fit.gd layout()) and calls
-// window.meadowCover.handoff() once its first frame is on screen; this page then fades out (0.25 s).
+// same file the game draws) from the first paint, a REAL download bar (bytes of every game file) and Thai status /
+// errors with a retry button. The in-game cover (scripts/client/ui/title_cover.gd) draws the image at the same place
+// and calls window.meadowCover.handoff() once its first frame is on screen; this page then fades out (0.25 s).
+// NOTHING here is a second copy of a game value: tools/web/cover_sync.py injects MEADOW_FILE_SIZES (the file bytes),
+// MEADOW_COVER_LAYOUT (every number, read out of cover_fit.gd / ui_scale.gd and the image itself) and
+// MEADOW_COVER_TEXT (the Thai lines, from data/i18n_th.json), so this file cannot drift from the game.
 (function () {
 var W = window, D = document, R = D.documentElement;
 if (W.meadowCover) return;
@@ -340,8 +355,16 @@ W.addEventListener('pageshow', function () { AU.pageHidden = false; auWake(); })
 W.addEventListener('blur', function () { AU.blurred = true; auSleep(); });
 W.addEventListener('focus', function () { AU.blurred = false; auWake(); });
 W.meadowAudio = { state: auState, gesture: auGesture, ctxs: AU.ctxs };
-var IW = 1672, IH = 941, SAFE = [0.11, 0.015, 0.82, 0.605], BAND = 0.15, UI_PX = 100.0, NEAR = 0.92;
-var LQIP = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAAbADADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBdNtora2N3JEsEPnAfaHbIjQ5xx3NbbxWkyJeaGh8uJSqSxgqSR1yMeneq8TWOtPDpsIgSzEYllmbIDuCcbR0IAB/M1Mhm+3wraQG2SbmQqvyEgY2EduQOazoyVKfNa5U6ftYcqevQ5y7up5LjzHkJkZxuMqEkcDJz35/TFFtEzyuqokpkIPypx16Zz/TvXYvO7JmZF3hDvLKo2gdQTjjpn6VC6TrGxj6Z3j5duV78jrXXz8zTuzgdGy2RDZ6X5drEkjFt3AXGVA7Z4zxn2xWlbaTFbzq63Sxjdgs7HOQACVB+96elVBrV1azQQPbspeQRrhgN3fOM8fjyaw5NWmtdat5ba9kmOSNkjAq7nIOM/dOemKzlUje9rnRSwjk7N2Zm6p5MFzC8N1bJuVS91A+1UH93b6j8+a3Irq2nubd01W1KwL8sqrjeCOeB37Y9R715R5jgAbjjpThPMvKyMD7Gud02zeNflVrHq+tXkUkbW1vNB5Zbe5jkClxngDJ7/wBDVfQtZW0Pl3h8q2jjyJTLhmYnkY9PbtivLWkkY5Z2J9zThLIOjn86pRfcydRO+h6Rc6vax3y3yuRIWJjkRwcrwNp465Gc+tZ99++SK4zkyZXyxIMR/wC0Pf36H2riPPlK48xsZzjPeg3EzD5pWPGOTnim430NY1+V3SP/2Q==';
+var CL = W.MEADOW_COVER_LAYOUT, TXT = W.MEADOW_COVER_TEXT;
+if (!CL || !TXT) {            // not injected (a hand-made page): leave Godot's own loading box doing the talking
+	var unhide = function () { try { var sb = D.getElementById('status');          // this script runs in <head>:
+		if (sb) sb.style.setProperty('display', 'block', 'important'); } catch (e) {} };   // #status exists later
+	if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', unhide); else unhide();
+	return;
+}
+var IW = CL.img[0], IH = CL.img[1], SAFE = CL.safe, BAND = CL.band, UI_PX = CL.ui, NEAR = CL.near;
+var PAD = CL.pad, BAR = CL.bar, ROWS = CL.rows, FONT = CL.font, SC = CL.scale;
+var LQIP = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAAbADADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvBo+kWmq6pPq4doYSpVYvm3FssMfgQOPWtqwfRLrTzDcWfkNjYCAFZWzkHb64I5HY+9Y8UGopo73jXMan5WQMo3MowBkd8YA49q1Eglvhal08l4JHWe2dsiRivDe5wen1rkai3do6rN6GbeWd/LMqLG08acBkJIA9OelRQW9zFdRK8Xk+a+F3tjdjrgGrd/fNZTSW8KqEjVcpIMjcCfoegz3p1zcC80m2vLdIo7eM/vA7Eyb8nKjsFPrmuhTSOb2V9DUTVk+wyJbSRGOJyJPKlyyY6Fjngd/wrPNxNcwSyyXpcKC0nJBOeBxn16/WokawurO5srR2spJjvkUINuAwBA7Zx6etO0rU7CO5aE2pMMP7oTAjjvhl+vU4PPar9o+a7KdFclr6nNm+jtrmB7CV50U53XC7ckHPTOOPXufpXTadrMdxaPNdGISBjiVR36Aj179q81MjnqxoWR1+6xH0NZOlcpVrI62/1Bo7+O6WXdIMwsv3srzk+3ektL+G3hazMzMsrBsRsAVx23HgZwM8HgetcmXc9WJ/Gk3H1qlTSJ9o73OvsrprbZLJdCGMMwJLA7FcZwfXJAz3qvbSQS2NykW+FZ3G6JvmAYg5wevT1rmTI5ABYnHvQJpVHEjD8apxbdx+0XY//9k=';
 var SIZES = W.MEADOW_FILE_SIZES || {};
 var CAT = {
 	cap: { t: 'เบราว์เซอร์นี้ยังใช้งานกราฟิก WebGL2 ไม่ได้', m: 'กรุณาลองเบราว์เซอร์ที่รองรับ และตรวจการเร่งกราฟิกด้วยฮาร์ดแวร์ (Hardware acceleration) ในการตั้งค่าเบราว์เซอร์' },
@@ -350,11 +373,6 @@ var CAT = {
 	engine: { t: 'เริ่มเอนจินเกมไม่สำเร็จ', m: 'ไฟล์เกมโหลดแล้ว แต่เอนจินเริ่มทำงานไม่ได้ ลองปิดแท็บอื่นเพื่อคืนหน่วยความจำ แล้วกด “ลองใหม่”' },
 	server: { t: 'เชื่อมต่อเซิร์ฟเวอร์เกมไม่สำเร็จ', m: 'ไฟล์เกมโหลดครบและเอนจินทำงาน แต่ติดต่อเซิร์ฟเวอร์เกมไม่ได้ ลองใหม่อีกครั้งในอีกสักครู่' } };
 var CRITICAL = { 'index.gz.wasm': 1, 'index.wasm': 1, 'index.pck': 1 };
-var TXT = { files: 'กำลังโหลดไฟล์เกม', engine: 'กำลังเตรียมเอนจินเกม…', start: 'กำลังเริ่มเกม…',
-	slow: 'การดาวน์โหลดช้าหรือหยุดอยู่ — ตรวจอินเทอร์เน็ต หรือกด “ลองใหม่”',
-	slowEngine: 'เตรียมเกมนานผิดปกติ — กด “ลองใหม่” เพื่อเปิดหน้าเกมอีกครั้ง',
-	netFail: 'โหลดไฟล์เกมไม่สำเร็จ — ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วกด “ลองใหม่”',
-	fail: 'เปิดเกมไม่สำเร็จ', part: 'บางไฟล์โหลดไม่ครบ เกมจะลองโหลดอีกครั้งเมื่อต้องใช้' };
 // viewport-fit=cover from the start (the login does the same: scripts/client/ui/screen_insets.gd keeps the page's
 // original value in window.meadowViewportOrig, so the game can still turn it off)
 try { var vm = D.querySelector('meta[name=viewport]'); if (vm) { var o = vm.getAttribute('content') || '';
@@ -370,8 +388,9 @@ if (LQIP.indexOf('data:') === 0) { lq.style.backgroundImage = 'url(' + LQIP + ')
 // the blurred tiny copy only until the real image is decoded (then it would only cost compositing)
 function lqOff() { setTimeout(function () { lq.style.display = 'none'; }, 50); }
 if (img.complete && img.naturalWidth) lqOff(); else img.addEventListener('load', lqOff);
-// ลองใหม่ = load the page again; the game files are then fetched with cache 'reload' so a failed / cached-404 file
-// is really downloaded again (GitHub Pages caches a 404 for minutes)
+btn.textContent = TXT.retry;                  // data/i18n_th.json cover.retry (injected)
+// the button = load the page again; the game files are then fetched with cache 'reload' so a failed / cached-404
+// file is really downloaded again (GitHub Pages caches a 404 for minutes)
 var RKEY = 'meadow.cover.retry', retrying = false;
 try { var rv = +(sessionStorage.getItem(RKEY) || 0); retrying = rv > 0 && Date.now() - rv < 120000; sessionStorage.removeItem(RKEY); } catch (e) {}
 // one retry only: a second tap while the reload is starting must not start anything again; in-flight downloads are
@@ -392,7 +411,7 @@ probe.style.cssText = 'position:fixed;left:0;top:0;width:0;height:0;visibility:h
 	'padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)';
 R.appendChild(probe);
 
-// ---- layout: the same numbers as cover_fit.gd layout() / title_cover.gd bottom_layout() ----
+// ---- layout: cover_fit.gd layout() / bottom_layout() in JS, on the constants injected above ----
 function clampAxis(p, len, view) { return len >= view ? Math.min(0, Math.max(view - len, p)) : Math.min(view - len, Math.max(0, p)); }
 function coverRect(vw, vh, ins, ui) {
 	var x0 = ins[0], x1 = vw - ins[2], y0 = ins[1], y1 = vh - Math.max(ins[3] + (ui || 0), vh * BAND);
@@ -404,34 +423,45 @@ function coverRect(vw, vh, ins, ui) {
 	var x = clampAxis((x0 + x1) / 2 - cx * w, w, vw), y = clampAxis(yy, h, vh);
 	return { x: x, y: y, w: w, h: h, fill: w < vw - 0.5 || h < vh - 0.5 };
 }
-W.meadowCoverRect = coverRect;            // browser check (tools/web/cover_check.js)
 function touch() { try { return ('ontouchstart' in W) || (navigator.maxTouchPoints || 0) > 0; } catch (e) { return false; } }
-// CSS px per design px (scripts/client/ui/ui_scale.gd factor_for on top of canvas_items + expand at 1280x720)
+// CSS px per design px (scripts/client/ui/ui_scale.gd factor_for on top of canvas_items + expand at BASE)
 function designK(w, h) {
-	var d = W.devicePixelRatio || 1, pw = w * d, ph = h * d, base = Math.min(pw / 1280, ph / 720), u = Math.max(base, d);
-	if (touch()) u = Math.max(u, Math.min(pw, ph) / 600);
-	u = Math.min(u, Math.min(pw, ph) / 420);
-	u = base * Math.min(4, Math.max(1, u / base));
+	var d = W.devicePixelRatio || 1, pw = w * d, ph = h * d, base = Math.min(pw / SC.base[0], ph / SC.base[1]), u = Math.max(base, d);
+	if (touch()) u = Math.max(u, Math.min(pw, ph) / SC.touch);
+	u = Math.min(u, Math.min(pw, ph) / SC.floor);
+	u = base * Math.min(SC.max, Math.max(1, u / base));
 	return u / d;
 }
 function px(n) { return n + 'px'; }
 function put(e, x, y, w, h) { e.style.left = px(x); e.style.top = px(y); e.style.width = px(w); e.style.height = px(h); }
-function layout() {
+// screen + design-px metrics of the moment (CoverFit.bottom_layout's `bottom` line and bar width)
+function metrics() {
 	var w = W.innerWidth || R.clientWidth || 1, h = W.innerHeight || R.clientHeight || 1, cs = W.getComputedStyle(probe);
-	var ins = [parseFloat(cs.paddingLeft) || 0, parseFloat(cs.paddingTop) || 0, parseFloat(cs.paddingRight) || 0, parseFloat(cs.paddingBottom) || 0];
-	ins = [Math.min(ins[0], w / 4), Math.min(ins[1], h / 4), Math.min(ins[2], w / 4), Math.min(ins[3], h / 4)];
-	var k = designK(w, h), vx = w / k, bottom = (h - ins[3]) / k - 14, bw = Math.min(520, Math.max(220, vx * 0.42));
-	var r = coverRect(w, h, ins, UI_PX * k);
+	var i = [parseFloat(cs.paddingLeft) || 0, parseFloat(cs.paddingTop) || 0, parseFloat(cs.paddingRight) || 0, parseFloat(cs.paddingBottom) || 0];
+	var ins = [Math.min(i[0], w / 4), Math.min(i[1], h / 4), Math.min(i[2], w / 4), Math.min(i[3], h / 4)];
+	var k = designK(w, h), vx = w / k;
+	return { w: w, h: h, ins: ins, k: k, vx: vx, bottom: (h - ins[3]) / k - PAD,
+		bw: Math.min(BAR[2], Math.max(BAR[1], vx * BAR[0])) };
+}
+// one row of the bottom strip in CSS px: CoverFit.ROWS[name] = [width, height, top above the bottom line], centred
+function rowRect(name, m) {
+	var r = ROWS[name], w = r[0] > 0 ? r[0] : m.bw;
+	return { x: (m.vx / 2 - w / 2) * m.k, y: (m.bottom - r[2]) * m.k, w: w * m.k, h: r[1] * m.k };
+}
+function layout() {
+	var m = metrics();
+	var place = function (e, name) { var r = rowRect(name, m); put(e, r.x, r.y, r.w, r.h); };
+	var r = coverRect(m.w, m.h, m.ins, UI_PX * m.k);
 	put(img, r.x, r.y, r.w, r.h);
 	put(lq, r.x, r.y, r.w, r.h);
 	dim.style.display = r.fill ? 'block' : 'none';
-	if (r.fill) { var s = Math.max(w / IW, h / IH); put(dim, (w - IW * s) / 2, (h - IH * s) / 2, IW * s, IH * s); }
+	if (r.fill) { var s = Math.max(m.w / IW, m.h / IH); put(dim, (m.w - IW * s) / 2, (m.h - IH * s) / 2, IW * s, IH * s); }
 	var err = el.classList.contains('mc-error'), slow = el.classList.contains('mc-slow');
-	put(st, (vx / 2 - 340) * k, (bottom - 70) * k, 680 * k, 30 * k);              // "status"
-	put(bar, (vx / 2 - bw / 2) * k, (bottom - 36) * k, bw * k, 8 * k);             // "bar"
-	put(det, (vx / 2 - 300) * k, (bottom - 22) * k, 600 * k, 22 * k);              // "server" line: sizes / notes
-	if (slow && !err) put(btn, (vx / 2 + bw / 2 + 12) * k, (bottom - 47) * k, 110 * k, 30 * k);   // next to the bar
-	st.style.fontSize = px(18 * k); det.style.fontSize = px(14 * k); btn.style.fontSize = px(17 * k);
+	place(st, 'status');
+	place(bar, 'bar');
+	place(det, 'server');                       // the game's server line; here: MB downloaded / notes
+	if (slow && !err) put(btn, (m.vx / 2 + m.bw / 2 + 12) * m.k, (m.bottom - 47) * m.k, 110 * m.k, 30 * m.k);  // page only, next to the bar
+	st.style.fontSize = px(FONT.status * m.k); det.style.fontSize = px(FONT.server * m.k); btn.style.fontSize = px(FONT.retry * m.k);
 }
 W.addEventListener('resize', layout);
 W.addEventListener('orientationchange', function () { setTimeout(layout, 120); });
@@ -456,6 +486,13 @@ function totals() {
 	return { tot: tot, got: got, n: n, done: done };
 }
 function mb(b) { return (b / 1048576).toFixed(1); }
+var rafQ = false;
+function renderSoon() {                       // every stream chunk calls this; the DOM is written once per frame
+	if (rafQ) return;
+	rafQ = true;
+	var go = function () { rafQ = false; render(); };
+	if (W.requestAnimationFrame) W.requestAnimationFrame(go); else setTimeout(go, 16);
+}
 function render() {
 	if (phase === 'error' || phase === 'gone') return;
 	var t = totals();
@@ -548,7 +585,7 @@ if (realFetch) {
 					return rd.read().then(function (x) {
 						if (phase === 'error' || closing) { ctl.error(new Error('meadow: stopped')); return; }   // a late chunk never counts
 						if (x.done) { f.done = true; render(); ctl.close(); return; }
-						f.got += x.value.byteLength; render(); ctl.enqueue(x.value);
+						f.got += x.value.byteLength; renderSoon(); ctl.enqueue(x.value);
 					}, function (e) { bad(e && e.message ? e.message : e); ctl.error(e); });   // connection lost mid-file
 				},
 				cancel: function (why) { try { rd.cancel(why); } catch (e) {} } });
@@ -609,7 +646,8 @@ function handoff(why) {
 }
 function progress() { var t = totals(); return { got: t.got, tot: t.tot, pct: t.tot > 0 ? Math.floor(100 * t.got / t.tot) : 0, done: t.done, n: t.n }; }
 W.meadowCover = { handoff: function () { handoff('game'); }, layout: layout, rect: coverRect, error: showError, retrying: retrying,
-	progress: progress, diag: diagText, info: info, 
+	progress: progress, diag: diagText, info: info,
+	k: function () { return metrics().k; }, row: function (name) { return rowRect(name, metrics()); },
 	state: function () { var t = totals(); return { phase: phase, got: t.got, tot: t.tot, files: files }; } };
 // the engine's own start-up promise (wasm compile / memory) rejected without anyone handling it = engine start failure
 function startupReject(m) { m = String(m || ''); if (phase !== 'gone' && phase !== 'error' && /wasm|webassembly|instantiate|compile|out of memory|memory/i.test(m)) showError('engine', m); }
@@ -924,7 +962,7 @@ window.MEADOW_PCK_WASM = true;
 </script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":13128480,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":12820560,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -1085,6 +1123,7 @@ const engine = new Engine(GODOT_CONFIG);
 			EXTRA.push(['index.mapkit.pck', '/tmp/index.mapkit.pck']);
 		}
 	} catch (e) { /* old browsers: the game falls back to the own town models */ }
+	EXTRA.push(['index.loading.pck', '/tmp/index.loading.pck']);   // LOADINGV2: per-map loading art (LoadingScenes)
 	// INDIEUS (test build): the new player model's parts (window.MEADOW_CHR_PACKS, written by webbuild.py): meshes /
 	// animations + the texture set this browser can use (S3TC on desktop GPUs, ETC2 on phones); ?model=old skips them
 	try {

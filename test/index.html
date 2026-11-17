@@ -205,11 +205,11 @@ W.meadowOrient = { fullscreen: function () { armed = false; return enter(); }, e
 <!-- /meadow-orient -->
 
 	<!-- meadow-file-sizes -->
-<script>window.MEADOW_FILE_SIZES = {"index.cards.pck": 6494464, "index.cc2.pck": 1335744, "index.characters.pck": 13429824, "index.gz.wasm": 9387782, "index.loading.pck": 5059104, "index.mapview.pck": 3878592, "index.monsters2d.pck": 6634560, "index.monsters3d.pck": 3950688, "index.nature.pck": 3129536, "index.pck": 13166880, "index.sfx.pck": 14930368, "index.voice.pck": 12690016, "index.world.pck": 21130496};</script>
+<script>window.MEADOW_FILE_SIZES = {"index.cards.pck": 6494464, "index.cc2.pck": 1335744, "index.characters.pck": 13429824, "index.gz.wasm": 9387782, "index.loading.pck": 5260960, "index.mapview.pck": 3878592, "index.monsters2d.pck": 6634560, "index.monsters3d.pck": 3950688, "index.nature.pck": 3129536, "index.pck": 13277536, "index.sfx.pck": 14930368, "index.voice.pck": 12690016, "index.world.pck": 21130496};</script>
 <script>window.MEADOW_COVER_LAYOUT = {"band": 0.15, "bar": [0.42, 220.0, 520.0], "font": {"retry": 17.0, "server": 14.0, "start": 24.0, "status": 18.0}, "img": [1672, 941], "near": 0.92, "pad": 14.0, "rows": {"bar": [0.0, 8.0, 36.0], "button": [260.0, 54.0, 82.0], "error": [680.0, 46.0, 86.0], "retry": [160.0, 38.0, 38.0], "server": [600.0, 22.0, 22.0], "status": [680.0, 30.0, 70.0]}, "safe": [0.11, 0.015, 0.82, 0.605], "scale": {"base": [1280.0, 720.0], "floor": 420.0, "max": 4.0, "touch": 600.0}, "sound": 40.0, "ui": 100.0};</script>
 <script>window.MEADOW_COVER_TEXT = {"engine": "กำลังเตรียมเอนจินเกม…", "fail": "เปิดเกมไม่สำเร็จ", "files": "กำลังโหลดไฟล์เกม", "netFail": "โหลดไฟล์เกมไม่สำเร็จ — ตรวจการเชื่อมต่ออินเทอร์เน็ต แล้วกด “ลองใหม่”", "part": "บางไฟล์โหลดไม่ครบ เกมจะลองโหลดอีกครั้งเมื่อต้องใช้", "retry": "ลองใหม่", "slow": "การดาวน์โหลดช้าหรือหยุดอยู่ — ตรวจอินเทอร์เน็ต หรือกด “ลองใหม่”", "slowEngine": "เตรียมเกมนานผิดปกติ — กด “ลองใหม่” เพื่อเปิดหน้าเกมอีกครั้ง", "start": "กำลังเริ่มเกม…"};</script>
 <!-- meadow-cover (tools/web/cover_shell.html, added to index.html by tools/web/cover_sync.py) -->
-<link rel="preload" as="image" href="cover.webp" fetchpriority="high">
+<link rel="preload" as="image" href="cover.webp?v=06eae4763691" fetchpriority="high">
 <style id="meadow-cover-css">
 #status{display:none!important}
 #meadow-cover{position:fixed;left:0;top:0;width:100%;height:100%;z-index:2147483000;overflow:hidden;background:#172b26;
@@ -262,7 +262,7 @@ linear-gradient(var(--brass),var(--brass)) right bottom / 1px 22px;background-re
 @media (prefers-reduced-motion: reduce){#meadow-cover{transition:none}#meadow-cover.mc-busy .mc-fill{animation:none;width:100%;opacity:.5}}
 </style>
 <template id='meadow-cover-tpl'><div id='meadow-cover' role='progressbar' aria-live='polite' aria-label='Project Meadow'><div id="meadow-build-stamp" style="position:absolute;right:max(8px,env(safe-area-inset-right));top:max(6px,env(safe-area-inset-top));z-index:5;font:600 12px/1.2 system-ui,sans-serif;color:#fff1d1;opacity:.8;text-shadow:0 1px 2px #000,0 0 6px #000;pointer-events:none">บิลด์ 2026-11-17 06:59 UTC · 5804f20a</div>
-<img class='mc-dim' alt='' src='cover.webp' decoding='async'><div class='mc-lqip'></div><img class='mc-img' alt='' src='cover.webp' decoding='async' fetchpriority='high'>
+<img class='mc-dim' alt='' src='cover.webp?v=06eae4763691' decoding='async'><div class='mc-lqip'></div><img class='mc-img' alt='' src='cover.webp?v=06eae4763691' decoding='async' fetchpriority='high'>
 <div class='mc-band'></div><div class='mc-frame' aria-hidden='true'></div><div class='mc-status'></div><div class='mc-bar'><div class='mc-fill'></div></div>
 <div class='mc-detail'></div><button type='button' class='mc-retry'>ลองใหม่</button>
 <div class='mc-box'><div class='mc-title'></div><div class='mc-msg'></div><div class='mc-btns'>
@@ -364,7 +364,7 @@ if (!CL || !TXT) {            // not injected (a hand-made page): leave Godot's 
 }
 var IW = CL.img[0], IH = CL.img[1], SAFE = CL.safe, BAND = CL.band, UI_PX = CL.ui, NEAR = CL.near;
 var PAD = CL.pad, BAR = CL.bar, ROWS = CL.rows, FONT = CL.font, SC = CL.scale;
-var LQIP = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAAbADADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCvBo+kWmq6pPq4doYSpVYvm3FssMfgQOPWtqwfRLrTzDcWfkNjYCAFZWzkHb64I5HY+9Y8UGopo73jXMan5WQMo3MowBkd8YA49q1Eglvhal08l4JHWe2dsiRivDe5wen1rkai3do6rN6GbeWd/LMqLG08acBkJIA9OelRQW9zFdRK8Xk+a+F3tjdjrgGrd/fNZTSW8KqEjVcpIMjcCfoegz3p1zcC80m2vLdIo7eM/vA7Eyb8nKjsFPrmuhTSOb2V9DUTVk+wyJbSRGOJyJPKlyyY6Fjngd/wrPNxNcwSyyXpcKC0nJBOeBxn16/WokawurO5srR2spJjvkUINuAwBA7Zx6etO0rU7CO5aE2pMMP7oTAjjvhl+vU4PPar9o+a7KdFclr6nNm+jtrmB7CV50U53XC7ckHPTOOPXufpXTadrMdxaPNdGISBjiVR36Aj179q81MjnqxoWR1+6xH0NZOlcpVrI62/1Bo7+O6WXdIMwsv3srzk+3ektL+G3hazMzMsrBsRsAVx23HgZwM8HgetcmXc9WJ/Gk3H1qlTSJ9o73OvsrprbZLJdCGMMwJLA7FcZwfXJAz3qvbSQS2NykW+FZ3G6JvmAYg5wevT1rmTI5ABYnHvQJpVHEjD8apxbdx+0XY//9k=';
+var LQIP = '';
 var SIZES = W.MEADOW_FILE_SIZES || {};
 var CAT = {
 	cap: { t: 'เบราว์เซอร์นี้ยังใช้งานกราฟิก WebGL2 ไม่ได้', m: 'กรุณาลองเบราว์เซอร์ที่รองรับ และตรวจการเร่งกราฟิกด้วยฮาร์ดแวร์ (Hardware acceleration) ในการตั้งค่าเบราว์เซอร์' },
@@ -963,7 +963,7 @@ window.MEADOW_PCK_WASM = true;
 </script>
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":13166880,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":13277536,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

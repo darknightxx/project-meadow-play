@@ -1090,7 +1090,9 @@ const engine = new Engine(GODOT_CONFIG);
 	const vq = function (name) {
 		try {
 			const s = window.MEADOW_FILE_SIZES && window.MEADOW_FILE_SIZES[name];
-			return s ? name + '?v=' + s : name;
+			// CC2 is fetched on demand by synchronous XHR, which does not use the fetch() alias.
+			const route = window.MEADOW_PCK_WASM && name === 'index.cc2.pck' ? name + '.wasm' : name;
+			return s ? route + '?v=' + s : route;
 		} catch (e) { return name; }
 	};
 	window.meadowPackUrl = vq;

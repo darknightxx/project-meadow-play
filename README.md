@@ -7,6 +7,15 @@
 
 ซอร์สโค้ดไม่ได้อยู่ใน repo นี้
 
+## เวอร์ชันทดสอบรวมทุกงานที่เสร็จแล้ว (main): `/test-main/`
+`https://darknightxx.github.io/project-meadow-play/test-main/` = build จาก `main` ของ `project-meadow-clean` = ทุกงานที่แชทรวมงาน (INTEGRATOR) รวมเข้า main แล้ว (ไม่แตะหน้าหลักและหน้าทดสอบอื่น)
+- **build 2026-11-22 18:29 UTC · source `ba790108` (`main`)**
+- รวมแล้ว: เมือง Meshy / กาชา / NPC 3D / เสียง NPC สำนวนโบราณ + เสียงบอส + ภาพ NPC + NPC ทัก (แชทเสียง) · มอนสเตอร์ 3D 62 ตัว (MONMODEL-E) · บอส/มินิบอส 3D (MONMODEL-D) · ตัวละครผู้เล่นชุด Indie-us (INDIEUS-BACK) · แผนที่ 2 · มอนสเตอร์ฝึกหัด 3D · UI ROX · ถ้ำมีมอนสเตอร์ · ไอเทมความสามารถพิเศษ
+- **build นี้ไม่มีไฟล์ลิขสิทธิ์ Indie-us** (ไม่อยู่ในเครื่องที่ build) ตัวละครผู้เล่นจึงเป็นหุ่นแทนชั่วคราว ส่วนอื่นเป็นของจริง
+- ชุดเทสเต็มบน `c7fa3620` (= โค้ดเดียวกับ `ba790108` ต่างแค่ BOARD.md): 36,692 ผ่าน / 1 ไม่ผ่าน (ไฟล์ runner ชั่วคราวของแชทรวมงานเอง ไม่ใช่ของเกม) ไม่มี script error · 61 ไฟล์ 373 MiB ไม่มีไฟล์ถึง 20 MiB (ใหญ่สุด 16.73) · แพ็กหลัก index.pck 12.34 MiB
+- **ให้ทดสอบในหน้าต่างไม่ระบุตัวตน (incognito)** เพราะเซฟออฟไลน์ใช้ที่เก็บเดียวกับหน้าอื่น
+- ถอนออก: revert commit ที่นำขึ้น หรือลบโฟลเดอร์ `test-main/` แล้ว push (หน้าอื่นไม่เกี่ยว)
+
 ## เวอร์ชันทดสอบตัวละครผู้เล่นชุด Indie-us: `/test-indieus/`
 `https://darknightxx.github.io/project-meadow-play/test-indieus/` = build ทดสอบแยกโฟลเดอร์ของงานนำโมเดลผู้เล่น Indie-us กลับมา (ไม่แตะหน้าหลักและหน้าทดสอบอื่น)
 - **build 2026-11-22 16:07 UTC · `4ad5fc21`** (branch `claude/epic-bohr-69la5v` ของ `project-meadow-clean`, ยังไม่ merge เข้า `main`)

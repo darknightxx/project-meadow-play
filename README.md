@@ -9,9 +9,9 @@
 
 ## หน้าผู้เล่นจริง (หน้าหลักของ repo นี้)
 `https://darknightxx.github.io/project-meadow-play/` - **เจ้าของสั่ง 2026-11-23: "เปิดให้ขึ้นเซิร์ฟจริงได้เลยใน GitHub เปิดสาธารณะ"**
-- **build 2026-11-23 12:17 UTC · source `2837555a` (`main` ของ `project-meadow-clean`)** - ตัวละครผู้เล่น Indie-us (แพ็ก index.chr.*), ทุกงานที่รวมเข้า main แล้ว + BUGFIX-A
-- ชุดเทสเต็มบน `d86ac5c1` (= โค้ดเดียวกับ `2837555a` ต่างแค่ BOARD.md): 37,916 ผ่าน / 1 ไม่ผ่าน (ไฟล์ runner ชั่วคราวของแชทรวมงาน ไม่ใช่ของเกม) ไม่มี script error · 87 ไฟล์ 649 MiB ไม่มีไฟล์ถึง 20 MiB (ใหญ่สุด 19.50) · แพ็กหลัก index.pck 12.43 MiB
-- ถอนออก: revert commit นี้ (กลับไป build เดิมที่ `2dfd89c`) - โฟลเดอร์ test-* ไม่ถูกแตะ
+- **build 2026-11-23 13:23 UTC · source `8f94e001` (`main` ของ `project-meadow-clean`)** - ตัวละครผู้เล่น Indie-us, ทุกงานที่รวมเข้า main + BUGFIX-A + แก้หัวสั่นตอนซูมออก (HEADSHAKE) · เจ้าของสั่ง "อัปหน้าผู้เล่น"
+- ชุดเทสเต็มบน `8f94e001` (commit ที่ build): 37,902 ผ่าน / 1 ไม่ผ่าน (ไฟล์ runner ชั่วคราวของแชทรวมงาน ไม่ใช่ของเกม) ไม่มี script error · 87 ไฟล์ 649 MiB ไม่มีไฟล์ถึง 20 MiB (ใหญ่สุด 19.50) · แพ็กหลัก index.pck 12.44 MiB
+- ถอนออก: revert commit นี้ (กลับไป build ก่อนหน้าที่ `47ed1a7`) - โฟลเดอร์ test-* ไม่ถูกแตะ
 
 ## เวอร์ชันทดสอบงานสกิลและสมดุล: `/test-skill/`
 `https://darknightxx.github.io/project-meadow-play/test-skill/` = build ทดสอบแยกโฟลเดอร์ของงานสายสกิล/สมดุล (ไม่แตะหน้าหลักและหน้าทดสอบอื่น)

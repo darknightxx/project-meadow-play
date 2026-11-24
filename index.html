@@ -261,7 +261,7 @@ linear-gradient(var(--brass),var(--brass)) right bottom / 37px 1px,
 linear-gradient(var(--brass),var(--brass)) right bottom / 1px 22px;background-repeat:no-repeat}
 @media (prefers-reduced-motion: reduce){#meadow-cover{transition:none}#meadow-cover.mc-busy .mc-fill{animation:none;width:100%;opacity:.5}}
 </style>
-<template id='meadow-cover-tpl'><div id='meadow-cover' role='progressbar' aria-live='polite' aria-label='Project Meadow'><div id="meadow-build-stamp" style="position:absolute;right:max(8px,env(safe-area-inset-right));top:max(6px,env(safe-area-inset-top));z-index:5;font:600 12px/1.2 system-ui,sans-serif;color:#fff1d1;opacity:.8;text-shadow:0 1px 2px #000,0 0 6px #000;pointer-events:none">บิลด์ 2026-11-24 04:52 UTC · 38f9024d</div>
+<template id='meadow-cover-tpl'><div id='meadow-cover' role='progressbar' aria-live='polite' aria-label='Project Meadow'><div id="meadow-build-stamp" style="position:absolute;right:max(8px,env(safe-area-inset-right));top:max(6px,env(safe-area-inset-top));z-index:5;font:600 12px/1.2 system-ui,sans-serif;color:#fff1d1;opacity:.8;text-shadow:0 1px 2px #000,0 0 6px #000;pointer-events:none">บิลด์ 2026-11-24 07:14 UTC · 0c82b562</div>
 <img class='mc-dim' alt='' src='cover.webp' decoding='async'><div class='mc-lqip'></div><img class='mc-img' alt='' src='cover.webp' decoding='async' fetchpriority='high'>
 <div class='mc-band'></div><div class='mc-frame' aria-hidden='true'></div><div class='mc-status'></div><div class='mc-bar'><div class='mc-fill'></div></div>
 <div class='mc-detail'></div><button type='button' class='mc-retry'>ลองใหม่</button>
@@ -702,7 +702,7 @@ render();
 }());
 </script>
 <!-- /meadow-cover -->
-	<script>window.MEADOW_BUILD='บิลด์ 2026-11-24 04:52 UTC · 38f9024d';window.MEADOW_V='38f9024d-202611240452';</script>
+	<script>window.MEADOW_BUILD='บิลด์ 2026-11-24 07:14 UTC · 0c82b562';window.MEADOW_V='0c82b562-202611240714';</script>
 </head>
 	<body>
 		<canvas id="canvas">
@@ -1361,11 +1361,15 @@ const engine = new Engine(GODOT_CONFIG);
 	// window.meadowBg: status(gate) -> {missing, got, tot, gaveUp}, pending(name), want(name), state(name).
 	// window.meadowBootFiles: what the cover's progress bar counts (tools/web/cover_shell.html).
 	const BG_GATE = {
+		// SELECTFAST (owner 2026-11-24: the wait before the select screen was ~175 MB on a phone): the monster / boss models
+		// and the card portraits are not shown on the select screen - they wait at the "world" gate (before the enter
+		// request) and still download right after the select packs. CharModel mounts a monster pack that was still
+		// downloading when its look table was read (_late_mount), so nothing is lost by arriving later.
 		'index.cc2.pck': 'select',       // the create-character screen (was a blocking download on first use)
-		'index.characters.pck': 'select', 'index.world.pck': 'select', 'index.cards.pck': 'select',
-		'index.monsters3d.pck': 'select', 'index.monsters3d_e1.pck': 'select', 'index.monsters3d_e2.pck': 'select',
-		'index.monsters3d_e3.pck': 'select',
-		'index.monsters3d_b.pck': 'select', 'index.monsters3d_c.pck': 'select', 'index.monsters3d_d.pck': 'select',   // MONMODEL-D boss / mini-boss models: CharModel mounts its packs once, with the look table
+		'index.characters.pck': 'select', 'index.world.pck': 'select', 'index.cards.pck': 'world',
+		'index.monsters3d.pck': 'world', 'index.monsters3d_e1.pck': 'world', 'index.monsters3d_e2.pck': 'world',
+		'index.monsters3d_e3.pck': 'world',
+		'index.monsters3d_b.pck': 'world', 'index.monsters3d_c.pck': 'world', 'index.monsters3d_d.pck': 'world',   // MONMODEL-D boss / mini-boss models: CharModel mounts its packs once, with the look table
 		'index.tuttown.pck': 'world',   // TUTTOWN: the first map of a new character - in before the world is entered
 		'index.map2.pck': 'ingame'      // Map 2 only: downloads while the player is in the first map (no gate waits)
 	};

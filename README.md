@@ -52,7 +52,12 @@
 
 ## เวอร์ชันทดสอบรวมทุกงานที่เสร็จแล้ว (main): `/test-main/`
 `https://darknightxx.github.io/project-meadow-play/test-main/` = build จาก `main` ของ `project-meadow-clean` = ทุกงานที่แชทรวมงาน (INTEGRATOR) รวมเข้า main แล้ว (ไม่แตะหน้าหลักและหน้าทดสอบอื่น)
-- **อัปเดตล่าสุด 2026-11-25 · source `ee0e3e86` (`main` ของ `project-meadow-clean`)** - เจ้าของสั่ง "โอเคขึ้น statement ก่อนเลยอันที่เสร็จแล้ว" (คำสั่ง 16: ขึ้นหน้าเทสก่อน Google Cloud)
+- **อัปเดตล่าสุด 2026-11-25 (รอบ 2) · source `f84db6e6` (`main` ของ `project-meadow-clean`)** - เจ้าของ: "ดึง p09 ได้"
+  - **ตัวละครผู้เล่นเป็น P09 แล้ว** (Indie-us ถูกถอดออกจาก main) · หอ 100 ชั้น: ห้องสว่างขึ้น (c24f823f) + แสงอาทิตย์ลอดช่องบนหอ (ea671383) + ห้องเล็กลงโล่งขึ้น (e32f9d42) · ATTACKSETS 1-2 ท่าโจมตีของทุกอาชีพ · ULTGRADE · แก้ UI จอยสติ๊ก/มินิแมป
+  - แพ็ก P09 75 ไฟล์ ยกมาจาก `/test-p09/` (build `0754e34e`) และแพ็กชุดดันเจียน `index.mapkit.pck` ยกมาจาก `/test-tower/` เพราะเครื่องที่บิลด์ไม่มีไฟล์ลิขสิทธิ์ทั้งสองชุด (ท่าวิ่ง P09 ที่ปรับหลัง `0754e34e` อาจยังไม่อยู่ในแพ็ก)
+  - ชุดเทสเต็มบน `f84db6e6`: 38,455 ผ่าน / 1 ไม่ผ่าน (runner ชั่วคราวของแชทรวมงาน) ไม่มี script error · 141 ไฟล์ 516 MiB ไม่มีไฟล์ถึง 20 MiB
+  - ถอนรอบนี้: revert commit ที่นำขึ้น (กลับเป็น build `ee0e3e86`)
+- รอบก่อน: 2026-11-25 · source `ee0e3e86` (`main` ของ `project-meadow-clean`)** - เจ้าของสั่ง "โอเคขึ้น statement ก่อนเลยอันที่เสร็จแล้ว" (คำสั่ง 16: ขึ้นหน้าเทสก่อน Google Cloud)
   - เพิ่มจากรอบก่อน: หอ 100 ชั้น TOWER100 ขั้น 0-6 · WILDSMON มอนป่า wilds_01 · NOFLEE / NOFLEE2 · AGGROLV · BOSSHARD · MONSHOT · MONOWN เสียงมอนเฉพาะตัว · MONDENS · MAPEDGE / MAPLINKS / MAPOPEN · SELECTFAST · MATCH48 board 1-3 + view 12 · SKILL22 · BUGFIX-A · HEADSHAKE · NPCQUIET · NECROSUM · UNARMED · LOTUSLEVEL · SP→MP
   - ตัวละครยังเป็น Indie-us (P09 ยังไม่เข้า main ดูที่ `/test-p09/`) · **ห้องในหอเป็นผนังแทน** เพราะเครื่องที่บิลด์ไม่มีชุดดันเจียนลิขสิทธิ์ (ไม่มี index.mapkit.pck)
   - ชุดเทสเต็มบน `ee0e3e86`: 40,198 ผ่าน / 1 ไม่ผ่าน (runner ชั่วคราวของแชทรวมงาน) ไม่มี script error · 89 ไฟล์ 665 MiB ไม่มีไฟล์ถึง 20 MiB

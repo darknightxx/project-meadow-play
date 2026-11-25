@@ -65,7 +65,7 @@
 `https://darknightxx.github.io/project-meadow-play/test-main/` = build จาก `main` ของ `project-meadow-clean` = ทุกงานที่แชทรวมงาน (INTEGRATOR) รวมเข้า main แล้ว (ไม่แตะหน้าหลักและหน้าทดสอบอื่น)
 - **อัปเดตล่าสุด 2026-11-25 (รอบ 3) · source `77f64895` (`main` ของ `project-meadow-clean`)** - คำสั่งเจ้าของข้อ 18 (งานที่เทสผ่านขึ้น main ทันที) + "ให้ทุกงานขึ้นเมนได้ เพื่อที่จะให้ ChatGPT ตรวจงานได้"
   - **มีอะไรใหม่ตั้งแต่รอบ 2:** PR #13 POLYART + VILLAGE60 (หมู่บ้าน 60 ช่อง) · SANCTUARY (ฉากเลือกอาชีพ 3D) · PR #19 TOWER100 รอบ 4 · PR #18 NEWMON-Q (มอนในหอ 6 ชนิด + เสียง) · PR #15 WBPOLY รอบ 1 (เมือง Willowbrook) · PR #12 VOICE รอบ 10-11 (NPCFACE, NPCSTILL2) · บอสพูดได้ทุกตัว, บอสเครื่องเจาะใหม่, รางวัลบอส · VFXHD ท่าไม้ตาย HD · P09 ยืนตรง ชุดเงา · กล้องไม่บินผ่านแมป · กระดานบอส
-  - แพ็ก P09 75 ไฟล์จาก `/test-p09/` (build `2302cf71`) · แพ็กชุดห้องหอ `index.mapkit.pck` จาก `/test-tower/` · **ยังไม่มีแพ็ก Polyart** (ยังไม่มีหน้าเทสไหนขึ้นแพ็กนี้) หมู่บ้าน / เมือง / ฉากเลือกอาชีพจึงยังไม่เห็นโมเดล Polyart
+  - แพ็ก P09 75 ไฟล์จาก `/test-p09/` (build `2302cf71`) · แพ็กชุดห้องหอ `index.mapkit.pck` จาก `/test-tower/` · แพ็ก Polyart 3 ไฟล์ (`index.polyart*.pck`) จาก `/test-polyart/` (build `7f893e2d` ของสาขา Polyart) - หมู่บ้าน VILLAGE60 ครบ; ชิ้น Polyart ที่ WBPOLY (เมือง Willowbrook) ใช้แต่ไม่อยู่ในแพ็กนี้จะถูกข้าม (polyart_dress.gd ตรวจไฟล์ก่อนโหลด)
   - ชุดเทสเต็มบน `51f65960` (โค้ดเดียวกับ `77f64895` ต่างแค่ BOARD.md): 38,745 ผ่าน / 1 ไม่ผ่าน (runner ชั่วคราวของแชทรวมงาน) ไม่มี script error · 142 ไฟล์ ไม่มีไฟล์ถึง 20 MiB
   - ถอนรอบนี้: revert commit ที่นำขึ้น (กลับเป็น build `f84db6e6`)
 - รอบก่อน: 2026-11-25 (รอบ 2) · source `f84db6e6` (`main` ของ `project-meadow-clean`)** - เจ้าของ: "ดึง p09 ได้"

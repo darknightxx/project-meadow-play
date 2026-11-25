@@ -63,7 +63,14 @@
 
 ## เวอร์ชันทดสอบรวมทุกงานที่เสร็จแล้ว (main): `/test-main/`
 `https://darknightxx.github.io/project-meadow-play/test-main/` = build จาก `main` ของ `project-meadow-clean` = ทุกงานที่แชทรวมงาน (INTEGRATOR) รวมเข้า main แล้ว (ไม่แตะหน้าหลักและหน้าทดสอบอื่น)
-- **อัปเดตล่าสุด 2026-11-26 (รอบ 5, INTEGRATOR-2) · source `3449d696` (`main` ของ `project-meadow-clean`) · BUILD "2026-11-25 20:42 UTC · 3449d696"**
+- **อัปเดตล่าสุด 2026-11-26 (รอบ 7, INTEGRATOR-2) · source `42aa0715` (`main` ของ `project-meadow-clean`) · BUILD "2026-11-25 23:05 UTC · 42aa0715"**
+  - **มีอะไรใหม่ตั้งแต่รอบ 6** (รอบ 6 = INTEGRATOR-1, main `68423ac3`, play `43d96da`): อัปเกรดกราฟิกหมู่บ้านฝึกระดับ AAA รอบ 1 (หมู่บ้าน tutorial_01; GitHub #23) พร้อมแพ็ก `index.polyart_nrm.pck` (ลายนูน + ความด้าน โหลดเฉพาะเมื่อเปิดกราฟิกระดับสูง) · ตัวละครผู้เล่น P09 ชุดใหม่ตรงกับ main (นั่ง/ขี่, ชุดมือใหม่สีเขียว, แขนตอนยืน, แสงกึ่งสมจริง, หน้า, แผนที่โลหะ, อาวุธในมือตามไอเทม)
+  - ยังไม่อยู่ในรอบนี้: ตกแต่งหอคอย 100 ชั้น รอบ 5.1 (`5e135f96`) เข้า main ระหว่างเทสต์ -> รอบถัดไป
+  - แพ็ก: P09 75 ไฟล์จาก `/test-p09/` (`fa6ea2f`, สร้างจาก main `cdda4c88`; ไฟล์ `.pck.wasm` ของหน้านั้นใช้ชื่อ `.pck` ที่นี่ เนื้อไฟล์เดียวกัน) · `index.mapkit.pck` จาก `/test-tower/` · Polyart 10 ไฟล์จาก `/test-polyart/` (`a021010`, งานหมู่บ้าน AAA ที่อยู่ใน main แล้ว `38f30d8b`)
+  - ชุดเทสเต็มบน `42aa0715`: 38,971 ผ่าน / 0 ไม่ผ่าน ไม่มี script error · 152 ไฟล์ ไม่มีไฟล์ถึง 20 MiB
+  - Chromium: คอม 1280x720 ขอ Polyart + s3tc 2 ส่วน + HD 4 ส่วน + mapkit ได้ 200 ครบ ไม่มี error · จอมือถือ 800x360 x4 ดูแถว INTEGRATOR-2 บนบอร์ด (ซอฟต์แวร์เรนเดอร์ในคลาวด์ ไม่มี FPS ไม่ใช่มือถือจริง)
+  - ถอนรอบนี้: revert commit ที่นำขึ้น (กลับเป็นรอบ 6)
+- รอบ 5: 2026-11-26 (INTEGRATOR-2) · source `3449d696` · BUILD "2026-11-25 20:42 UTC · 3449d696"
   - **มีอะไรใหม่ตั้งแต่รอบ 4:** ORDER20 รอบ 1 (คำสั่งข้อ 20): หมู่บ้าน tutorial_01 แสง ท้องฟ้า สี ใบไม้ไหว ลายภาพคม แบบฉากตัวอย่าง Farmlands, เลือกแสงด้วย `?look=aces|linear`, ลายภาพละเอียดสำหรับ PC (`index.polyart_hd*.pck` โหลดเฉพาะเบราว์เซอร์คอม) · **เมือง Willowbrook ได้แพ็ก Polyart ครบแล้ว** (78/78 ชิ้น, รอบ 4 ขาด 34 ชิ้นเลยใช้หน้าตาเดิม) · WBPOLY รอบ 3 (แสงเมืองแบบฉากตัวอย่าง Farmlands)
   - แพ็ก: P09 75 ไฟล์ชุดเดิม (`2302cf71` = ตรงกับโค้ด main; `/test-p09/` ล่าสุด `89c58e1c` = PR #20 SITRIDE + NOVICEDYE ยังไม่อยู่ใน main จึงไม่ยกมา) · `index.mapkit.pck` จาก `/test-tower/` · Polyart 9 ไฟล์จาก `/test-polyart/` (`0e69eae`, จาก main `429b08d2`): `index.polyart.pck`, ลายภาพ s3tc 2 ส่วน / etc2 2 ส่วน, HD 4 ส่วน · หน้าเว็บมี `MEADOW_POLYART_TEX` / `MEADOW_POLYART_HD` และขนาดทุกแพ็กใน `MEADOW_FILE_SIZES`
   - ชุดเทสเต็มบน `5936dd9a` (ไฟล์เกมเดียวกับ `3449d696`; ต่างแค่ BOARD.md และสคริปต์ปิดงาน `tools/deploy/finalize_licensed_packs.py`): 38,906 ผ่าน / 0 ไม่ผ่าน ไม่มี script error · 151 ไฟล์ ไม่มีไฟล์ถึง 20 MiB

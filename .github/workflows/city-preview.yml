@@ -9,11 +9,14 @@ permissions:
   contents: write
 concurrency:
   group: city-preview
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,18 +35,18 @@ jobs:
       - name: Prepare selected real assets
         run: |
           mkdir -p city-preview-reports
-          "$GODOT" --headless --path city-preview-src/game --script ../probe/prepare.gd -- "$PWD/.cache/city-packs" 2>&1 | tee city-preview-reports/prepare.log
+          timeout 120 "$GODOT" --headless --path city-preview-src/game --script "$PWD/city-preview-src/probe/prepare.gd" -- "$PWD/.cache/city-packs" 2>&1 | tee city-preview-reports/prepare.log
           cp city-preview-src/game/previewassets/manifest.json city-preview-reports/preview-manifest.json
       - name: Import and check navigation
         run: |
           "$GODOT" --headless --editor --path city-preview-src/game --import 2>&1 | tee city-preview-reports/import.log
-          "$GODOT" --headless --path city-preview-src/game -- --audit "$PWD/city-preview-reports/navigation.json" 2>&1 | tee city-preview-reports/audit.log
+          timeout 60 "$GODOT" --headless --path city-preview-src/game -- --audit "$PWD/city-preview-reports/navigation.json" 2>&1 | tee city-preview-reports/audit.log
       - name: Render actual scene evidence
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq xvfb libgl1-mesa-dri
           for VIEW in overview plaza temple interior; do
-            xvfb-run -a "$GODOT" --path city-preview-src/game --resolution 1280x720 -- --capture "$PWD/city-preview-reports/native-$VIEW.png" --view "$VIEW" 2>&1 | tee "city-preview-reports/render-$VIEW.log"
+            timeout 90 xvfb-run -a "$GODOT" --path city-preview-src/game --resolution 1280x720 -- --capture "$PWD/city-preview-reports/native-$VIEW.png" --view "$VIEW" 2>&1 | tee "city-preview-reports/render-$VIEW.log"
           done
           python3 -m pip install --quiet Pillow
           python3 - <<'PY'
@@ -85,4 +88,3 @@ jobs:
             git pull --rebase origin codex/city-playable-preview-20261126
             git push origin HEAD:codex/city-playable-preview-20261126
           fi
-

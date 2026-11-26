@@ -48,7 +48,11 @@ func copy_mesh(id: String, path: String) -> void:
 	for i in original.get_surface_count():
 		var arrays: Array = original.surface_get_arrays(i)
 		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-		mesh.surface_set_material(i, copy_material(original.surface_get_material(i)))
+		var source_mat: Material=original.surface_get_material(i)
+		if source_mat==null and FileAccess.file_exists("res://maps/willowbrook/willow/"+id+".jpg"):
+			source_mat=StandardMaterial3D.new()
+			source_mat.albedo_texture=ImageTexture.create_from_image(Image.load_from_file("res://maps/willowbrook/willow/"+id+".jpg"))
+		mesh.surface_set_material(i, copy_material(source_mat))
 		triangles += int(arrays[Mesh.ARRAY_INDEX].size()/3) if arrays[Mesh.ARRAY_INDEX] != null else int(arrays[Mesh.ARRAY_VERTEX].size()/3)
 	var dest := "res://previewassets/"+id+".res"
 	assert(ResourceSaver.save(mesh,output_root.path_join(dest.get_file()),ResourceSaver.FLAG_COMPRESS)==OK,dest)
@@ -67,7 +71,7 @@ func copy_texture(tex: Texture2D, named: String = "") -> Texture2D:
 		push_error("Empty texture: " + key)
 		return null
 	if img.is_compressed(): assert(img.decompress()==OK,key)
-	var limit := 1024 if named == "ground_layout" else 512
+	var limit := 1024 if named == "ground_layout" else (512 if named!="" else 384)
 	if maxi(img.get_width(),img.get_height()) > limit:
 		var factor := float(limit)/maxi(img.get_width(),img.get_height())
 		img.resize(maxi(1,int(img.get_width()*factor)),maxi(1,int(img.get_height()*factor)),Image.INTERPOLATE_LANCZOS)

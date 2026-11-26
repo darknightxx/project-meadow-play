@@ -9,7 +9,7 @@ varying vec3 world_pos;
 void vertex(){world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;}
 void fragment(){
  vec2 p=world_pos.xz;
- vec3 mask=texture(layout_tex,p/160.0).rgb;
+ vec3 mask=texture(layout_tex,(p+vec2(16.0))/192.0).rgb;
  vec3 base=texture(grass_tex,p/6.0).rgb;
  base=mix(base,texture(dirt_tex,p/4.5).rgb,mask.g);
  base=mix(base,texture(stone_tex,p/3.4).rgb,mask.r);

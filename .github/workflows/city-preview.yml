@@ -47,7 +47,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq xvfb libgl1-mesa-dri
           for VIEW in overview plaza temple interior; do
-            timeout 90 xvfb-run -a "$GODOT" --path city-preview-src/game --resolution 1280x720 -- --capture "$PWD/city-preview-reports/native-$VIEW.png" --view "$VIEW" 2>&1 | tee "city-preview-reports/render-$VIEW.log"
+            timeout 90 xvfb-run -a "$GODOT" --path city-preview-src/game --audio-driver Dummy --resolution 1280x720 -- --capture "$PWD/city-preview-reports/native-$VIEW.png" --view "$VIEW" 2>&1 | tee "city-preview-reports/render-$VIEW.log"
           done
           python3 -m pip install --quiet Pillow
           python3 - <<'PY'
@@ -71,6 +71,12 @@ jobs:
           /tmp/city-browser/node_modules/.bin/playwright install --with-deps chromium webkit
           python3 -m http.server 8765 --directory city-preview-build > /tmp/city-http.log 2>&1 &
           node city-preview-src/browser_qa.cjs
+      - name: Stage passing build for review
+        if: success()
+        run: |
+          mkdir -p test-city-plan
+          cp city-preview-build/* test-city-plan/
+          git add --sparse test-city-plan
       - name: Upload reviewable build
         if: success()
         uses: actions/upload-artifact@v4

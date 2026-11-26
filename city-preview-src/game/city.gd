@@ -69,15 +69,15 @@ func build_environment() -> void:
 	environment.background_color=Color("bfcfd0")
 	environment.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR
 	environment.ambient_light_color=Color("e4e5dc")
-	environment.ambient_light_energy=0.68
+	environment.ambient_light_energy=0.42
 	environment.tonemap_mode=Environment.TONE_MAPPER_FILMIC
 	add_child(world)
 	sun=DirectionalLight3D.new()
 	sun.rotation_degrees=Vector3(-48,-34,0)
 	sun.light_color=Color("fff0cf")
-	sun.light_energy=1.5
+	sun.light_energy=0.8
 	sun.shadow_enabled=true
-	sun.directional_shadow_max_distance=65
+	sun.directional_shadow_max_distance=150
 	sun.directional_shadow_mode=DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
 	add_child(sun)
 
@@ -156,7 +156,7 @@ func build_terrain() -> void:
 	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for z in 160:
 		for x in 160:
-			for corner: Vector2i in [Vector2i(0,0),Vector2i(0,1),Vector2i(1,0),Vector2i(1,0),Vector2i(0,1),Vector2i(1,1)]:
+			for corner: Vector2i in [Vector2i(0,0),Vector2i(1,0),Vector2i(0,1),Vector2i(1,0),Vector2i(1,1),Vector2i(0,1)]:
 				var px := x+corner.x
 				var pz := z+corner.y
 				tool.set_uv(Vector2(px,pz)/160)
@@ -173,7 +173,9 @@ func build_terrain() -> void:
 	terrain.material_override=material
 	add_child(terrain)
 	# River surface and the two existing bridge decks.
-	box(Vector3(145,-.94,86),Vector3(12,.06,148),Color("408f9e"))
+	box(Vector3(139,-.94,89),Vector3(42,.06,142),Color("408f9e"))
+	box(Vector3(139,4.69,9),Vector3(42,.04,18),Color("589da2"))
+	box(Vector3(145.3,1.88,18.9),Vector3(9.8,5.65,.16),Color("9bd1cf"))
 	for bridge: Dictionary in decor.bridges:
 		var width: float=bridge.x1-bridge.x0
 		var z: float=(bridge.y0+bridge.y1)*.5
@@ -194,6 +196,9 @@ func build_buildings() -> void:
 	for building: Dictionary in decor.buildings:
 		var id: String=variants[n%4]
 		var rot := 0.0
+		var dx: float=80.0-building.x
+		var dz: float=76.0-building.z
+		rot=(90.0 if dx>0 else 270.0) if absf(dx)>absf(dz) else (0.0 if dz>0 else 180.0)
 		var maximum_height := 9.0
 		var name: String=building.get("name",building.t)
 		if building.t=="chapel":
@@ -264,6 +269,7 @@ func build_interior() -> void:
 	# The interior sits within the existing chapel footprint; exterior roof is hidden only while inside.
 	var cream := Color("d5c6a8")
 	box(Vector3(80,2.03,22.5),Vector3(7.5,.08,12),cream)
+	box(Vector3(80,7.05,22.5),Vector3(7.8,.12,12.2),cream)
 	box(Vector3(76.2,4.5,22.5),Vector3(.2,5,12),Color("c7b18b"))
 	box(Vector3(83.8,4.5,22.5),Vector3(.2,5,12),Color("c7b18b"))
 	box(Vector3(80,4.5,16.4),Vector3(7.8,5,.2),Color("887252"))
@@ -278,6 +284,10 @@ func build_interior() -> void:
 	orb(Vector3(80,3.15,18.8),Vector3(.92,.25,.56),gold)
 	orb(Vector3(80,3.76,18.67),Vector3(.46,.69,.31),gold)
 	orb(Vector3(80,4.55,18.68),Vector3(.265,.34,.255),gold)
+	for side in [-1,1]:
+		orb(Vector3(80+side*.09,4.57,18.913),Vector3(.055,.012,.008),Color("8b682c"))
+	orb(Vector3(80,4.49,18.94),Vector3(.038,.067,.05),gold)
+	orb(Vector3(80,4.41,18.921),Vector3(.062,.009,.009),Color("8b682c"))
 	orb(Vector3(80,4.86,18.68),Vector3(.14,.16,.14),gold)
 	cylinder(Vector3(80,5.0,18.68),.08,.22,gold,0)
 	for side in [-1,1]:
@@ -355,9 +365,9 @@ func _browser_command(arguments: Array) -> void:
 				message="บริจาคเหรียญทดลอง 10 เหรียญแล้ว"
 		"dusk":
 			var dusk: bool=command.get("value",false)
-			sun.light_energy=.75 if dusk else 1.5
+			sun.light_energy=.55 if dusk else .8
 			sun.light_color=Color("ffbd89") if dusk else Color("fff0cf")
-			environment.ambient_light_energy=.55 if dusk else .68
+			environment.ambient_light_energy=.34 if dusk else .42
 		"reset": coins=100; donations=0; message="รีเซ็ตเหรียญทดลองแล้ว"
 
 func inside() -> bool:

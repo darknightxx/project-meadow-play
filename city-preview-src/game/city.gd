@@ -122,13 +122,16 @@ func orb(pos: Vector3, scale_v: Vector3, color: Color, parent: Node3D=null) -> M
 	obj.scale=scale_v
 	return obj
 
-func orb_batch(transforms: Array[Transform3D],color: Color) -> MultiMesh:
-	var mesh := SphereMesh.new()
-	mesh.radius=1
-	mesh.height=2
-	mesh.radial_segments=12
-	mesh.rings=6
-	mesh.material=mat(color)
+func orb_batch(transforms: Array[Transform3D],color: Color,custom_mesh: Mesh=null) -> MultiMesh:
+	var mesh: Mesh=custom_mesh
+	if mesh==null:
+		var sphere := SphereMesh.new()
+		sphere.radius=1
+		sphere.height=2
+		sphere.radial_segments=12
+		sphere.rings=6
+		sphere.material=mat(color)
+		mesh=sphere
 	var batch := MultiMesh.new()
 	batch.transform_format=MultiMesh.TRANSFORM_3D
 	batch.mesh=mesh
@@ -139,6 +142,21 @@ func orb_batch(transforms: Array[Transform3D],color: Color) -> MultiMesh:
 	node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(node)
 	return batch
+
+func lotus_petal_mesh() -> Mesh:
+	var tool := SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for row in 8:
+		for col in 5:
+			for corner: Vector2i in [Vector2i(0,0),Vector2i(1,0),Vector2i(0,1),Vector2i(1,0),Vector2i(1,1),Vector2i(0,1)]:
+				var t := float(row+corner.y)/8.0
+				var u := float(col+corner.x)/5.0*2.0-1.0
+				tool.add_vertex(Vector3(u*sin(PI*t),t*2-1,t*t*.9+(1-u*u)*.22*sin(PI*t)))
+	tool.generate_normals()
+	var leaf_mat := mat(Color("ad925d")).duplicate() as StandardMaterial3D
+	leaf_mat.cull_mode=BaseMaterial3D.CULL_DISABLED
+	tool.set_material(leaf_mat)
+	return tool.commit()
 
 func model(id: String, pos: Vector3, max_size: Vector3, rot: float=0) -> Node3D:
 	var path := "res://previewassets/"+id+".res"
@@ -254,20 +272,26 @@ func build_buildings() -> void:
 func build_plaza() -> void:
 	var base := Vector3(80,.36,76)
 	cylinder(base+Vector3(0,.12,0),3.35,.24,Color("b7a984"))
-	cylinder(base+Vector3(0,.34,0),3.0,.45,Color("dfcda5"))
-	cylinder(base+Vector3(0,.59,0),2.82,.035,Color("4da4b1"))
+	cylinder(base+Vector3(0,.25,0),3.0,.15,Color("b4a17e"))
+	var rim := TorusMesh.new()
+	rim.inner_radius=2.75
+	rim.outer_radius=3.0
+	rim.rings=48
+	rim.ring_segments=8
+	shape(rim,base+Vector3(0,.47,0),Color("b4a17e"))
+	cylinder(base+Vector3(0,.39,0),2.82,.03,Color("1c6473"))
 	# Three lotus bowls, built for this preview; not mislabelled as a purchased asset.
 	var petals: Array[Transform3D]=[]
 	for tier in 3:
 		var y := .85+tier*.7
 		var radius := 1.55-tier*.43
 		cylinder(base+Vector3(0,y-.25,0),.22,.7,Color("b7a16c"))
-		cylinder(base+Vector3(0,y,0),radius*.38,.26,Color("d9c18c"),radius)
-		cylinder(base+Vector3(0,y+.14,0),radius*.88,.025,Color("78c6cd"))
+		cylinder(base+Vector3(0,y,0),radius*.38,.26,Color("ad925d"),radius)
+		cylinder(base+Vector3(0,y+.14,0),radius*.88,.025,Color("3c8993"))
 		for petal in 12:
 			var a := petal*TAU/12
-			petals.append(Transform3D(Basis(Vector3.UP,-a).scaled(Vector3(.17,.24,.34)),base+Vector3(cos(a)*radius*.91,y+.06,sin(a)*radius*.91)))
-	orb_batch(petals,Color("d9c18c"))
+			petals.append(Transform3D(Basis(Vector3.UP,PI*.5-a).scaled(Vector3(.22,.26,.34)),base+Vector3(cos(a)*radius*.91,y+.06,sin(a)*radius*.91)))
+	orb_batch(petals,Color("ad925d"),lotus_petal_mesh())
 	var drops: Array[Transform3D]=[]
 	for i in 42:
 		drops.append(Transform3D(Basis.IDENTITY.scaled(Vector3(.035,.085,.035)),base))

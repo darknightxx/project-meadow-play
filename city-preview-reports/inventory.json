@@ -1,0 +1,566 @@
+{
+  "models": [
+    "east_ancientshrine_01.res",
+    "east_bamboo_group_01.res",
+    "east_bamboo_medium_01.res",
+    "east_bamboo_medium_02.res",
+    "east_banner_01.res",
+    "east_flowergroup_01.res",
+    "east_foxstatue_paint.res",
+    "east_lamp_ground_01.res",
+    "east_lamp_ground_02.res",
+    "east_log_medium.res",
+    "east_medboulder_01.res",
+    "east_medboulder_03.res",
+    "east_osmanthus_01.res",
+    "east_osmanthus_02.res",
+    "east_osmanthus_03.res",
+    "east_osmanthus_bush_01.res",
+    "east_smallboulder_01.res",
+    "east_smallboulder_02.res",
+    "east_smallgrass_01.res",
+    "farm_barrel_01.res",
+    "farm_bench_01.res",
+    "farm_bigstump.res",
+    "farm_boatshed.res",
+    "farm_box_01.res",
+    "farm_cabage_01.res",
+    "farm_cabage_03.res",
+    "farm_carriage_crates.res",
+    "farm_cart_01.res",
+    "farm_fence_01.res",
+    "farm_fireplace_01.res",
+    "farm_flower_patch_01.res",
+    "farm_flower_patch_02.res",
+    "farm_flower_patch_03.res",
+    "farm_flower_patch_stem_01.res",
+    "farm_gentree_a_fulltree_01.res",
+    "farm_gentree_a_young_01.res",
+    "farm_gentree_b_fulltree_01.res",
+    "farm_gentree_bush_01.res",
+    "farm_gentree_bush_03.res",
+    "farm_gobold_watchtower_01.res",
+    "farm_hay_bale_01.res",
+    "farm_hay_pile_01.res",
+    "farm_hay_pile_02.res",
+    "farm_mediumgrass_01.res",
+    "farm_mediumgrass_02.res",
+    "farm_mushroom_01.res",
+    "farm_mushroom_03.res",
+    "farm_pebblesgroup_01_farm.res",
+    "farm_pot_b_01.res",
+    "farm_pumpkin_01.res",
+    "farm_pumpkin_02.res",
+    "farm_shed_01.res",
+    "farm_shed_crops.res",
+    "farm_smallgrass_01.res",
+    "farm_smallgrass_02.res",
+    "farm_smallgrass_03.res",
+    "farm_stonefence_01.res",
+    "farm_strawberry_sprout.res",
+    "farm_sunflower_03.res",
+    "farm_sunflower_04.res",
+    "farm_tallgrass_01.res",
+    "farm_tomato_plant_01.res",
+    "farm_tower_01.res",
+    "farm_watchtower_01.res",
+    "farm_watermelonmedium_02.res",
+    "farm_watermelonyellow_02.res",
+    "temple_arch_01.res",
+    "temple_arch_03.res",
+    "temple_cypress_01.res",
+    "temple_daisies_01.res",
+    "temple_daisies_02.res",
+    "temple_dome_01.res",
+    "temple_door_01.res",
+    "temple_entrance_01.res",
+    "temple_gardenbush_01.res",
+    "temple_gardenbush_02.res",
+    "temple_groundrock_02.res",
+    "temple_lionstatue.res",
+    "temple_olivetree_01.res",
+    "temple_poppies_01.res",
+    "temple_roof_05.res",
+    "temple_statuecomplete_a.res",
+    "temple_stonepine_03.res",
+    "temple_wall_400x400_02.res"
+  ],
+  "models_lod1": [
+    "east_ancientshrine_01.res",
+    "east_bamboo_group_01.res",
+    "east_bamboo_medium_01.res",
+    "east_bamboo_medium_02.res",
+    "east_banner_01.res",
+    "east_banner_02.res",
+    "east_bigboulder_01.res",
+    "east_flowergroup_01.res",
+    "east_foxstatue_paint.res",
+    "east_lamp_ground_01.res",
+    "east_lamp_ground_02.res",
+    "east_log_medium.res",
+    "east_medboulder_01.res",
+    "east_medboulder_03.res",
+    "east_osmanthus_01.res",
+    "east_osmanthus_02.res",
+    "east_osmanthus_03.res",
+    "east_osmanthus_bush_01.res",
+    "east_smallboulder_01.res",
+    "east_smallboulder_02.res",
+    "east_smallgrass_01.res",
+    "farm_barrel_01.res",
+    "farm_bench_01.res",
+    "farm_bigstump.res",
+    "farm_boatshed.res",
+    "farm_box_01.res",
+    "farm_cabage_01.res",
+    "farm_cabage_03.res",
+    "farm_cabage_04.res",
+    "farm_cabage_05.res",
+    "farm_carriage_crates.res",
+    "farm_cart_01.res",
+    "farm_fence_01.res",
+    "farm_fireplace_01.res",
+    "farm_flower_patch_01.res",
+    "farm_flower_patch_02.res",
+    "farm_flower_patch_03.res",
+    "farm_flower_patch_stem_01.res",
+    "farm_flowerspot_b_01.res",
+    "farm_flowerspot_c_01.res",
+    "farm_gentree_a_fulltree_01.res",
+    "farm_gentree_a_young_01.res",
+    "farm_gentree_b_fulltree_01.res",
+    "farm_gentree_bush_01.res",
+    "farm_gentree_bush_03.res",
+    "farm_gentree_bush_04.res",
+    "farm_gobold_watchtower_01.res",
+    "farm_hay_bale_01.res",
+    "farm_hay_pile_01.res",
+    "farm_hay_pile_02.res",
+    "farm_house_variation_01_nointerior.res",
+    "farm_house_variation_02_nointerior.res",
+    "farm_house_variation_03_nointerior.res",
+    "farm_house_variation_04_nointerior.res",
+    "farm_mediumgrass_01.res",
+    "farm_mediumgrass_02.res",
+    "farm_mushroom_01.res",
+    "farm_mushroom_03.res",
+    "farm_pebblesgroup_01_farm.res",
+    "farm_planter_02.res",
+    "farm_pot_b_01.res",
+    "farm_potato_plant_02.res",
+    "farm_pumpkin_01.res",
+    "farm_pumpkin_02.res",
+    "farm_shed_01.res",
+    "farm_shed_crops.res",
+    "farm_sign_03.res",
+    "farm_smallgrass_01.res",
+    "farm_smallgrass_02.res",
+    "farm_smallgrass_03.res",
+    "farm_stonefence_01.res",
+    "farm_strawberry_sprout.res",
+    "farm_sunflower_03.res",
+    "farm_sunflower_04.res",
+    "farm_tallgrass_01.res",
+    "farm_tomato_plant_01.res",
+    "farm_tower_01.res",
+    "farm_watchtower_01.res",
+    "farm_waterlily_03.res",
+    "farm_waterlily_04.res",
+    "farm_watermelonmedium_02.res",
+    "farm_watermelonyellow_02.res",
+    "farm_wheat_03.res",
+    "farm_wheat_04.res",
+    "temple_arch_01.res",
+    "temple_arch_03.res",
+    "temple_armor_01.res",
+    "temple_barrel.res",
+    "temple_box_01.res",
+    "temple_brazier_02.res",
+    "temple_carriage.res",
+    "temple_cathedralmodule_01.res",
+    "temple_cathedralmodule_02.res",
+    "temple_chest_01.res",
+    "temple_cypress_01.res",
+    "temple_cypress_02.res",
+    "temple_daisies_01.res",
+    "temple_daisies_02.res",
+    "temple_daisies_03.res",
+    "temple_dome_01.res",
+    "temple_door_01.res",
+    "temple_entrance_01.res",
+    "temple_gardenbush_01.res",
+    "temple_gardenbush_02.res",
+    "temple_groundrock_01.res",
+    "temple_groundrock_02.res",
+    "temple_groundrockgroup_03.res",
+    "temple_lionstatue.res",
+    "temple_oleander_02.res",
+    "temple_olivetree_01.res",
+    "temple_olivetree_02.res",
+    "temple_pinnacle_01.res",
+    "temple_poppies_01.res",
+    "temple_rearfacademodule_01.res",
+    "temple_roof_05.res",
+    "temple_shield_01.res",
+    "temple_sidefacademodule_01.res",
+    "temple_spikes_01.res",
+    "temple_statuecomplete_a.res",
+    "temple_stonepine_01.res",
+    "temple_stonepine_03.res",
+    "temple_wall_400x400_02.res"
+  ],
+  "models_lod2": [
+    "east_ancientshrine_01.res",
+    "east_bamboo_group_01.res",
+    "east_bamboo_medium_01.res",
+    "east_bamboo_medium_02.res",
+    "east_banner_01.res",
+    "east_banner_02.res",
+    "east_bigboulder_01.res",
+    "east_flowergroup_01.res",
+    "east_foxstatue_paint.res",
+    "east_lamp_ground_01.res",
+    "east_lamp_ground_02.res",
+    "east_log_medium.res",
+    "east_medboulder_01.res",
+    "east_medboulder_03.res",
+    "east_osmanthus_01.res",
+    "east_osmanthus_02.res",
+    "east_osmanthus_03.res",
+    "east_osmanthus_bush_01.res",
+    "east_smallboulder_01.res",
+    "east_smallboulder_02.res",
+    "east_smallgrass_01.res",
+    "farm_barrel_01.res",
+    "farm_bench_01.res",
+    "farm_bigstump.res",
+    "farm_boatshed.res",
+    "farm_box_01.res",
+    "farm_cabage_01.res",
+    "farm_cabage_03.res",
+    "farm_cabage_04.res",
+    "farm_cabage_05.res",
+    "farm_carriage_crates.res",
+    "farm_cart_01.res",
+    "farm_farmhouse.res",
+    "farm_fence_01.res",
+    "farm_fireplace_01.res",
+    "farm_flower_patch_01.res",
+    "farm_flower_patch_02.res",
+    "farm_flower_patch_03.res",
+    "farm_flower_patch_stem_01.res",
+    "farm_flowerspot_b_01.res",
+    "farm_flowerspot_c_01.res",
+    "farm_gentree_a_fulltree_01.res",
+    "farm_gentree_a_young_01.res",
+    "farm_gentree_b_fulltree_01.res",
+    "farm_gentree_bush_01.res",
+    "farm_gentree_bush_03.res",
+    "farm_gentree_bush_04.res",
+    "farm_gobold_watchtower_01.res",
+    "farm_hay_bale_01.res",
+    "farm_hay_pile_01.res",
+    "farm_hay_pile_02.res",
+    "farm_house_variation_01_nointerior.res",
+    "farm_house_variation_02_nointerior.res",
+    "farm_house_variation_03_nointerior.res",
+    "farm_house_variation_04_nointerior.res",
+    "farm_mediumgrass_01.res",
+    "farm_mediumgrass_02.res",
+    "farm_mushroom_01.res",
+    "farm_mushroom_03.res",
+    "farm_pebblesgroup_01_farm.res",
+    "farm_planter_02.res",
+    "farm_pot_b_01.res",
+    "farm_potato_plant_02.res",
+    "farm_pumpkin_01.res",
+    "farm_pumpkin_02.res",
+    "farm_shed_01.res",
+    "farm_shed_crops.res",
+    "farm_sign_03.res",
+    "farm_smallgrass_01.res",
+    "farm_smallgrass_02.res",
+    "farm_smallgrass_03.res",
+    "farm_stonefence_01.res",
+    "farm_strawberry_sprout.res",
+    "farm_sunflower_03.res",
+    "farm_sunflower_04.res",
+    "farm_tallgrass_01.res",
+    "farm_tomato_plant_01.res",
+    "farm_tower_01.res",
+    "farm_watchtower_01.res",
+    "farm_waterlily_03.res",
+    "farm_waterlily_04.res",
+    "farm_watermelonmedium_02.res",
+    "farm_watermelonyellow_02.res",
+    "farm_wheat_03.res",
+    "farm_wheat_04.res",
+    "temple_arch_01.res",
+    "temple_arch_03.res",
+    "temple_armor_01.res",
+    "temple_barrel.res",
+    "temple_box_01.res",
+    "temple_brazier_02.res",
+    "temple_carriage.res",
+    "temple_cathedralmodule_01.res",
+    "temple_cathedralmodule_02.res",
+    "temple_chest_01.res",
+    "temple_cypress_01.res",
+    "temple_cypress_02.res",
+    "temple_daisies_01.res",
+    "temple_daisies_02.res",
+    "temple_daisies_03.res",
+    "temple_dome_01.res",
+    "temple_door_01.res",
+    "temple_entrance_01.res",
+    "temple_gardenbush_01.res",
+    "temple_gardenbush_02.res",
+    "temple_groundrock_01.res",
+    "temple_groundrock_02.res",
+    "temple_groundrockgroup_03.res",
+    "temple_lionstatue.res",
+    "temple_oleander_02.res",
+    "temple_olivetree_01.res",
+    "temple_olivetree_02.res",
+    "temple_pinnacle_01.res",
+    "temple_poppies_01.res",
+    "temple_rearfacademodule_01.res",
+    "temple_roof_05.res",
+    "temple_shield_01.res",
+    "temple_sidefacademodule_01.res",
+    "temple_spikes_01.res",
+    "temple_statuecomplete_a.res",
+    "temple_stonepine_01.res",
+    "temple_stonepine_03.res",
+    "temple_wall_400x400_02.res"
+  ],
+  "selected": {
+    "farm_bench_01": {
+      "models": {
+        "path": "res://assets/remaster/polyart/models/farm_bench_01.res",
+        "size": [
+          1.9533725976944,
+          0.505174458026886,
+          0.654553294181824
+        ],
+        "triangles": 390
+      },
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/farm_bench_01.res",
+        "size": [
+          1.95244979858398,
+          0.502977609634399,
+          0.654553294181824
+        ],
+        "triangles": 212
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_bench_01.res",
+        "size": [
+          1.94273996353149,
+          0.501627862453461,
+          0.654553294181824
+        ],
+        "triangles": 64
+      }
+    },
+    "farm_boatshed": {
+      "models": {
+        "path": "res://assets/remaster/polyart/models/farm_boatshed.res",
+        "size": [
+          8.54630661010742,
+          7.36806488037109,
+          6.0168399810791
+        ],
+        "triangles": 6288
+      },
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/farm_boatshed.res",
+        "size": [
+          8.55129528045654,
+          7.36478996276855,
+          6.0168399810791
+        ],
+        "triangles": 3346
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_boatshed.res",
+        "size": [
+          8.51043701171875,
+          7.36978816986084,
+          6.0168399810791
+        ],
+        "triangles": 940
+      }
+    },
+    "farm_farmhouse": {
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_farmhouse.res",
+        "size": [
+          32.4763488769531,
+          30.3203735351562,
+          40.5421333312988
+        ],
+        "triangles": 33248
+      }
+    },
+    "farm_house_variation_01_nointerior": {
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/farm_house_variation_01_nointerior.res",
+        "size": [
+          15.2935447692871,
+          13.9755229949951,
+          21.8658866882324
+        ],
+        "triangles": 34092
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_house_variation_01_nointerior.res",
+        "size": [
+          15.4196605682373,
+          13.9680128097534,
+          21.808967590332
+        ],
+        "triangles": 10635
+      }
+    },
+    "farm_house_variation_02_nointerior": {
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/farm_house_variation_02_nointerior.res",
+        "size": [
+          16.3323173522949,
+          14.2669763565063,
+          20.6196022033691
+        ],
+        "triangles": 30533
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_house_variation_02_nointerior.res",
+        "size": [
+          16.3323287963867,
+          14.266676902771,
+          20.6089553833008
+        ],
+        "triangles": 9009
+      }
+    },
+    "farm_house_variation_03_nointerior": {
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/farm_house_variation_03_nointerior.res",
+        "size": [
+          9.85976791381836,
+          15.7552623748779,
+          19.00732421875
+        ],
+        "triangles": 17643
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_house_variation_03_nointerior.res",
+        "size": [
+          9.9522066116333,
+          15.7477521896362,
+          18.9966773986816
+        ],
+        "triangles": 7589
+      }
+    },
+    "farm_house_variation_04_nointerior": {
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/farm_house_variation_04_nointerior.res",
+        "size": [
+          9.85976791381836,
+          10.5565242767334,
+          17.230167388916
+        ],
+        "triangles": 14724
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_house_variation_04_nointerior.res",
+        "size": [
+          9.9522066116333,
+          10.5490140914917,
+          17.1827774047852
+        ],
+        "triangles": 6527
+      }
+    },
+    "farm_shed_01": {
+      "models": {
+        "path": "res://assets/remaster/polyart/models/farm_shed_01.res",
+        "size": [
+          5.29547166824341,
+          3.91521430015564,
+          3.67933511734009
+        ],
+        "triangles": 6678
+      },
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/farm_shed_01.res",
+        "size": [
+          5.29547166824341,
+          3.90103435516357,
+          3.67933511734009
+        ],
+        "triangles": 1932
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/farm_shed_01.res",
+        "size": [
+          4.39421558380127,
+          3.89867877960205,
+          2.63658881187439
+        ],
+        "triangles": 374
+      }
+    },
+    "temple_cathedralmodule_01": {
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/temple_cathedralmodule_01.res",
+        "size": [
+          4.99257946014404,
+          26.2978076934814,
+          9.8167142868042
+        ],
+        "triangles": 7669
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/temple_cathedralmodule_01.res",
+        "size": [
+          4.99018001556396,
+          26.2978076934814,
+          9.8167142868042
+        ],
+        "triangles": 3759
+      }
+    },
+    "temple_lionstatue": {
+      "models": {
+        "path": "res://assets/remaster/polyart/models/temple_lionstatue.res",
+        "size": [
+          1.79145860671997,
+          1.8917396068573,
+          0.944921135902405
+        ],
+        "triangles": 1312
+      },
+      "models_lod1": {
+        "path": "res://assets/remaster/polyart/models_lod1/temple_lionstatue.res",
+        "size": [
+          1.70107293128967,
+          1.89118957519531,
+          0.931181967258453
+        ],
+        "triangles": 296
+      },
+      "models_lod2": {
+        "path": "res://assets/remaster/polyart/models_lod2/temple_lionstatue.res",
+        "size": [
+          1.75643348693848,
+          1.9066596031189,
+          0.94624137878418
+        ],
+        "triangles": 280
+      }
+    }
+  }
+}

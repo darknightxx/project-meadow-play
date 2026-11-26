@@ -430,7 +430,7 @@ func run_audit(output: String) -> void:
 			if not reachable.has(key) and can_stand(Vector3(n.x+.5,0,n.y+.5)):
 				reachable[key]=true
 				queue.append(n)
-	var checks := {"dimensions":map.width==160 and map.height==160,"spawn":map.spawn=={"x":80,"y":83},"portals":map.portals.size()==5,"npcs":map.npcs.size()==19,"temple_reachable":reachable.has("80,24"),"fountain_solid":not can_stand(Vector3(80,0,76)),"donation_box_solid":not can_stand(Vector3(82.4,2,27.5))}
+	var checks := {"dimensions":map.width==160 and map.height==160,"spawn":int(map.spawn.x)==80 and int(map.spawn.y)==83,"portals":map.portals.size()==5,"npcs":map.npcs.size()==19,"temple_reachable":reachable.has("80,24"),"fountain_solid":not can_stand(Vector3(80,0,76)),"donation_box_solid":not can_stand(Vector3(82.4,2,27.5))}
 	for p: Dictionary in map.portals: checks[p.id]=reachable.has("%d,%d"%[p.x,p.y])
 	var pass_all := true
 	for value: bool in checks.values(): pass_all=pass_all and value

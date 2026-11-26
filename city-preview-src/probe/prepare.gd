@@ -10,6 +10,7 @@ func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
 	output_root = args[1].path_join("previewassets")
 	assert(DirAccess.make_dir_recursive_absolute(output_root)==OK,output_root)
+	assert(ProjectSettings.load_resource_pack(args[1].get_base_dir().path_join("compiled/thai-town.pck"),false))
 	for pack: String in ["index.world.pck","index.mapkit.pck","index.pck","index.polyart.pck","index.polyart_s3tc.pck","index.polyart_s3tc2.pck"]:
 		assert(ProjectSettings.load_resource_pack(args[0].path_join(pack), false), pack)
 	var ids: Array[String] = ["farm_house_variation_01_nointerior","farm_house_variation_02_nointerior","farm_house_variation_03_nointerior","farm_house_variation_04_nointerior","farm_farmhouse","farm_shed_01","farm_boatshed","farm_shed_crops","farm_bench_01","farm_cart_01","farm_barrel_01","farm_box_01","farm_sign_03","farm_flowerspot_c_01","farm_flowerspot_b_01","farm_gentree_b_fulltree_01","farm_gentree_bush_04","temple_olivetree_01","temple_cypress_02","temple_oleander_02","temple_lionstatue","temple_arch_01","temple_arch_03","temple_brazier_02","temple_wall_400x400_02","temple_statuecomplete_a","temple_chest_01","east_lamp_ground_01"]
@@ -32,7 +33,7 @@ func _initialize() -> void:
 	var file := FileAccess.open(output_root.path_join("manifest.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify(manifest,"  "))
 	print("ASSET_PREPARED ", JSON.stringify({"models":manifest.models.size(),"textures":textures.size(),"missing":manifest.missing}))
-	quit(0 if manifest.models.size() >= 20 else 1)
+	quit(0 if manifest.models.size() >= 20 and manifest.missing.is_empty() else 1)
 
 func copy_mesh(id: String, path: String) -> void:
 	if path == "" or not ResourceLoader.exists(path):
@@ -101,5 +102,4 @@ func copy_material(source: Material) -> Material:
 		mat.transparency = source.transparency
 	materials[key] = mat
 	return mat
-
 

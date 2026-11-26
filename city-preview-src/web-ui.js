@@ -1,7 +1,7 @@
 (() => {
   const html = `<div id="city-ui" hidden>
     <header><div class="brand"><span class="eyebrow">MEADOWFALL · CITY STUDY 01</span><h1>เวียงธารหลิว</h1><p>เมืองใหม่ บนพื้นที่และตำแหน่งวาร์ปเดิม</p></div><button id="help-open" aria-label="วิธีเล่น">?</button></header>
-    <nav aria-label="มุมสำรวจ"><button data-view="overview" class="selected">ผังเมือง</button><button data-view="walk">เดินสำรวจ</button><button data-view="temple">วิหาร</button><button data-view="interior">ภายในวิหาร</button><button id="dusk">แสงเย็น</button></nav>
+    <nav aria-label="มุมสำรวจ"><button data-view="plaza" class="selected">ลานเมือง</button><button data-view="overview">ผังเมือง</button><button data-view="walk">เดินสำรวจ</button><button data-view="temple">วิหาร</button><button data-view="interior">ภายในวิหาร</button><button id="dusk">แสงเย็น</button></nav>
     <aside id="context"><strong id="area">เมืองหลัก</strong><span id="description">กด “เดินสำรวจ” เพื่อเริ่มที่จุดเกิดเดิม</span><span id="warp"></span></aside>
     <div id="actions"><button id="pray" hidden>ไหว้พระ</button><button id="donate" hidden>ตู้บริจาค</button></div>
     <div id="joystick" aria-label="ลากเพื่อเดิน"><div id="stick"></div></div><div id="look-hint">ลากฉากเพื่อมองรอบตัว</div>

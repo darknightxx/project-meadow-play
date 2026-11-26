@@ -111,7 +111,6 @@ func copy_material(source: Material) -> Material:
 		if "foliage" in shader_path or "leaves" in source.resource_path or "grass" in shader_path:
 			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 			mat.alpha_scissor_threshold = 0.35
-			mat.alpha_antialiasing_mode=BaseMaterial3D.ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE
 			mat.albedo_color=Color(.72,.88,.63)
 			mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	elif source is StandardMaterial3D:

@@ -78,6 +78,7 @@ jobs:
         run: |
           mkdir -p test-city-plan
           cp city-preview-build/* test-city-plan/
+          cp city-preview-reports/native-plaza.jpg test-city-plan/preview.jpg
           git add --sparse test-city-plan
       - name: Upload reviewable build
         if: success()

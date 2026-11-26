@@ -9,7 +9,7 @@ var sun: DirectionalLight3D
 var environment: Environment
 var models: Dictionary = {}
 var material_cache: Dictionary = {}
-var water_drops: Array[MeshInstance3D] = []
+var water_stream: MultiMesh
 var camera_mode := "overview"
 var player := Vector3(80,0,83)
 var yaw := 0.0
@@ -31,7 +31,6 @@ var mesh_count := 0
 var triangle_count := 0
 
 func _ready() -> void:
-	get_viewport().msaa_3d=Viewport.MSAA_2X
 	map = JSON.parse_string(FileAccess.get_file_as_string("res://source-map.json"))
 	decor = JSON.parse_string(FileAccess.get_file_as_string("res://decor.json"))
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://previewassets/manifest.json"))
@@ -47,7 +46,7 @@ func _ready() -> void:
 	camera.fov = 62
 	camera.far = 320
 	camera.near = 0.08
-	set_view("overview")
+	set_view("plaza")
 	var args := OS.get_cmdline_user_args()
 	for i in args.size():
 		if args[i] == "--capture" and i+1 < args.size(): capture_path=args[i+1]
@@ -122,6 +121,24 @@ func orb(pos: Vector3, scale_v: Vector3, color: Color, parent: Node3D=null) -> M
 	var obj := shape(mesh,pos,color,parent,0.35 if color==Color("cc9d46") else 0)
 	obj.scale=scale_v
 	return obj
+
+func orb_batch(transforms: Array[Transform3D],color: Color) -> MultiMesh:
+	var mesh := SphereMesh.new()
+	mesh.radius=1
+	mesh.height=2
+	mesh.radial_segments=12
+	mesh.rings=6
+	mesh.material=mat(color)
+	var batch := MultiMesh.new()
+	batch.transform_format=MultiMesh.TRANSFORM_3D
+	batch.mesh=mesh
+	batch.instance_count=transforms.size()
+	for i in transforms.size(): batch.set_instance_transform(i,transforms[i])
+	var node := MultiMeshInstance3D.new()
+	node.multimesh=batch
+	node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(node)
+	return batch
 
 func model(id: String, pos: Vector3, max_size: Vector3, rot: float=0) -> Node3D:
 	var path := "res://previewassets/"+id+".res"
@@ -240,6 +257,7 @@ func build_plaza() -> void:
 	cylinder(base+Vector3(0,.34,0),3.0,.45,Color("dfcda5"))
 	cylinder(base+Vector3(0,.59,0),2.82,.035,Color("4da4b1"))
 	# Three lotus bowls, built for this preview; not mislabelled as a purchased asset.
+	var petals: Array[Transform3D]=[]
 	for tier in 3:
 		var y := .85+tier*.7
 		var radius := 1.55-tier*.43
@@ -248,12 +266,12 @@ func build_plaza() -> void:
 		cylinder(base+Vector3(0,y+.14,0),radius*.88,.025,Color("78c6cd"))
 		for petal in 12:
 			var a := petal*TAU/12
-			var leaf := orb(base+Vector3(cos(a)*radius*.91,y+.06,sin(a)*radius*.91),Vector3(.17,.24,.34),Color("d9c18c"))
-			leaf.rotation.y=-a
+			petals.append(Transform3D(Basis(Vector3.UP,-a).scaled(Vector3(.17,.24,.34)),base+Vector3(cos(a)*radius*.91,y+.06,sin(a)*radius*.91)))
+	orb_batch(petals,Color("d9c18c"))
+	var drops: Array[Transform3D]=[]
 	for i in 42:
-		var droplet := orb(base,Vector3(.035,.085,.035),Color("b8eced"))
-		droplet.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		water_drops.append(droplet)
+		drops.append(Transform3D(Basis.IDENTITY.scaled(Vector3(.035,.085,.035)),base))
+	water_stream=orb_batch(drops,Color("b8eced"))
 	for point: Vector2 in [Vector2(70,70),Vector2(90,70),Vector2(70,83),Vector2(90,83)]:
 		model("farm_bench_01",Vector3(point.x,ground_height(point.x,point.y),point.y),Vector3(2,.65,1),90 if point.x<80 else -90)
 		model("farm_flowerspot_c_01",Vector3(point.x,ground_height(point.x,point.y),point.y-1.5),Vector3(1.1,.7,1.1))
@@ -411,10 +429,10 @@ func _process(delta: float) -> void:
 			if can_stand(test): player.z=test.z
 		player.y=2.08 if inside() else ground_height(player.x,player.z)
 	update_camera(delta)
-	for i in water_drops.size():
+	for i in water_stream.instance_count:
 		var t := fmod(clock*.65+float(i)/14,1.0)
 		var a := float(i%14)*TAU/14
-		water_drops[i].position=Vector3(80+cos(a)*t*2.1,.96+2.7*(1-t*t),76+sin(a)*t*2.1)
+		water_stream.set_instance_transform(i,Transform3D(Basis.IDENTITY.scaled(Vector3(.035,.085,.035)),Vector3(80+cos(a)*t*2.1,.96+2.7*(1-t*t),76+sin(a)*t*2.1)))
 	status_clock+=delta
 	if OS.has_feature("web") and status_clock>.25:
 		status_clock=0
@@ -425,7 +443,7 @@ func _process(delta: float) -> void:
 		browser_window.cityState=JSON.stringify(state)
 	if capture_path!="":
 		capture_frames+=1
-		if capture_frames==45:
+		if capture_frames==6:
 			await RenderingServer.frame_post_draw
 			var result := get_viewport().get_texture().get_image().save_png(capture_path)
 			print("CAPTURE_RESULT ",result)

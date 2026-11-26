@@ -1,4 +1,4 @@
-name: City preview asset inspection
+name: City preview build and checks
 on:
   push:
     branches: [codex/city-playable-preview-20261126]
@@ -11,32 +11,78 @@ concurrency:
   group: city-preview
   cancel-in-progress: false
 jobs:
-  inspect:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: |
             city-preview-src
+            city-preview-reports
             .github/workflows
       - name: Install pinned Godot
         run: |
           curl -fsSL https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip -o /tmp/godot.zip
           unzip -q /tmp/godot.zip -d /tmp/city-godot
           chmod +x /tmp/city-godot/Godot_v4.4.1-stable_linux.x86_64
-          /tmp/city-godot/Godot_v4.4.1-stable_linux.x86_64 --version
+          echo "GODOT=/tmp/city-godot/Godot_v4.4.1-stable_linux.x86_64" >> "$GITHUB_ENV"
       - name: Fetch existing published game packs
         run: python3 city-preview-src/fetch_packs.py
-      - name: Inspect actual building resources
+      - name: Prepare selected real assets
         run: |
-          /tmp/city-godot/Godot_v4.4.1-stable_linux.x86_64 --headless --path city-preview-src/probe -s res://probe.gd -- "$PWD/.cache/city-packs" "$PWD/city-preview-reports"
-      - name: Save inspection evidence on this feature branch
+          mkdir -p city-preview-reports
+          "$GODOT" --headless --path city-preview-src/game --script ../probe/prepare.gd -- "$PWD/.cache/city-packs" 2>&1 | tee city-preview-reports/prepare.log
+          cp city-preview-src/game/previewassets/manifest.json city-preview-reports/preview-manifest.json
+      - name: Import and check navigation
+        run: |
+          "$GODOT" --headless --editor --path city-preview-src/game --import 2>&1 | tee city-preview-reports/import.log
+          "$GODOT" --headless --path city-preview-src/game -- --audit "$PWD/city-preview-reports/navigation.json" 2>&1 | tee city-preview-reports/audit.log
+      - name: Render actual scene evidence
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri
+          for VIEW in overview plaza temple interior; do
+            xvfb-run -a "$GODOT" --path city-preview-src/game --resolution 1280x720 -- --capture "$PWD/city-preview-reports/native-$VIEW.png" --view "$VIEW" 2>&1 | tee "city-preview-reports/render-$VIEW.log"
+          done
+          python3 -m pip install --quiet Pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          for p in Path('city-preview-reports').glob('native-*.png'):
+              Image.open(p).convert('RGB').save(p.with_suffix('.jpg'), quality=87)
+              p.unlink()
+          PY
+      - name: Install web template and export
+        run: |
+          curl -fsSL https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz -o /tmp/templates.tpz
+          mkdir -p "$HOME/.local/share/godot/export_templates/4.4.1.stable"
+          unzip -j -q /tmp/templates.tpz 'templates/web_nothreads_release.zip' -d "$HOME/.local/share/godot/export_templates/4.4.1.stable"
+          mkdir -p city-preview-build
+          "$GODOT" --headless --path city-preview-src/game --export-release Web "$PWD/city-preview-build/index.html" 2>&1 | tee city-preview-reports/export.log
+          python3 city-preview-src/finish_web.py
+      - name: Check web export
+        run: |
+          npm install --prefix /tmp/city-browser playwright@1.51.1
+          /tmp/city-browser/node_modules/.bin/playwright install --with-deps chromium webkit
+          python3 -m http.server 8765 --directory city-preview-build > /tmp/city-http.log 2>&1 &
+          node city-preview-src/browser_qa.cjs
+      - name: Upload reviewable build
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: city-playable-preview
+          path: city-preview-build
+          retention-days: 14
+      - name: Record evidence on feature branch
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --sparse city-preview-reports
           if ! git diff --cached --quiet; then
-            git commit -m "City preview: record actual model inventory"
+            git commit -m "City preview: record build checks and real scene evidence"
+            git pull --rebase origin codex/city-playable-preview-20261126
             git push origin HEAD:codex/city-playable-preview-20261126
           fi
+

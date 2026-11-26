@@ -11,3 +11,4 @@ for item in items:
  digest=hashlib.sha1(f"blob {len(raw)}".encode()+b"\0"+raw).hexdigest()
  assert digest==item["sha"],p
  print(p.name,len(raw),digest)
+

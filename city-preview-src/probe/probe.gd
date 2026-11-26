@@ -43,3 +43,4 @@ func _initialize() -> void:
 	out.close()
 	print("ASSET_PROBE_OK ", existing.size(), " building/prop IDs inspected")
 	quit(0)
+

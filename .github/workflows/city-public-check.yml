@@ -1,0 +1,64 @@
+name: Verify published city preview
+on:
+  push:
+    branches: [codex/city-playable-preview-20261126]
+    paths: [.github/workflows/city-public-check.yml]
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /test-city-plan/
+            /city-preview-reports/
+      - name: Verify deployed identity and file hashes
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, time, hashlib, gzip
+          from pathlib import Path
+          base = 'https://darknightxx.github.io/project-meadow-play/test-city-plan/'
+          expected = json.loads(Path('test-city-plan/BUILD-ID.json').read_text())
+          for attempt in range(36):
+              try:
+                  request = urllib.request.Request(base + 'BUILD-ID.json?verify=' + str(time.time_ns()), headers={'Cache-Control': 'no-cache'})
+                  with urllib.request.urlopen(request, timeout=30) as response:
+                      actual = json.load(response)
+                  if actual == expected:
+                      break
+              except Exception as error:
+                  print('Waiting for matching public build:', type(error).__name__, flush=True)
+              time.sleep(30)
+          else:
+              raise RuntimeError('Published build identity did not match after 18 minutes')
+          result = {'url': base, 'build': expected, 'files': [], 'pass': True}
+          for path in sorted(Path('test-city-plan').iterdir()):
+              if not path.is_file():
+                  continue
+              wanted = path.read_bytes()
+              request = urllib.request.Request(base + path.name + '?verify=' + expected['id'], headers={'Cache-Control': 'no-cache'})
+              with urllib.request.urlopen(request, timeout=120) as response:
+                  received = response.read()
+                  encoding = response.headers.get('Content-Encoding', '')
+                  mime = response.headers.get('Content-Type', '')
+              if encoding.lower() == 'gzip' and received != wanted:
+                  received = gzip.decompress(received)
+              assert received == wanted, 'Published bytes differ: ' + path.name
+              result['files'].append({'path': path.name, 'size': len(received), 'sha256': hashlib.sha256(received).hexdigest(), 'content_type': mime})
+          Path('city-preview-reports/public-qa.json').write_text(json.dumps(result, indent=2))
+          print(json.dumps({'build': expected['id'], 'pass': True, 'files': len(result['files'])}))
+          PY
+      - name: Record public verification
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --sparse city-preview-reports/public-qa.json
+          if ! git diff --cached --quiet; then
+            git commit -m "City preview: verify public build identity and all deployed bytes"
+            git pull --rebase origin codex/city-playable-preview-20261126
+            git push origin HEAD:codex/city-playable-preview-20261126
+          fi

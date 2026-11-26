@@ -300,10 +300,10 @@
     }
   },
   "textures": {
-    "ground_dirt": "res://previewassets/ground_dirt.res",
-    "ground_grass": "res://previewassets/ground_grass.res",
-    "ground_layout": "res://previewassets/ground_layout.res",
-    "ground_stone": "res://previewassets/ground_stone.res",
-    "ground_tile": "res://previewassets/ground_tile.res"
+    "ground_dirt": "res://previewassets/ground_dirt.png",
+    "ground_grass": "res://previewassets/ground_grass.png",
+    "ground_layout": "res://previewassets/ground_layout.png",
+    "ground_stone": "res://previewassets/ground_stone.png",
+    "ground_tile": "res://previewassets/ground_tile.png"
   }
 }

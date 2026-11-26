@@ -1,5 +1,5 @@
 {
-  "build": "meadow-city-preview-20261126-r1",
+  "build": "meadow-city-preview-20261126-496aee2d",
   "checks": {
     "dimensions": true,
     "donation_box_solid": true,

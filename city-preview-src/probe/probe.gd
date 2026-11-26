@@ -19,13 +19,13 @@ func _initialize() -> void:
 	f.close()
 	var catalog := {}
 	for folder in ["models","models_lod1","models_lod2"]:
-		var dir := "res://assets/remaster/polyart/" + folder
+		var dir: String = "res://assets/remaster/polyart/" + folder
 		catalog[folder] = Array(DirAccess.get_files_at(dir))
 	var existing := {}
 	for id in ["farm_house_variation_01_nointerior","farm_house_variation_02_nointerior","farm_house_variation_03_nointerior","farm_house_variation_04_nointerior","farm_farmhouse","farm_shed_01","farm_boatshed","temple_cathedralmodule_01","temple_lionstatue","farm_bench_01"]:
 		var levels := {}
 		for folder in ["models","models_lod1","models_lod2"]:
-			var resource_path := "res://assets/remaster/polyart/" + folder + "/" + id + ".res"
+			var resource_path: String = "res://assets/remaster/polyart/" + folder + "/" + id + ".res"
 			if ResourceLoader.exists(resource_path):
 				var mesh := load(resource_path)
 				if mesh is Mesh:

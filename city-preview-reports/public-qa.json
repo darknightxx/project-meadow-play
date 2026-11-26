@@ -1,0 +1,91 @@
+{
+  "url": "https://darknightxx.github.io/project-meadow-play/test-city-plan/",
+  "build": {
+    "id": "meadow-city-preview-20261126-44ece58d",
+    "source_commit": "44ece58d92c4227a2fb96a6e0fa3472f7eeb2982",
+    "asset_source_commit": "0f354850b474a1be5a714fec3a40f9d0c7705e9a",
+    "map_source_commit": "6d7b4f2d7276a4ebd09ac840bd615c0f64f23c63",
+    "scope": "Standalone exploration preview, not the MMO server. No real money or account changes."
+  },
+  "files": [
+    {
+      "path": "BUILD-ID.json",
+      "size": 350,
+      "sha256": "b23d6733f039ec1842985103fa2b8ce27365f6c2d007df869ffd461050f612f8",
+      "content_type": "application/json; charset=utf-8"
+    },
+    {
+      "path": "compressed-loader.js",
+      "size": 867,
+      "sha256": "f20bde618667954105dd2b53ecf5355e03b62fce8335bec09ce88b5cb967d594",
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "index.audio.position.worklet.js",
+      "size": 3149,
+      "sha256": "347b512529c5dca302093f7b9de6d184dd09d10e9a6fba62cbab098a891b2368",
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "index.audio.worklet.js",
+      "size": 7298,
+      "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3",
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "index.html",
+      "size": 5413,
+      "sha256": "807012f4215394cde2c9b44dcb92c5a4cac53ead9f3ec04bb9a13921a8bde094",
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "index.js",
+      "size": 317142,
+      "sha256": "19eb180d568bb8e17bcf4c72ca034ed3af44deeb90304deefee4e665562dfe31",
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "path": "index.pck",
+      "size": 19373424,
+      "sha256": "5ef492ddcc81d4d12ea4a6e18d607c15d17ec170dcac8134d3e2054f73a7ba09",
+      "content_type": "application/octet-stream"
+    },
+    {
+      "path": "index.png",
+      "size": 21443,
+      "sha256": "3cb4495c0b98dfbe4b663cbf2b6836473572339beb66d902367893162a70be0e",
+      "content_type": "image/png"
+    },
+    {
+      "path": "index.wasm",
+      "size": 43699190,
+      "sha256": "e4a43dbae28662b2a68f6136857a94db6695430901515800b9883f6327cb7116",
+      "content_type": "application/wasm"
+    },
+    {
+      "path": "index.wasm.gz",
+      "size": 9387768,
+      "sha256": "e06c0d789ec74af82a668c7c3e5697d06ff782a9ea8cfe35b2e482393bdb2872",
+      "content_type": "application/gzip"
+    },
+    {
+      "path": "preview.jpg",
+      "size": 220048,
+      "sha256": "0f27560f6e8b1c996c451f4cdbd42942f523b74114db5b7cf7a7e069d78be512",
+      "content_type": "image/jpeg"
+    },
+    {
+      "path": "web-ui.css",
+      "size": 3906,
+      "sha256": "d09bdb2d1418a1d3fab1efae1c0e18009fb506de41513fd5e8d9680d8b4737be",
+      "content_type": "text/css; charset=utf-8"
+    },
+    {
+      "path": "web-ui.js",
+      "size": 7614,
+      "sha256": "b0151c1808ff8a86f7b44ac5878d97fc9ed176977e02084a5c2569cb13e11236",
+      "content_type": "application/javascript; charset=utf-8"
+    }
+  ],
+  "pass": true
+}

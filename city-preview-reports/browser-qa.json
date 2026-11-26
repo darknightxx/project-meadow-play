@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "name": "web_engine_and_scene_load",
+      "pass": true
+    },
+    {
+      "name": "keyboard_movement",
+      "pass": true
+    },
+    {
+      "name": "donation_confirmation_cancel_and_commit",
+      "pass": true
+    },
+    {
+      "name": "prayer_and_movement_cancel",
+      "pass": true
+    },
+    {
+      "name": "fountain_blocks_walking",
+      "pass": true
+    },
+    {
+      "name": "landscape_layout_and_joystick_release",
+      "pass": true
+    },
+    {
+      "name": "portrait_layout",
+      "pass": true
+    },
+    {
+      "name": "webkit_scene_load",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "scope": "Linux CI emulation only; not physical iOS/Android performance.",
+  "load_ms": 3635,
+  "mobile_render": {
+    "dpr": 4,
+    "canvas": [
+      800,
+      360
+    ],
+    "viewport": [
+      800,
+      360
+    ]
+  }
+}

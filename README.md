@@ -75,7 +75,8 @@
 
 ## เวอร์ชันทดสอบรวมทุกงานที่เสร็จแล้ว (main): `/test-main/`
 `https://darknightxx.github.io/project-meadow-play/test-main/` = build จาก `main` ของ `project-meadow-clean` = ทุกงานที่แชทรวมงาน (INTEGRATOR) รวมเข้า main แล้ว (ไม่แตะหน้าหลักและหน้าทดสอบอื่น)
-- **อัปเดตล่าสุด 2026-11-26 (รอบ 10, INTEGRATOR-2) · source `661715ab` (`main` ของ `project-meadow-clean`) · BUILD "2026-11-26 01:47 UTC · 661715ab"**
+- **รอบ 11.1 (INTEGRATOR-2, 2026-11-26 03:10 UTC):** build รอบ 11 ของ INTEGRATOR-1 (`7adb97f0`, ตกแต่งหอคอย 100 ชั้น รอบ 5.3-5.4) + ใส่ `index.cc2.pck` ที่มี kit วิหาร 43 ชิ้นจาก `/test-sanctuary/` 3.1 แทนไฟล์เดียว (รอบ 11 กลับไปใช้ cc2 ที่ไม่มี kit) และแก้ขนาดใน `MEADOW_FILE_SIZES` · Chromium จอ 800x360 x4 วิหารมีโมเดล Polyart ไม่มี error · ถอน: revert commit นี้ (กลับเป็นรอบ 11)
+- **รอบ 10, INTEGRATOR-2) · source `661715ab` (`main` ของ `project-meadow-clean`) · BUILD "2026-11-26 01:47 UTC · 661715ab"**
   - **มีอะไรใหม่ตั้งแต่รอบ 9** (รอบ 8-9 = INTEGRATOR-1): ตกแต่งหอคอย 100 ชั้น รอบ 5.2 · **หน้าเลือกอาชีพ 3D วิหารเหนือเมฆ มีโมเดล Polyart ของวิหารครบ 43 ชิ้นแล้ว** (รอบ 4-9 ใช้รูปทรงสำรอง เพราะ `index.cc2.pck` สร้างบนเครื่องที่ไม่มี kit) - `index.cc2.pck` จาก `/test-sanctuary/` รอบ 3.1 (play `4cd038a`, main `5e975665`; `ui/charcreate_v2/` และ `export_presets.cfg` ไม่เปลี่ยนถึง `661715ab`)
   - แพ็กอื่น: P09 75 ไฟล์จาก `/test-p09/` `fa6ea2f` · `index.mapkit.pck` จาก `/test-tower/` · Polyart 10 ไฟล์จาก `/test-polyart/` `a021010`
   - ชุดเทสเต็มบน `661715ab`: 38,973 ผ่าน / 0 ไม่ผ่าน ไม่มี script error · 152 ไฟล์ ไม่มีไฟล์ถึง 20 MiB

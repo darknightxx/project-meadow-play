@@ -1,5 +1,2 @@
-AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
-
-  assert((await state()).z>before+.3)
-
-    at /home/runner/work/project-meadow-play/project-meadow-play/city-preview-src/browser_qa.cjs:16:56
+AssertionError [ERR_ASSERTION]: 1 == 4
+    at /home/runner/work/project-meadow-play/project-meadow-play/city-preview-src/browser_qa.cjs:34:9

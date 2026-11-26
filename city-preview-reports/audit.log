@@ -1,4 +1,4 @@
 Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
 
-CITY_AUDIT {"build":"meadow-city-preview-20261126-5eee0fce","checks":{"dimensions":true,"donation_box_solid":true,"fountain_solid":true,"npcs":true,"portals":true,"spawn":true,"temple_reachable":true,"to_farm_west":true,"to_forest_north":true,"to_goldcity_east":true,"to_meadow":true,"to_tower":true},"models":139,"pass":true,"reachable_cells":13071,"scope":"Exploration preview; portal destinations preserved as data, no MMO/server travel. Donation coins are local demonstration only.","triangles":195254}
-CITY_READY meadow-city-preview-20261126-5eee0fce models=139 triangles=195254
+CITY_AUDIT {"build":"meadow-city-preview-20261126-13c73101","checks":{"dimensions":true,"donation_box_solid":true,"fountain_solid":true,"npcs":true,"portals":true,"spawn":true,"temple_reachable":true,"to_farm_west":true,"to_forest_north":true,"to_goldcity_east":true,"to_meadow":true,"to_tower":true},"models":139,"pass":true,"reachable_cells":13071,"scope":"Exploration preview; portal destinations preserved as data, no MMO/server travel. Donation coins are local demonstration only.","triangles":195254}
+CITY_READY meadow-city-preview-20261126-13c73101 models=139 triangles=195254

@@ -1,0 +1,42 @@
+name: City preview asset inspection
+on:
+  push:
+    branches: [codex/city-playable-preview-20261126]
+    paths:
+      - city-preview-src/**
+      - .github/workflows/city-preview.yml
+permissions:
+  contents: write
+concurrency:
+  group: city-preview
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            city-preview-src
+            .github/workflows
+      - name: Install pinned Godot
+        run: |
+          curl -fsSL https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d /tmp/city-godot
+          chmod +x /tmp/city-godot/Godot_v4.4.1-stable_linux.x86_64
+          /tmp/city-godot/Godot_v4.4.1-stable_linux.x86_64 --version
+      - name: Fetch existing published game packs
+        run: python3 city-preview-src/fetch_packs.py
+      - name: Inspect actual building resources
+        run: |
+          /tmp/city-godot/Godot_v4.4.1-stable_linux.x86_64 --headless --path city-preview-src/probe -s res://probe.gd -- "$PWD/.cache/city-packs" "$PWD/city-preview-reports"
+      - name: Save inspection evidence on this feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --sparse city-preview-reports
+          if ! git diff --cached --quiet; then
+            git commit -m "City preview: record actual model inventory"
+            git push origin HEAD:codex/city-playable-preview-20261126
+          fi

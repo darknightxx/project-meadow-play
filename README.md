@@ -13,6 +13,17 @@
 - ชุดเทสเต็มบน `38f9024d` (commit ที่ build): 39,572 ผ่าน / 1 ไม่ผ่าน (ไฟล์ runner ชั่วคราวของแชทรวมงาน ไม่ใช่ของเกม) ไม่มี script error · 88 ไฟล์ ไม่มีไฟล์ถึง 20 MiB (ใหญ่สุด 19.50) · แพ็กหลัก index.pck 12.59 MiB
 - ถอนออก: revert commit นี้ (กลับไป build ก่อนหน้าที่ `2c074a1`) - โฟลเดอร์ test-* ไม่ถูกแตะ
 
+## เวอร์ชันทดสอบ "ปรับ HUD และเอฟเฟกต์ไอคอน" (HUDKIT2): `/test-hudkit/`
+`https://darknightxx.github.io/project-meadow-play/test-hudkit/?hud=kit2` = build ทดสอบแยกโฟลเดอร์ของงานปรับ HUD ชุดน้ำเงิน-ทอง (ไม่แตะหน้าหลักและหน้าทดสอบอื่น) นำขึ้นตามกฎข้อ 12.1 ของ `CLAUDE.md`
+- **รอบ 1 · build 2026-11-26 00:31 UTC · source `ddbff16b` (branch `claude/confident-mayer-jjred2` ของ `project-meadow-clean` = `main` `843ff7ea` + งานนี้; ยังไม่อยู่ใน `main`)**
+- ต่อท้ายลิงก์ด้วย `?hud=kit2` = หน้าตาชุดใหม่ (ปุ่มเมนูแถวบน ช่องยา ปุ่มพับ: ไอคอนเทา -> สีจริง -> ยกนูนเมื่อชี้ / แตะ) · ไม่ใส่ หรือ `?hud=classic` = หน้าตาเดิม ใช้เทียบก่อน / หลัง
+- ภาพตรวจงาน: `https://darknightxx.github.io/project-meadow-play/test-hudkit/review/`
+- แพ็กลิขสิทธิ์ (P09 75 ไฟล์, `index.mapkit.pck`, Polyart 10 ไฟล์, `index.cc2.pck`) คัดลอกจาก `/test-main/` รอบ 8 (`c2e8d86`) แล้วลงรายการด้วย `tools/deploy/finalize_licensed_packs.py`; ภาพชุดใหม่อยู่ใน `index.kit2.pck` (4.6 MiB โหลดเฉพาะเมื่อมี `?hud=kit2`)
+- ชุดเทสต์เต็มบน `ddbff16b`: 39,031 ผ่าน / 0 ไม่ผ่าน ไม่มี script error · 154 ไฟล์ 646 MiB ไม่มีไฟล์ถึง 20 MiB (ใหญ่สุด `index.bossvoice.pck` 18.51)
+- Chromium 1366x768 และจอมือถือจำลอง 800x360 @4x (วาดด้วยซอฟต์แวร์) เปิดด้วย `?hud=kit2`: หน้าปก -> วิหาร -> ยืนยัน -> สร้าง -> เข้าเกม ผ่าน 16/16 ทั้งสองขนาด ไม่มี error ไม่มีไฟล์หาย `index.kit2.pck` ได้ 200 · **ยังไม่ได้:** มือถือจริง การ์ดจอจริง เฟรมเรต
+- **ให้ทดสอบในหน้าต่างไม่ระบุตัวตน (incognito)** เพราะเซฟออฟไลน์ใช้ที่เก็บเดียวกับหน้าอื่น
+- ถอนออก: revert commit ที่นำขึ้น หรือลบโฟลเดอร์ `test-hudkit/` แล้ว push (หน้าอื่นไม่เกี่ยว)
+
 ## เวอร์ชันทดสอบหน้าเลือกอาชีพ 3D วิหารเหนือเมฆ (SANCTUARY): `/test-sanctuary/`
 `https://darknightxx.github.io/project-meadow-play/test-sanctuary/` = build ทดสอบแยกโฟลเดอร์ของแชท Sanctuary (ไม่แตะหน้าหลักและหน้าทดสอบอื่น) นำขึ้นตามกฎข้อ 12.1 ของ `CLAUDE.md`
 - **รอบ 3.1 · build 2026-11-26 00:39 UTC · source `5e975665` = `main` ของ `project-meadow-clean`** (โค้ดเดียวกับ `/test-main/` รอบ 8) · แสตมป์ในเกม `บิลด์ 2026-11-26 00:39 UTC · 5e975665`

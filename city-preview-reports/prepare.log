@@ -1,922 +1,199 @@
 Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
 
-ERROR: Could not create directory: 'res://previewassets'.
-   at: make_dir_recursive (core/io/dir_access.cpp:180)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #1, invalid UID: 'uid://b44nsawl53o6y' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #1, invalid UID: 'uid://b68f84p68gndt' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_02_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_carpets.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_carpets.tres': In external resource #1, invalid UID: 'uid://c803ogdmn1std' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_carpets_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #1, invalid UID: 'uid://dv7kv6jlkkrcf' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_exteriorwoodtrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_furniture.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_furniture.tres': In external resource #1, invalid UID: 'uid://dydsaivldqruv' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_interiorwoodtrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_livingroom.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_livingroom.tres': In external resource #1, invalid UID: 'uid://dikrt41b7kglq' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_livingroomprops_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #1, invalid UID: 'uid://cdxnqe3roord0' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_metaltrim_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #1, invalid UID: 'uid://0qqsh4ml286v' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #1, invalid UID: 'uid://b06y4g2eumhgu' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao_46ff0.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #1, invalid UID: 'uid://cgy77sjulp2hj' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_rooftiles_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #1, invalid UID: 'uid://yhfioj8844gg' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_stonetrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #1, invalid UID: 'uid://cjs28u8hq5vif' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_01.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_02.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_02.tres': In external resource #1, invalid UID: 'uid://bsbtlphefk3r8' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_02.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_house_variation_01_nointerior.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_house_variation_01_nointerior.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #1, invalid UID: 'uid://b44nsawl53o6y' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #1, invalid UID: 'uid://b68f84p68gndt' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_02_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_carpets.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_carpets.tres': In external resource #1, invalid UID: 'uid://c803ogdmn1std' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_carpets_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #1, invalid UID: 'uid://dv7kv6jlkkrcf' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_exteriorwoodtrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #1, invalid UID: 'uid://cdxnqe3roord0' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_metaltrim_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #1, invalid UID: 'uid://0qqsh4ml286v' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #1, invalid UID: 'uid://b06y4g2eumhgu' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao_46ff0.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #1, invalid UID: 'uid://cgy77sjulp2hj' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_rooftiles_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #1, invalid UID: 'uid://yhfioj8844gg' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_stonetrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #1, invalid UID: 'uid://cjs28u8hq5vif' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_01.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_house_variation_02_nointerior.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_house_variation_02_nointerior.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #1, invalid UID: 'uid://b44nsawl53o6y' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #1, invalid UID: 'uid://b68f84p68gndt' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_02_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #1, invalid UID: 'uid://dv7kv6jlkkrcf' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_exteriorwoodtrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_furniture.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_furniture.tres': In external resource #1, invalid UID: 'uid://dydsaivldqruv' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_interiorwoodtrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_livingroom.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_livingroom.tres': In external resource #1, invalid UID: 'uid://dikrt41b7kglq' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_livingroomprops_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #1, invalid UID: 'uid://cdxnqe3roord0' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_metaltrim_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #1, invalid UID: 'uid://0qqsh4ml286v' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #1, invalid UID: 'uid://b06y4g2eumhgu' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao_46ff0.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #1, invalid UID: 'uid://cgy77sjulp2hj' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_rooftiles_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #1, invalid UID: 'uid://yhfioj8844gg' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_stonetrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #1, invalid UID: 'uid://cjs28u8hq5vif' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_01.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_house_variation_03_nointerior.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_house_variation_03_nointerior.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #1, invalid UID: 'uid://b68f84p68gndt' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_02_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #1, invalid UID: 'uid://dv7kv6jlkkrcf' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_exteriorwoodtrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #1, invalid UID: 'uid://cdxnqe3roord0' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_metaltrim_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #1, invalid UID: 'uid://0qqsh4ml286v' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #1, invalid UID: 'uid://b06y4g2eumhgu' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao_46ff0.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #1, invalid UID: 'uid://cgy77sjulp2hj' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_rooftiles_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #1, invalid UID: 'uid://yhfioj8844gg' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_stonetrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #1, invalid UID: 'uid://cjs28u8hq5vif' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_01.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_house_variation_04_nointerior.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_house_variation_04_nointerior.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_01.tres': In external resource #1, invalid UID: 'uid://b44nsawl53o6y' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_02.tres': In external resource #1, invalid UID: 'uid://b68f84p68gndt' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_02_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_03.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_brickwall_03.tres': In external resource #1, invalid UID: 'uid://ciou6mxxgvur4' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_brickwall_03_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #1, invalid UID: 'uid://dv7kv6jlkkrcf' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_exteriorwoodtrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_metaltrim.tres': In external resource #1, invalid UID: 'uid://cdxnqe3roord0' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_metaltrim_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_dark.tres': In external resource #1, invalid UID: 'uid://0qqsh4ml286v' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_plaster_light.tres': In external resource #1, invalid UID: 'uid://b06y4g2eumhgu' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_plasterwall_moisture_01_c_ao_46ff0.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #1, invalid UID: 'uid://cgy77sjulp2hj' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_rooftiles_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_stonetrim.tres': In external resource #1, invalid UID: 'uid://yhfioj8844gg' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_stonetrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #1, invalid UID: 'uid://cjs28u8hq5vif' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_01.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_02.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_02.tres': In external resource #1, invalid UID: 'uid://bsbtlphefk3r8' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_02.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_generictree_leaves_far.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_generictree_leaves_far.tres': In external resource #1, invalid UID: 'uid://dfgh21s67bqtc' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_generictree_leaves_c.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_treetrunk_close.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_treetrunk_close.tres': In external resource #1, invalid UID: 'uid://bgg4btjlbmrl5' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_gentree_bark_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_farmhouse.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_farmhouse.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_shed_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_shed_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_exteriorwoodtrim.tres': In external resource #1, invalid UID: 'uid://dv7kv6jlkkrcf' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_exteriorwoodtrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_rooftiles.tres': In external resource #1, invalid UID: 'uid://cgy77sjulp2hj' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_rooftiles_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_boatshed.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_boatshed.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_hay.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_hay.tres': In external resource #1, invalid UID: 'uid://lt3v7y8silwg' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_hay_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_haypatch_01.tres': In external resource #0, invalid UID: 'uid://fw63svqnqase' - using text path instead: 'res://assets/shaders/polyart_clip.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_haypatch_01.tres': In external resource #1, invalid UID: 'uid://bef18vcdyuo10' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_hay_patches_small_1_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_tools_b.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_tools_b.tres': In external resource #1, invalid UID: 'uid://dlqxuy8rdosq4' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_tools_b_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_shed_crops.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_shed_crops.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_bench_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_bench_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_tools_cart.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_tools_cart.tres': In external resource #1, invalid UID: 'uid://dj6fgwu2nwg24' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_cart_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_cart_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_cart_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
+WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_barrel_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_barrel_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_box_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_box_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_woodkitbash.tres': In external resource #1, invalid UID: 'uid://skpv3rycwv54' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_outdoorswoodkitbash_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_sign_03.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_sign_03.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #1, invalid UID: 'uid://cjs28u8hq5vif' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_01.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_flowerspot_c_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_flowerspot_c_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_farm_pots.tres': In external resource #1, invalid UID: 'uid://d1bojrttqv820' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_terracotta_pots_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_foliagelod2_01.tres': In external resource #1, invalid UID: 'uid://cjs28u8hq5vif' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_foliage_lod2_01.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_flowerspot_b_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_flowerspot_b_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_generictree_leaves_far.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_generictree_leaves_far.tres': In external resource #1, invalid UID: 'uid://dfgh21s67bqtc' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_generictree_leaves_c.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_treetrunk_close.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_treetrunk_close.tres': In external resource #1, invalid UID: 'uid://bgg4btjlbmrl5' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_gentree_bark_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_gentree_b_fulltree_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_gentree_b_fulltree_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_generictree_leaves_far.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_generictree_leaves_far.tres': In external resource #1, invalid UID: 'uid://dfgh21s67bqtc' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_generictree_leaves_c.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_farm_treetrunk_close.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_farm_treetrunk_close.tres': In external resource #1, invalid UID: 'uid://bgg4btjlbmrl5' - using text path instead: 'res://assets/remaster/polyart/textures/t_farm_gentree_bark_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/farm_gentree_bush_04.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/farm_gentree_bush_04.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_olive_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_olive_01.tres': In external resource #1, invalid UID: 'uid://bsvh45joi2b3k' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_oliveleaves_01_c.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_olivebark.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_olivebark.tres': In external resource #1, invalid UID: 'uid://blddeihb3eo8u' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_olivebark_bc_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_olivetree_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_olivetree_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_cypress_01.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_cypress_01.tres': In external resource #1, invalid UID: 'uid://4po25o743eah' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_cypressleaves_01_c.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_pinebark.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_pinebark.tres': In external resource #1, invalid UID: 'uid://dkvrvynna7hg2' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_pinebark_01_bc_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_cypress_02.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_cypress_02.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_plants_lod2.tres': In external resource #0, invalid UID: 'uid://btkcor0uqg5yo' - using text path instead: 'res://assets/shaders/polyart_foliage.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_plants_lod2.tres': In external resource #1, invalid UID: 'uid://jg56sj2hfosw' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_plants_01_lod2_c.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_oleander_02.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_oleander_02.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_gargoyles.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_gargoyles.tres': In external resource #1, invalid UID: 'uid://nfjnwbsfqh7q' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_gargoyles_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_lionstatue.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_lionstatue.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetrim_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetrim_01.tres': In external resource #1, invalid UID: 'uid://cbj4gb6aski8m' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_stonetrim_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_arch_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_arch_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetrim_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetrim_01.tres': In external resource #1, invalid UID: 'uid://cbj4gb6aski8m' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_stonetrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_arch_03.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_arch_03.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_metaltrim_01.tres': In external resource #0, invalid UID: 'uid://fw63svqnqase' - using text path instead: 'res://assets/shaders/polyart_clip.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_metaltrim_01.tres': In external resource #1, invalid UID: 'uid://b8u4nfonaqvsy' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_metaltrim_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_brazier_02.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_brazier_02.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetiling_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetiling_01.tres': In external resource #1, invalid UID: 'uid://bblk8oy3t12na' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_stonetiling_01_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetrim_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_stonetrim_01.tres': In external resource #1, invalid UID: 'uid://cbj4gb6aski8m' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_stonetrim_01_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_wall_400x400_02.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_wall_400x400_02.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_statue_a.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_statue_a.tres': In external resource #1, invalid UID: 'uid://hx58p5j3bayu' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_statue_a_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_statue_b.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_statue_b.tres': In external resource #1, invalid UID: 'uid://wxg37hsojpco' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_statue_b_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_statuecomplete_a.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_statuecomplete_a.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_metaltrim_01.tres': In external resource #0, invalid UID: 'uid://fw63svqnqase' - using text path instead: 'res://assets/shaders/polyart_clip.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_metaltrim_01.tres': In external resource #1, invalid UID: 'uid://b8u4nfonaqvsy' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_metaltrim_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_woodtrim_01.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
-     at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_woodtrim_01.tres': In external resource #1, invalid UID: 'uid://m374cehglqrj' - using text path instead: 'res://assets/remaster/polyart/textures/t_suntemple_woodtrim_c_ao.png'.
-     at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/temple_chest_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/temple_chest_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-WARNING: 'res://assets/remaster/polyart/materials/m_eastlands_lamps.tres': In external resource #0, invalid UID: 'uid://dplwspni154bi' - using text path instead: 'res://assets/shaders/polyart_prop.gdshader'.
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_eastlands_lamps.tres': In external resource #1, invalid UID: 'uid://cw13a0een7ac' - using text path instead: 'res://assets/remaster/polyart/textures/m_eastlands_stonelamps_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ERROR: Cannot create file 'res://previewassets/texture_000.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/texture_000.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/east_lamp_ground_01.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/east_lamp_ground_01.res
-          at: copy_mesh (res://../probe/prepare.gd:51)
-ERROR: Cannot create file 'res://previewassets/ground_grass.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/ground_grass.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/ground_dirt.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/ground_dirt.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/ground_stone.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/ground_stone.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/ground_tile.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/ground_tile.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-ERROR: Cannot create file 'res://previewassets/ground_layout.res'.
-   at: save (core/io/resource_format_binary.cpp:2158)
-SCRIPT ERROR: Assertion failed: res://previewassets/ground_layout.res
-          at: copy_texture (res://../probe/prepare.gd:73)
-SCRIPT ERROR: Cannot call method 'store_string' on a null value.
-          at: _initialize (res://../probe/prepare.gd:31)
+ASSET_PREPARED {"missing":[{"id":"wat","path":"res://maps/willowbrook/willow/wat.res"},{"id":"belltower","path":"res://maps/willowbrook/willow/belltower.res"},{"id":"thai_house","path":"res://maps/willowbrook/willow/thai_house.res"},{"id":"thai_shop","path":"res://maps/willowbrook/willow/thai_shop.res"},{"id":"prop_sala","path":"res://maps/willowbrook/willow/prop_sala.res"}],"models":28,"textures":40}

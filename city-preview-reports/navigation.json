@@ -1,0 +1,22 @@
+{
+  "build": "meadow-city-preview-20261126-r1",
+  "checks": {
+    "dimensions": true,
+    "donation_box_solid": true,
+    "fountain_solid": true,
+    "npcs": true,
+    "portals": true,
+    "spawn": false,
+    "temple_reachable": true,
+    "to_farm_west": true,
+    "to_forest_north": true,
+    "to_goldcity_east": true,
+    "to_meadow": true,
+    "to_tower": true
+  },
+  "models": 131,
+  "pass": false,
+  "reachable_cells": 13071,
+  "scope": "Exploration preview; portal destinations preserved as data, no MMO/server travel. Donation coins are local demonstration only.",
+  "triangles": 171916
+}

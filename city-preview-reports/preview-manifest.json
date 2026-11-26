@@ -1,0 +1,285 @@
+{
+  "missing": [
+    {
+      "id": "wat",
+      "path": "res://maps/willowbrook/willow/wat.res"
+    },
+    {
+      "id": "belltower",
+      "path": "res://maps/willowbrook/willow/belltower.res"
+    },
+    {
+      "id": "thai_house",
+      "path": "res://maps/willowbrook/willow/thai_house.res"
+    },
+    {
+      "id": "thai_shop",
+      "path": "res://maps/willowbrook/willow/thai_shop.res"
+    },
+    {
+      "id": "prop_sala",
+      "path": "res://maps/willowbrook/willow/prop_sala.res"
+    }
+  ],
+  "models": {
+    "east_lamp_ground_01": {
+      "size": [
+        0.407018959522247,
+        0.98990523815155,
+        0.413398921489716
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/east_lamp_ground_01.res",
+      "triangles": 244
+    },
+    "farm_barrel_01": {
+      "size": [
+        0.888417720794678,
+        1.14798867702484,
+        0.888417720794678
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_barrel_01.res",
+      "triangles": 156
+    },
+    "farm_bench_01": {
+      "size": [
+        1.94273996353149,
+        0.501627862453461,
+        0.654553294181824
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_bench_01.res",
+      "triangles": 64
+    },
+    "farm_boatshed": {
+      "size": [
+        8.51043701171875,
+        7.36978816986084,
+        6.0168399810791
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_boatshed.res",
+      "triangles": 940
+    },
+    "farm_box_01": {
+      "size": [
+        0.838708996772766,
+        0.914065778255463,
+        0.9086993932724
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_box_01.res",
+      "triangles": 124
+    },
+    "farm_cart_01": {
+      "size": [
+        0.831487417221069,
+        0.922977983951569,
+        2.22361302375793
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_cart_01.res",
+      "triangles": 297
+    },
+    "farm_farmhouse": {
+      "size": [
+        32.4763488769531,
+        30.3203735351562,
+        40.5421333312988
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_farmhouse.res",
+      "triangles": 33248
+    },
+    "farm_flowerspot_b_01": {
+      "size": [
+        1.50832486152649,
+        0.887077569961548,
+        1.03895592689514
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_flowerspot_b_01.res",
+      "triangles": 58
+    },
+    "farm_flowerspot_c_01": {
+      "size": [
+        1.00094079971313,
+        0.854865491390228,
+        1.01688051223755
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_flowerspot_c_01.res",
+      "triangles": 76
+    },
+    "farm_gentree_b_fulltree_01": {
+      "size": [
+        13.2497806549072,
+        14.7810878753662,
+        11.9618282318115
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_gentree_b_fulltree_01.res",
+      "triangles": 1423
+    },
+    "farm_gentree_bush_04": {
+      "size": [
+        6.3881254196167,
+        4.63291549682617,
+        6.74392032623291
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_gentree_bush_04.res",
+      "triangles": 506
+    },
+    "farm_house_variation_01_nointerior": {
+      "size": [
+        15.4196605682373,
+        13.9680128097534,
+        21.808967590332
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_house_variation_01_nointerior.res",
+      "triangles": 10635
+    },
+    "farm_house_variation_02_nointerior": {
+      "size": [
+        16.3323287963867,
+        14.266676902771,
+        20.6089553833008
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_house_variation_02_nointerior.res",
+      "triangles": 9009
+    },
+    "farm_house_variation_03_nointerior": {
+      "size": [
+        9.9522066116333,
+        15.7477521896362,
+        18.9966773986816
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_house_variation_03_nointerior.res",
+      "triangles": 7589
+    },
+    "farm_house_variation_04_nointerior": {
+      "size": [
+        9.9522066116333,
+        10.5490140914917,
+        17.1827774047852
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_house_variation_04_nointerior.res",
+      "triangles": 6527
+    },
+    "farm_shed_01": {
+      "size": [
+        4.39421558380127,
+        3.89867877960205,
+        2.63658881187439
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_shed_01.res",
+      "triangles": 374
+    },
+    "farm_shed_crops": {
+      "size": [
+        4.49610662460327,
+        6.57092094421387,
+        3.62429666519165
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_shed_crops.res",
+      "triangles": 1791
+    },
+    "farm_sign_03": {
+      "size": [
+        1.0534770488739,
+        1.57419013977051,
+        1.42556285858154
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/farm_sign_03.res",
+      "triangles": 56
+    },
+    "temple_arch_01": {
+      "size": [
+        1.3307626247406,
+        9.74188899993896,
+        8.0
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_arch_01.res",
+      "triangles": 248
+    },
+    "temple_arch_03": {
+      "size": [
+        1.98843860626221,
+        15.5564241409302,
+        12.0
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_arch_03.res",
+      "triangles": 160
+    },
+    "temple_brazier_02": {
+      "size": [
+        0.573070406913757,
+        1.25281190872192,
+        0.734643638134003
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_brazier_02.res",
+      "triangles": 208
+    },
+    "temple_chest_01": {
+      "size": [
+        0.840067744255066,
+        0.806946039199829,
+        0.805464506149292
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_chest_01.res",
+      "triangles": 522
+    },
+    "temple_cypress_02": {
+      "size": [
+        3.784184217453,
+        12.4933948516846,
+        3.92908334732056
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_cypress_02.res",
+      "triangles": 397
+    },
+    "temple_lionstatue": {
+      "size": [
+        1.75643348693848,
+        1.9066596031189,
+        0.94624137878418
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_lionstatue.res",
+      "triangles": 280
+    },
+    "temple_oleander_02": {
+      "size": [
+        2.96548843383789,
+        2.50292205810547,
+        2.94265627861023
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_oleander_02.res",
+      "triangles": 8
+    },
+    "temple_olivetree_01": {
+      "size": [
+        9.73915195465088,
+        11.4154481887817,
+        8.86478805541992
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_olivetree_01.res",
+      "triangles": 739
+    },
+    "temple_statuecomplete_a": {
+      "size": [
+        3.12485241889954,
+        3.35642051696777,
+        1.33654928207397
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_statuecomplete_a.res",
+      "triangles": 747
+    },
+    "temple_wall_400x400_02": {
+      "size": [
+        0.603699743747711,
+        4.0,
+        4.0
+      ],
+      "source": "res://assets/remaster/polyart/models_lod2/temple_wall_400x400_02.res",
+      "triangles": 209
+    }
+  },
+  "textures": {
+    "ground_dirt": "res://previewassets/ground_dirt.res",
+    "ground_grass": "res://previewassets/ground_grass.res",
+    "ground_layout": "res://previewassets/ground_layout.res",
+    "ground_stone": "res://previewassets/ground_stone.res",
+    "ground_tile": "res://previewassets/ground_tile.res"
+  }
+}

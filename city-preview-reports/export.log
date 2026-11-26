@@ -1,0 +1,100 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+first_scan_filesystem: begin: Project initialization steps: 5
+	first_scan_filesystem: step 0: Scanning file structure...
+	first_scan_filesystem: step 1: Loading global class names...
+	first_scan_filesystem: step 2: Verifying GDExtensions...
+	first_scan_filesystem: step 3: Creating autoload scripts...
+	first_scan_filesystem: step 4: Initializing plugins...
+	first_scan_filesystem: step 5: Starting file scan...
+first_scan_filesystem: end
+savepack: begin: Packing steps: 102
+	savepack: step 2: Storing File: res://previewassets/belltower.res
+	savepack: step 3: Storing File: res://previewassets/east_lamp_ground_01.res
+	savepack: step 4: Storing File: res://previewassets/farm_barrel_01.res
+	savepack: step 5: Storing File: res://previewassets/farm_bench_01.res
+	savepack: step 7: Storing File: res://previewassets/farm_boatshed.res
+	savepack: step 8: Storing File: res://previewassets/farm_box_01.res
+	savepack: step 9: Storing File: res://previewassets/farm_cart_01.res
+	savepack: step 10: Storing File: res://previewassets/farm_farmhouse.res
+	savepack: step 12: Storing File: res://previewassets/farm_flowerspot_b_01.res
+	savepack: step 13: Storing File: res://previewassets/farm_flowerspot_c_01.res
+	savepack: step 14: Storing File: res://previewassets/farm_gentree_bush_04.res
+	savepack: step 15: Storing File: res://previewassets/farm_gentree_b_fulltree_01.res
+	savepack: step 17: Storing File: res://previewassets/farm_house_variation_01_nointerior.res
+	savepack: step 18: Storing File: res://previewassets/farm_house_variation_02_nointerior.res
+	savepack: step 19: Storing File: res://previewassets/farm_house_variation_03_nointerior.res
+	savepack: step 20: Storing File: res://previewassets/farm_house_variation_04_nointerior.res
+	savepack: step 22: Storing File: res://previewassets/farm_shed_01.res
+	savepack: step 23: Storing File: res://previewassets/farm_shed_crops.res
+	savepack: step 24: Storing File: res://previewassets/farm_sign_03.res
+	savepack: step 25: Storing File: res://previewassets/ground_dirt.res
+	savepack: step 27: Storing File: res://previewassets/ground_grass.res
+	savepack: step 28: Storing File: res://previewassets/ground_layout.res
+	savepack: step 29: Storing File: res://previewassets/ground_stone.res
+	savepack: step 30: Storing File: res://previewassets/ground_tile.res
+	savepack: step 32: Storing File: res://previewassets/manifest.json
+	savepack: step 33: Storing File: res://previewassets/prop_sala.res
+	savepack: step 34: Storing File: res://previewassets/temple_arch_01.res
+	savepack: step 35: Storing File: res://previewassets/temple_arch_03.res
+	savepack: step 37: Storing File: res://previewassets/temple_brazier_02.res
+	savepack: step 38: Storing File: res://previewassets/temple_chest_01.res
+	savepack: step 39: Storing File: res://previewassets/temple_cypress_02.res
+	savepack: step 40: Storing File: res://previewassets/temple_lionstatue.res
+	savepack: step 42: Storing File: res://previewassets/temple_oleander_02.res
+	savepack: step 43: Storing File: res://previewassets/temple_olivetree_01.res
+	savepack: step 44: Storing File: res://previewassets/temple_statuecomplete_a.res
+	savepack: step 45: Storing File: res://previewassets/temple_wall_400x400_02.res
+	savepack: step 47: Storing File: res://previewassets/texture_000.res
+	savepack: step 48: Storing File: res://previewassets/texture_001.res
+	savepack: step 49: Storing File: res://previewassets/texture_002.res
+	savepack: step 50: Storing File: res://previewassets/texture_003.res
+	savepack: step 52: Storing File: res://previewassets/texture_004.res
+	savepack: step 53: Storing File: res://previewassets/texture_005.res
+	savepack: step 54: Storing File: res://previewassets/texture_006.res
+	savepack: step 55: Storing File: res://previewassets/texture_007.res
+	savepack: step 57: Storing File: res://previewassets/texture_008.res
+	savepack: step 58: Storing File: res://previewassets/texture_009.res
+	savepack: step 59: Storing File: res://previewassets/texture_010.res
+	savepack: step 60: Storing File: res://previewassets/texture_011.res
+	savepack: step 62: Storing File: res://previewassets/texture_012.res
+	savepack: step 63: Storing File: res://previewassets/texture_013.res
+	savepack: step 64: Storing File: res://previewassets/texture_014.res
+	savepack: step 65: Storing File: res://previewassets/texture_015.res
+	savepack: step 67: Storing File: res://previewassets/texture_016.res
+	savepack: step 68: Storing File: res://previewassets/texture_017.res
+	savepack: step 69: Storing File: res://previewassets/texture_018.res
+	savepack: step 70: Storing File: res://previewassets/texture_019.res
+	savepack: step 72: Storing File: res://previewassets/texture_020.res
+	savepack: step 73: Storing File: res://previewassets/texture_021.res
+	savepack: step 74: Storing File: res://previewassets/texture_022.res
+	savepack: step 75: Storing File: res://previewassets/texture_023.res
+	savepack: step 77: Storing File: res://previewassets/texture_024.res
+	savepack: step 78: Storing File: res://previewassets/texture_025.res
+	savepack: step 79: Storing File: res://previewassets/texture_026.res
+	savepack: step 80: Storing File: res://previewassets/texture_027.res
+	savepack: step 82: Storing File: res://previewassets/texture_028.res
+	savepack: step 83: Storing File: res://previewassets/texture_029.res
+	savepack: step 84: Storing File: res://previewassets/texture_030.res
+	savepack: step 85: Storing File: res://previewassets/texture_031.res
+	savepack: step 87: Storing File: res://previewassets/texture_032.res
+	savepack: step 88: Storing File: res://previewassets/texture_033.res
+	savepack: step 89: Storing File: res://previewassets/texture_034.res
+	savepack: step 90: Storing File: res://previewassets/thai_house.res
+	savepack: step 92: Storing File: res://previewassets/thai_shop.res
+	savepack: step 93: Storing File: res://previewassets/wat.res
+	savepack: step 94: Storing File: res://asset-plan.json
+	savepack: step 95: Storing File: res://city.gdc
+	savepack: step 97: Storing File: res://decor.json
+	savepack: step 98: Storing File: res://ground.gdshader
+	savepack: step 99: Storing File: res://.godot/exported/133200997/export-3070c538c03ee49b7677ff960a3f5195-main.scn
+	savepack: step 100: Storing File: res://source-map.json
+	savepack: step 100: Storing File: res://city.gd.remap
+	savepack: step 100: Storing File: res://main.tscn.remap
+	savepack: step 100: Storing File: res://.godot/global_script_class_cache.cfg
+	savepack: step 100: Storing File: res://.godot/uid_cache.bin
+	savepack: step 100: Storing File: res://project.binary
+savepack: end
+loading_editor_layout: begin: Loading editor steps: 5
+	loading_editor_layout: step 0: Loading editor layout...
+loading_editor_layout: end

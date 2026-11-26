@@ -1,27 +1,15 @@
 {
-  "missing": [
-    {
-      "id": "wat",
-      "path": "res://maps/willowbrook/willow/wat.res"
-    },
-    {
-      "id": "belltower",
-      "path": "res://maps/willowbrook/willow/belltower.res"
-    },
-    {
-      "id": "thai_house",
-      "path": "res://maps/willowbrook/willow/thai_house.res"
-    },
-    {
-      "id": "thai_shop",
-      "path": "res://maps/willowbrook/willow/thai_shop.res"
-    },
-    {
-      "id": "prop_sala",
-      "path": "res://maps/willowbrook/willow/prop_sala.res"
-    }
-  ],
+  "missing": [],
   "models": {
+    "belltower": {
+      "size": [
+        0.432617008686066,
+        0.952147960662842,
+        0.538085997104645
+      ],
+      "source": "res://maps/willowbrook/willow/belltower.res",
+      "triangles": 2581
+    },
     "east_lamp_ground_01": {
       "size": [
         0.407018959522247,
@@ -184,6 +172,15 @@
       "source": "res://assets/remaster/polyart/models_lod2/farm_sign_03.res",
       "triangles": 56
     },
+    "prop_sala": {
+      "size": [
+        0.851933062076569,
+        0.954116225242615,
+        0.682912766933441
+      ],
+      "source": "res://maps/willowbrook/willow/prop_sala.res",
+      "triangles": 1499
+    },
     "temple_arch_01": {
       "size": [
         1.3307626247406,
@@ -273,6 +270,33 @@
       ],
       "source": "res://assets/remaster/polyart/models_lod2/temple_wall_400x400_02.res",
       "triangles": 209
+    },
+    "thai_house": {
+      "size": [
+        0.563964009284973,
+        0.903809010982513,
+        0.953125
+      ],
+      "source": "res://maps/willowbrook/willow/thai_house.res",
+      "triangles": 2581
+    },
+    "thai_shop": {
+      "size": [
+        0.65087902545929,
+        0.952637016773224,
+        0.846678972244263
+      ],
+      "source": "res://maps/willowbrook/willow/thai_shop.res",
+      "triangles": 3120
+    },
+    "wat": {
+      "size": [
+        0.456542998552322,
+        0.633789002895355,
+        0.953125
+      ],
+      "source": "res://maps/willowbrook/willow/wat.res",
+      "triangles": 5275
     }
   },
   "textures": {

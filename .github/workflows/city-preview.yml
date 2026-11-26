@@ -35,7 +35,7 @@ jobs:
       - name: Prepare selected real assets
         run: |
           mkdir -p city-preview-reports
-          timeout 120 "$GODOT" --headless --path city-preview-src/game --script "$PWD/city-preview-src/probe/prepare.gd" -- "$PWD/.cache/city-packs" 2>&1 | tee city-preview-reports/prepare.log
+          timeout 120 "$GODOT" --headless --path city-preview-src/game --script "$PWD/city-preview-src/probe/prepare.gd" -- "$PWD/.cache/city-packs" "$PWD/city-preview-src/game" 2>&1 | tee city-preview-reports/prepare.log
           cp city-preview-src/game/previewassets/manifest.json city-preview-reports/preview-manifest.json
       - name: Import and check navigation
         run: |

@@ -4,12 +4,14 @@ var textures: Dictionary = {}
 var materials: Dictionary = {}
 var manifest: Dictionary = {"models":{},"textures":{},"missing":[]}
 var asset_root := "res://assets/remaster/polyart/"
+var output_root := ""
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
-	for pack: String in ["index.world.pck","index.polyart.pck","index.polyart_s3tc.pck","index.polyart_s3tc2.pck"]:
+	output_root = args[1].path_join("previewassets")
+	assert(DirAccess.make_dir_recursive_absolute(output_root)==OK,output_root)
+	for pack: String in ["index.world.pck","index.mapkit.pck","index.pck","index.polyart.pck","index.polyart_s3tc.pck","index.polyart_s3tc2.pck"]:
 		assert(ProjectSettings.load_resource_pack(args[0].path_join(pack), false), pack)
-	DirAccess.make_dir_recursive_absolute("res://previewassets")
 	var ids: Array[String] = ["farm_house_variation_01_nointerior","farm_house_variation_02_nointerior","farm_house_variation_03_nointerior","farm_house_variation_04_nointerior","farm_farmhouse","farm_shed_01","farm_boatshed","farm_shed_crops","farm_bench_01","farm_cart_01","farm_barrel_01","farm_box_01","farm_sign_03","farm_flowerspot_c_01","farm_flowerspot_b_01","farm_gentree_b_fulltree_01","farm_gentree_bush_04","temple_olivetree_01","temple_cypress_02","temple_oleander_02","temple_lionstatue","temple_arch_01","temple_arch_03","temple_brazier_02","temple_wall_400x400_02","temple_statuecomplete_a","temple_chest_01","east_lamp_ground_01"]
 	for id: String in ids:
 		var path := ""
@@ -27,7 +29,7 @@ func _initialize() -> void:
 			var tex: Texture2D = load(item[1])
 			var saved := copy_texture(tex, str(item[0]))
 			manifest["textures"][item[0]] = saved.resource_path if saved else ""
-	var file := FileAccess.open("res://previewassets/manifest.json",FileAccess.WRITE)
+	var file := FileAccess.open(output_root.path_join("manifest.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify(manifest,"  "))
 	print("ASSET_PREPARED ", JSON.stringify({"models":manifest.models.size(),"textures":textures.size(),"missing":manifest.missing}))
 	quit(0 if manifest.models.size() >= 20 else 1)
@@ -48,7 +50,7 @@ func copy_mesh(id: String, path: String) -> void:
 		mesh.surface_set_material(i, copy_material(original.surface_get_material(i)))
 		triangles += int(arrays[Mesh.ARRAY_INDEX].size()/3) if arrays[Mesh.ARRAY_INDEX] != null else int(arrays[Mesh.ARRAY_VERTEX].size()/3)
 	var dest := "res://previewassets/"+id+".res"
-	assert(ResourceSaver.save(mesh,dest,ResourceSaver.FLAG_COMPRESS)==OK,dest)
+	assert(ResourceSaver.save(mesh,output_root.path_join(dest.get_file()),ResourceSaver.FLAG_COMPRESS)==OK,dest)
 	var aabb := mesh.get_aabb()
 	manifest.models[id] = {"source":path,"triangles":triangles,"size":[aabb.size.x,aabb.size.y,aabb.size.z]}
 
@@ -57,6 +59,7 @@ func copy_texture(tex: Texture2D, named: String = "") -> Texture2D:
 		return null
 	var key := tex.resource_path
 	if key == "": key = str(tex.get_instance_id())
+	if named != "": key += "#"+named
 	if textures.has(key): return textures[key]
 	var img: Image = tex.get_image()
 	if img == null or img.is_empty():
@@ -70,7 +73,7 @@ func copy_texture(tex: Texture2D, named: String = "") -> Texture2D:
 	img.generate_mipmaps()
 	var result := ImageTexture.create_from_image(img)
 	var dest := "res://previewassets/"+(named if named != "" else "texture_%03d"%textures.size())+".res"
-	assert(ResourceSaver.save(result,dest,ResourceSaver.FLAG_COMPRESS)==OK,dest)
+	assert(ResourceSaver.save(result,output_root.path_join(dest.get_file()),ResourceSaver.FLAG_COMPRESS)==OK,dest)
 	result.take_over_path(dest)
 	textures[key] = result
 	return result
@@ -98,4 +101,5 @@ func copy_material(source: Material) -> Material:
 		mat.transparency = source.transparency
 	materials[key] = mat
 	return mat
+
 

@@ -71,14 +71,28 @@ func copy_texture(tex: Texture2D, named: String = "") -> Texture2D:
 		push_error("Empty texture: " + key)
 		return null
 	if img.is_compressed(): assert(img.decompress()==OK,key)
-	var limit := 1024 if named == "ground_layout" else (512 if named!="" else 384)
+	var limit := 1024 if named == "ground_layout" else 512
 	if maxi(img.get_width(),img.get_height()) > limit:
 		var factor := float(limit)/maxi(img.get_width(),img.get_height())
 		img.resize(maxi(1,int(img.get_width()*factor)),maxi(1,int(img.get_height()*factor)),Image.INTERPOLATE_LANCZOS)
-	img.generate_mipmaps()
-	var result := ImageTexture.create_from_image(img)
-	var dest := "res://previewassets/"+(named if named != "" else "texture_%03d"%textures.size())+".res"
-	assert(ResourceSaver.save(result,output_root.path_join(dest.get_file()),ResourceSaver.FLAG_COMPRESS)==OK,dest)
+	img.clear_mipmaps()
+	var dest := "res://previewassets/"+(named if named != "" else "texture_%03d"%textures.size())+".png"
+	assert(img.save_png(output_root.path_join(dest.get_file()))==OK,dest)
+	# Leave compression to the normal PNG importer. Serializing ImageTexture would inflate the exported PCK.
+	var imported := "res://.godot/imported/"+dest.get_file()+"-"+dest.md5_text()+".ctex"
+	var cfg := ConfigFile.new()
+	cfg.set_value("remap","importer","texture")
+	cfg.set_value("remap","type","CompressedTexture2D")
+	cfg.set_value("remap","path",imported)
+	cfg.set_value("remap","metadata",{"vram_texture":false})
+	cfg.set_value("deps","source_file",dest)
+	cfg.set_value("deps","dest_files",PackedStringArray([imported]))
+	cfg.set_value("params","compress/mode",0)
+	cfg.set_value("params","mipmaps/generate",true)
+	cfg.set_value("params","process/fix_alpha_border",true)
+	cfg.set_value("params","detect_3d/compress_to",0)
+	cfg.save(output_root.path_join(dest.get_file()+".import"))
+	var result := CompressedTexture2D.new()
 	result.take_over_path(dest)
 	textures[key] = result
 	return result
@@ -96,7 +110,9 @@ func copy_material(source: Material) -> Material:
 		var shader_path: String = source.shader.resource_path if source.shader else ""
 		if "foliage" in shader_path or "leaves" in source.resource_path or "grass" in shader_path:
 			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
-			mat.alpha_scissor_threshold = 0.45
+			mat.alpha_scissor_threshold = 0.35
+			mat.alpha_antialiasing_mode=BaseMaterial3D.ALPHA_ANTIALIASING_ALPHA_TO_COVERAGE
+			mat.albedo_color=Color(.72,.88,.63)
 			mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	elif source is StandardMaterial3D:
 		mat.albedo_color = source.albedo_color

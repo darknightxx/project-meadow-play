@@ -31,6 +31,7 @@ var mesh_count := 0
 var triangle_count := 0
 
 func _ready() -> void:
+	get_viewport().msaa_3d=Viewport.MSAA_2X
 	map = JSON.parse_string(FileAccess.get_file_as_string("res://source-map.json"))
 	decor = JSON.parse_string(FileAccess.get_file_as_string("res://decor.json"))
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://previewassets/manifest.json"))
@@ -168,7 +169,7 @@ func build_terrain() -> void:
 	var material := ShaderMaterial.new()
 	material.shader=load("res://ground.gdshader")
 	for name: String in ["grass","dirt","stone","tile","layout"]:
-		var path := "res://previewassets/ground_"+name+".res"
+		var path := "res://previewassets/ground_"+name+".png"
 		if ResourceLoader.exists(path): material.set_shader_parameter(name+"_tex",load(path))
 	terrain.material_override=material
 	add_child(terrain)
@@ -226,8 +227,12 @@ func build_buildings() -> void:
 	model("prop_sala",Vector3(65,2,28),Vector3(8,7,7))
 	for z in [139.0]:
 		model("temple_arch_03",Vector3(80,0,z),Vector3(9,10,3),90)
-	for x in range(18,73,4): model("temple_wall_400x400_02",Vector3(x,0,139),Vector3(4.2,2.3,1.3))
-	for x in range(88,136,4): model("temple_wall_400x400_02",Vector3(x,0,139),Vector3(4.2,2.3,1.3))
+	for x in range(18,73,4):
+		var wall := model("temple_wall_400x400_02",Vector3(x,0,139),Vector3(4.1,4.1,1.3),90)
+		if wall: wall.scale.y=.575
+	for x in range(88,136,4):
+		var wall := model("temple_wall_400x400_02",Vector3(x,0,139),Vector3(4.1,4.1,1.3),90)
+		if wall: wall.scale.y=.575
 
 func build_plaza() -> void:
 	var base := Vector3(80,.36,76)
@@ -270,6 +275,14 @@ func build_interior() -> void:
 	var cream := Color("d5c6a8")
 	box(Vector3(80,2.03,22.5),Vector3(7.5,.08,12),cream)
 	box(Vector3(80,7.05,22.5),Vector3(7.8,.12,12.2),cream)
+	for z in [18,22,26]: box(Vector3(80,6.85,z),Vector3(7.6,.2,.18),Color("744b32"))
+	var interior_light := OmniLight3D.new()
+	interior_light.position=Vector3(80,5.7,22)
+	interior_light.light_color=Color("ffe3ab")
+	interior_light.light_energy=1.7
+	interior_light.omni_range=10
+	interior_light.shadow_enabled=false
+	add_child(interior_light)
 	box(Vector3(76.2,4.5,22.5),Vector3(.2,5,12),Color("c7b18b"))
 	box(Vector3(83.8,4.5,22.5),Vector3(.2,5,12),Color("c7b18b"))
 	box(Vector3(80,4.5,16.4),Vector3(7.8,5,.2),Color("887252"))

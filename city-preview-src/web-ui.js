@@ -32,6 +32,7 @@
   canvas.addEventListener('pointerdown',e=>{if(mode!=='walk'||e.button!==0)return;look={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);});
   canvas.addEventListener('pointermove',e=>{if(!look||look.id!==e.pointerId)return;send('look',{x:e.clientX-look.x,y:e.clientY-look.y});look.x=e.clientX;look.y=e.clientY;});
   const stopLook=()=>look=null;canvas.addEventListener('pointerup',stopLook);canvas.addEventListener('pointercancel',stopLook);
+  document.addEventListener('click',event=>{if(event.target.closest('button')&&!document.querySelector('dialog[open]'))canvas.focus();});
   setInterval(()=>{
     if(!window.cityReady)return;
     if(!readyAt){readyAt=performance.now();window.cityLoadMs=readyAt;$('city-ui').hidden=false;}

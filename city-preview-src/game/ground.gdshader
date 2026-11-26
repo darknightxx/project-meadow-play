@@ -10,11 +10,12 @@ void vertex(){world_pos=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;}
 void fragment(){
  vec2 p=world_pos.xz;
  vec3 mask=texture(layout_tex,(p+vec2(16.0))/192.0).rgb;
- vec3 base=texture(grass_tex,p/6.0).rgb;
- base=mix(base,texture(dirt_tex,p/4.5).rgb,mask.g);
- base=mix(base,texture(stone_tex,p/3.4).rgb,mask.r);
+ vec3 grass=texture(grass_tex,p/6.0).rgb;
+ vec3 base=mix(vec3(dot(grass,vec3(.299,.587,.114))),grass,.58)*vec3(.72,.79,.67);
+ base=mix(base,texture(dirt_tex,p/4.5).rgb*.82,mask.g);
+ base=mix(base,texture(stone_tex,p/3.4).rgb*.83,mask.r);
  base=mix(base,texture(dirt_tex,p/4.0).rgb*vec3(1.08,1.03,.9),mask.b);
  float terrace=step(60.0,p.x)*step(p.x,100.0)*step(p.y,37.5);
- ALBEDO=mix(base,texture(tile_tex,p/3.0).rgb,terrace);
+ ALBEDO=mix(base,texture(tile_tex,p/3.0).rgb*.86,terrace);
  ROUGHNESS=.92;
 }

@@ -13,7 +13,12 @@ const fs=require('fs'),assert=require('assert');
  const pass=name=>report.checks.push({name,pass:true});
  pass('web_engine_and_scene_load');report.load_ms=await page.evaluate(()=>window.cityLoadMs);await shot('overview');
  await click('เดินสำรวจ');await page.waitForFunction(()=>window.cityTestState.mode==='walk');
- const before=(await state()).z;await walk('KeyS',500);assert((await state()).z>before+.3);pass('keyboard_movement');
+ const before=(await state()).z;
+ await page.locator('#canvas').focus();await page.keyboard.down('KeyS');
+ try {await page.waitForFunction(z=>window.cityTestState.z>z+.3,before,{timeout:30000});}
+ catch(error){fs.writeFileSync('city-preview-reports/keyboard-diagnostic.json',JSON.stringify(await page.evaluate(()=>({state:window.cityTestState,focus:document.activeElement.id,canvas:[document.querySelector('canvas').width,document.querySelector('canvas').height],compressed:window.cityCompressedEngine})),null,2));throw error;}
+ finally {await page.keyboard.up('KeyS');}
+ pass('keyboard_movement');
  await click('ภายในวิหาร');await page.waitForFunction(()=>window.cityTestState.inside);await shot('interior');
  await click('ตู้บริจาค');assert.equal((await state()).coins,100);await click('กลับ');assert.equal((await state()).coins,100);
  await click('ตู้บริจาค');await click('บริจาค 10 เหรียญทดลอง');await page.waitForFunction(()=>window.cityTestState.coins===90);pass('donation_confirmation_cancel_and_commit');
@@ -32,3 +37,4 @@ const fs=require('fs'),assert=require('assert');
  fs.writeFileSync('city-preview-reports/browser-qa.json',JSON.stringify(report,null,2));
  assert.equal(report.errors.filter(x=>/SCRIPT ERROR|Failed to load|Parse Error/i.test(x)).length,0,JSON.stringify(report.errors));
 })().catch(error=>{fs.writeFileSync('city-preview-reports/browser-failure.txt',String(error.stack||error));console.error(error);process.exit(1);});
+

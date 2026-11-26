@@ -1,13 +1,17 @@
 <!doctype html><html lang="th"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ปรับ HUD และเอฟเฟกต์ไอคอน รอบ 1 - ภาพตรวจงาน</title>
-<style>body{background:#162837;color:#f3f0e8;font-family:sans-serif;margin:16px}img{max-width:100%;border:1px solid #cdb680;border-radius:6px}h2{color:#f3d895;font-size:17px;margin-top:28px}a{color:#76cfe8}p{color:#b9c7d6}</style>
-<h1>ปรับ HUD และเอฟเฟกต์ไอคอน รอบ 1</h1>
-<p>build 2026-11-26 00:31 UTC · source ddbff16b · <a href="../?hud=kit2">เปิดเกมแบบชุดใหม่</a> · <a href="../">เปิดเกมแบบเดิม</a><br>ภาพทั้งหมดวาดด้วยซอฟต์แวร์ในคลาวด์ (ไม่ใช่การ์ดจอจริง / ไม่ใช่มือถือจริง)</p>
-<h2>1. PC ก่อน (หน้าตาเดิม)</h2><img src="1_pc_before.jpg">
-<h2>2. PC หลัง - ปกติ (ไอคอนเมนูเป็นสีเทา ยาเป็นสีเดิม)</h2><img src="2_pc_after_rest.jpg">
-<h2>3. PC หลัง - ชี้ที่ "กระเป๋า" และช่องยาช่องแรก (เป็นสี + ยกนูน)</h2><img src="3_pc_after_pointed.jpg">
-<h2>4. ขยายปุ่ม: บน = เดิม · กลาง = ใหม่ปกติ · ล่าง = ใหม่ตอนชี้</h2><img src="4_tiles_zoom.jpg">
-<h2>5. ทุกสถานะของปุ่มใช้ร่วม + คูลดาวน์เลขกลาง</h2><img src="5_button_states.jpg">
-<h2>6. บนเว็บจริง (Chromium 1366x768) ชี้ที่ "กระเป๋า"</h2><img src="6_web_pc_pointed.jpg">
-<h2>7. บนเว็บจริง จอมือถือจำลอง 800x360 @4x (EMULATED)</h2><img src="7_web_phone_emulated.jpg">
+<title>ปรับ HUD และปุ่มกระเป๋า - รอบแก้ภาพ - ภาพตรวจงาน</title>
+<style>body{background:#162837;color:#f3f0e8;font-family:sans-serif;margin:16px}img,video{max-width:100%;border:1px solid #c9c4c0;border-radius:6px}h2{color:#f3d895;font-size:17px;margin-top:28px}a{color:#76cfe8}p{color:#b9c7d6}.w{color:#e6c66c}</style>
+<h1>ปรับ HUD และปุ่มกระเป๋า — รอบแก้ภาพ</h1>
+<p class="w">สถานะภาพ: CANDIDATE — ยังไม่ผ่านการตรวจของเจ้าของ (ภาพยังไม่ตรงตัวอย่าง ดูรายการจุดต่างในรายงาน)</p>
+<p>build 2026-11-26 03:33 UTC · source 72626fdd · <a href="../?hud=kit2">เปิดเกมแบบชุดใหม่</a> · <a href="../">เปิดเกมแบบเดิม</a><br>ภาพทั้งหมดจับจากเกมที่รันจริง วาดด้วยซอฟต์แวร์ในคลาวด์ (ไม่ใช่การ์ดจอจริง / ไม่ใช่มือถือจริง) ไม่ได้แต่งหลังจับ</p>
+<h2>1. แถวเมนู: ภาพตัวอย่างในไฟล์ / ในเกมปกติ / ในเกมตอนชี้ (ขนาดปุ่มเท่ากัน)</h2><img src="1_sample_vs_game_menu_row.png">
+<h2>2. HUD เต็มหน้า: ภาพตัวอย่าง / ในเกม (กว้างเท่ากัน)</h2><img src="2_sample_vs_game_full_hud.jpg">
+<h2>3. ปุ่มกระเป๋า PC 1920x1080: ต้นแบบ / ปกติ / ชี้ + ภาพขยายพิกเซลเดิม</h2><img src="3_bag_pc_1920.png">
+<h2>4. ปุ่มกระเป๋า จอสัมผัสจำลอง (EMULATED)</h2><img src="4_bag_touch_emulated.png">
+<h2>5. ปุ่มกระเป๋าเทียบของเก่า (ถ่ายก่อนขยายกรอบไปปุ่มอื่น)</h2><img src="5_bag_old_vs_new.png">
+<h2>6. ช่องยา: ภาพตัวอย่าง / ในเกม</h2><img src="6_item_slots.png">
+<h2>7. คลิป: เมาส์เข้า-ออกปุ่มกระเป๋า แล้วไปปุ่มข้างเคียง (ขยาย 4 เท่า; ถ่ายก่อนขยายกรอบไปปุ่มอื่น)</h2><video src="bag_pointer_in_out_4x.mp4" controls loop muted></video>
+<h2>8. บนเว็บจริง Chromium 1366x768</h2><img src="7_web_pc_1366.jpg">
+<h2>9. บนเว็บจริง Chromium 1366x768 ชี้ที่ปุ่ม</h2><img src="8_web_pc_1366_pointed.jpg">
+<h2>10. บนเว็บจริง จอมือถือจำลอง 800x360 @4x (EMULATED)</h2><img src="9_web_phone_emulated.jpg">
 </html>

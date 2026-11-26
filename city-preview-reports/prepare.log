@@ -196,4 +196,4 @@ WARNING: 'res://assets/remaster/polyart/materials/mi_suntemple_woodtrim_01.tres'
      at: open (core/io/resource_format_binary.cpp:1094)
 WARNING: 'res://assets/remaster/polyart/materials/m_eastlands_lamps.tres': In external resource #1, invalid UID: 'uid://cw13a0een7ac' - using text path instead: 'res://assets/remaster/polyart/textures/m_eastlands_stonelamps_c_ao.png'.
      at: open (core/io/resource_format_binary.cpp:1094)
-ASSET_PREPARED {"missing":[],"models":33,"textures":40}
+ASSET_PREPARED {"missing":[],"models":33,"textures":45}
